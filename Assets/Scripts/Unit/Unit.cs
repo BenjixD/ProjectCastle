@@ -6,7 +6,7 @@ public abstract class Unit : MonoBehaviour {
 	public int maxHp;
 	public int curHp;
 
-	public int MaxAp;
+	public int maxAp;
 	public int curAp;
 
 	public string unitName;
@@ -15,8 +15,12 @@ public abstract class Unit : MonoBehaviour {
 	//public Player owner;
 	//public Tile tile;
 
+	public abstract void RefreshAp();
 	public abstract bool ConsumeAp(int val); 
 	
+	public abstract void TakeDamage(int val);
+	public abstract bool IsDead();
+
 	public void FlushPlan() {
 		plan.Clear();
 	}

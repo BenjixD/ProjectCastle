@@ -10,23 +10,23 @@ public class Board : MonoBehaviour {
 
     void Start()
     {
-        DrawBoard();
+        DrawBoard(20, 20);
     }
 
     // Test drawing the board
-    public static void DrawBoard(int rows, int cols)
+    public void DrawBoard(int rows, int cols)
     {
-        foreach (int i in rows)
+        for (int i = 0; i < rows; i++)
         {
-            foreach (int j in cols)
+            for (int j = 0; j < cols; j++)
             {
-                Instantiate(tile, CoordsToPosition(i, j));
+                Instantiate(tile, CoordsToPosition(i, j), Quaternion.identity);
             }
         }
     }
 
-    public static Vector2 CoordsToPosition(int x, int y)
+    public Vector3 CoordsToPosition(int x, int y)
     {
-        return new Vector2((y-x)*tileWidth, (x+y)*-tileHeight);
+        return new Vector3((y-x)*tileWidth, (x+y)*-tileHeight, 0);
     }
 }

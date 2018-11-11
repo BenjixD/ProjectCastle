@@ -4,23 +4,28 @@ using UnityEngine;
 
 public class Board : MonoBehaviour {
 
-    public GameObject tile;         // Base tile for testing
+    public int rows;
+    public int cols;
+    private GameObject[,] tiles;
+
+    public GameObject baseTile;         // Base tile for testing
     public float tileWidth;
     public float tileHeight;
 
     void Start()
     {
-        DrawBoard(20, 20);
+        InitializeBoard();
     }
 
-    // Test drawing the board
-    public void DrawBoard(int rows, int cols)
+    public void InitializeBoard()
     {
+        tiles = new GameObject[rows, cols];
         for (int i = 0; i < rows; i++)
         {
             for (int j = 0; j < cols; j++)
             {
-                Instantiate(tile, CoordsToPosition(i, j), Quaternion.identity);
+                GameObject tile = Instantiate(baseTile, CoordsToPosition(i, j), Quaternion.identity, gameObject.transform);
+                tiles[i, j] = tile;
             }
         }
     }

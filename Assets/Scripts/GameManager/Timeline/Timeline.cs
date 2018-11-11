@@ -18,6 +18,11 @@ public class Timeline : MonoBehaviour {
 			}
 
 			//Check For Dead Units
+			for(int j = 0; j < units.Count; j++) {
+				if(units[j].IsDead()) {
+					//TODO: Death Anim then death
+				}
+			}
 			//TODO: Delay
 		}
 	}

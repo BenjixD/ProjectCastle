@@ -2,8 +2,15 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
+public enum Direction {
+	NONE = -1,
+	UP = 0,
+	RIGHT = 1,
+	DOWN = 2,
+	LEFT = 3
+}
+
 public abstract class Action : MonoBehaviour {
 	public int cost;
-	public Direction dir;
 	public List<Frame> frames = new List<Frame>();
 }

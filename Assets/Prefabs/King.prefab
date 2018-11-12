@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4923845911944246}
   - component: {fileID: 212274110593211470}
   - component: {fileID: 114568409492265196}
+  - component: {fileID: 114728448468219740}
   m_Layer: 0
   m_Name: King
   m_TagString: Untagged
@@ -57,7 +58,20 @@ MonoBehaviour:
   curHp: 10
   maxAp: 5
   curAp: 5
-  skills: []
+  skills:
+  - {fileID: 114728448468219740}
+--- !u!114 &114728448468219740
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1990141191843838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79c6f8a72690b46df9d82bf03583c320, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cost: 1
 --- !u!212 &212274110593211470
 SpriteRenderer:
   m_ObjectHideFlags: 1

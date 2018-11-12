@@ -15,6 +15,10 @@ public class Game : MonoBehaviour {
 		}
 	}
 
+	public void PlayTimeline(){
+		StartCoroutine(timeline.Play(players, board));
+	}
+
 	public Vector2 CoordsForPlayerSetup(int player) {
         if(player % players.Count == 0) {
         	return new Vector2(0,0);

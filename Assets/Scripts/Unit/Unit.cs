@@ -3,17 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 
 public abstract class Unit : MonoBehaviour {
+	public string unitName;
+
 	public int maxHp;
 	public int curHp;
 
 	public int maxAp;
 	public int curAp;
 
-	public string unitName;
 	public List<Action> skills;
 	public Queue<Command> plan = new Queue<Command>(); 
-	//public Player owner;
-	//public Tile tile;
+
+	public Tile tile { get; set; }
+	public Player owner { get; set; }
 
 	public abstract void RefreshAp();
 	public abstract bool ConsumeAp(int val); 
@@ -25,18 +27,19 @@ public abstract class Unit : MonoBehaviour {
 		plan.Clear();
 	}
 
-	public bool QueueAction(Action action) {
+	public bool QueueAction(Action action, Direction dir) {
 		if(this.ConsumeAp(action.cost)) {
 			List<Frame> frames = action.frames;
 			foreach(Frame frame in frames) {
 				Command c = new Command();
 				c.frame = frame;
-				c.dir = action.dir;
+				c.dir = dir;
 				plan.Enqueue(c);
 			}
 			return true;
 		}
 
+		Debug.Log("This unit cannot queue anymore actions!");
 		return false;
 	}
 }

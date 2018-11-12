@@ -9,7 +9,7 @@ public class MoveFrame : Frame {
 
 		if(board.CheckCoord((int)next.x, (int)next.y)) {
 			unit.tile = board.GetTile((int)next.x, (int)next.y);
-			unit.gameObject.transform.position = unit.tile.gameObject.position;	//TODO: Should be some sort of slow walk to the tile
+			unit.gameObject.transform.position = unit.tile.gameObject.transform.position;	//TODO: Should be some sort of slow walk to the tile
 			return true;
 		}
 

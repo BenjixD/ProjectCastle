@@ -2,15 +2,19 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class Timeline : MonoBehaviour {
+public class Timeline : Phase {
 	public int maxFrame;
 	public float frameDelay;
 
-	public IEnumerator Play(List<Player> players, Board board) {
+	public override IEnumerator Play(List<Player> players, Board board, IEnumerator next) {
+		Debug.Log("Playing Timeline!");
 		for(int i = 0 ; i < maxFrame; i++) {
 			PlayFrame(players, board);
 			yield return new WaitForSeconds(frameDelay);
 		}
+
+		StartCoroutine(next);
+		yield return null;
 	}
 
 	private void PlayFrame(List<Player> players, Board board) {

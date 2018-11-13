@@ -210,7 +210,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1013115837}
   - component: {fileID: 1013115836}
+  - component: {fileID: 1013115838}
   - component: {fileID: 1013115835}
+  - component: {fileID: 1013115834}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -218,7 +220,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1013115835
+--- !u!114 &1013115834
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -230,7 +232,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxFrame: 10
-  frameDelay: 0
+  frameDelay: 1
+--- !u!114 &1013115835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1013115833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 748b1c784ae47480eb463f6052db6516, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1013115836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,10 +255,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b053add7fb6244e9a57db767a67c3af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeline: {fileID: 1013115835}
   players:
   - {fileID: 554470877}
   - {fileID: 1263720591}
+  phases:
+  - {fileID: 1013115838}
+  - {fileID: 1013115835}
+  - {fileID: 1013115834}
   board: {fileID: 597238866}
 --- !u!4 &1013115837
 Transform:
@@ -260,6 +276,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1013115838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1013115833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c85447a8091d4fbc95bf37369105888, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1263720590
 GameObject:
   m_ObjectHideFlags: 0

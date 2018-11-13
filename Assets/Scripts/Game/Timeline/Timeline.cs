@@ -6,12 +6,15 @@ public class Timeline : MonoBehaviour {
 	public int maxFrame;
 	public float frameDelay;
 
-	public IEnumerator Play(List<Player> players, Board board) {
+    public UIManager uiManager;
+
+    public IEnumerator Play(List<Player> players, Board board) {
 		for(int i = 0 ; i < maxFrame; i++) {
-			PlayFrame(players, board);
-			yield return new WaitForSeconds(frameDelay);
-		}
-	}
+            uiManager.UpdateTimelineDisplay(i);
+            PlayFrame(players, board);
+            yield return new WaitForSeconds(frameDelay);
+        }
+    }
 
 	private void PlayFrame(List<Player> players, Board board) {
 		//Move units one frame

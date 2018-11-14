@@ -62,5 +62,46 @@ public class Board : MonoBehaviour {
         }
 
         return neighbours;
-    } 
+    }
+
+    public bool CheckPlacePiece(Piece piece, Vector2 origin) {
+        int x = (int)origin.x;
+        int y = (int)origin.y;
+
+        for(int i = 0; i < piece.row; i++) {
+            for(int j = 0; j < piece.cols; j++) {
+                if(piece.tiles[i,j] != null && this.tiles[i + x, j + y] != null) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    public void PlacePiece(Piece piece, Vector2 origin) {
+        if(CheckPlacePiece(piece, origin)) {
+            int x = (int)origin.x;
+            int y = (int)origin.y;
+
+            for(int i = 0; i < piece.row; i++) {
+                for(int j = 0; j < piece.cols; j++) {
+                    this.tiles[i + x, j + y] = piece.tiles[i, j];
+                }
+            }
+        }
+    }
+
+    public void PlacePieceAsPossible(Piece piece, Vector2 origin) {
+        int x = (int)origin.x;
+        int y = (int)origin.y;
+
+        for(int i = 0; i < piece.row; i++) {
+            for(int j = 0; j < piece.cols; j++) {
+                if(piece.tiles[i,j] != null && this.tiles[i + x, j + y] == null) {
+                    this.tiles[i + x, j + y] = piece.tiles[i, j];
+                }
+            }
+        }
+    }
 }

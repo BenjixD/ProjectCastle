@@ -11,6 +11,7 @@ public enum Direction {
 }
 
 public abstract class Action : MonoBehaviour {
+    public string actionName;
 	public int cost;
 	public List<Frame> frames { get; set; }
 }

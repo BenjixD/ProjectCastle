@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class MenuManager : MonoBehaviour {
 
     public Game gameManager;
+    public GameObject deploymentPhaseControl;
 
     private List<GameObject> actionButtons;
     public GameObject actionsMenu;
@@ -124,5 +125,6 @@ public class MenuManager : MonoBehaviour {
     {
         gameManager.nextTurn = true;
         ClosePhaseMenu();
+        deploymentPhaseControl.SetActive(false);
     }
 }

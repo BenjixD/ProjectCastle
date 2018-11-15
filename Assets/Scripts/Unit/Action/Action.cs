@@ -10,7 +10,15 @@ public enum Direction {
 	LEFT = 3
 }
 
+public enum ActionType {
+	Priority,
+	Movement,
+	Effect,
+	Attack
+}
+
 public abstract class Action : MonoBehaviour {
 	public int cost;
 	public List<Frame> frames { get; set; }
+	public ActionType actionType;
 }

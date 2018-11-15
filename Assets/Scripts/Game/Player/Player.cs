@@ -30,6 +30,7 @@ public class Player : MonoBehaviour {
 	}
 
 	public void addUnit(Unit unit) {
+		unit.owner = this;
 		units.Add(unit);
 	}
 

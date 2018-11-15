@@ -34,6 +34,7 @@ public abstract class Unit : MonoBehaviour {
 				Command c = new Command();
 				c.frame = frame;
 				c.dir = dir;
+				c.type = action.actionType;
 				plan.Enqueue(c);
 			}
 			return true;

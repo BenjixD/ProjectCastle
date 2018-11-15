@@ -8,11 +8,11 @@ public class Timeline : Phase {
 
     public UIManager uiManager;
 
-    public override IEnumerator Play(List<Player> players, Board board, IEnumerator next) {
+    public override IEnumerator Play(Game game, IEnumerator next) {
 		Debug.Log("Playing Timeline!");
 		for(int i = 0 ; i < maxFrame; i++) {
             uiManager.UpdateTimelineDisplay(i);
-            PlayFrame(players, board);
+            PlayFrame(game.players, game.board);
 			yield return new WaitForSeconds(frameDelay);
 		}
 

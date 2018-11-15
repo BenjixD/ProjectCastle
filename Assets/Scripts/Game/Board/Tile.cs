@@ -14,4 +14,10 @@ public class Tile : MonoBehaviour {
         this.unit = unit;
         unit.tile = this;
     }
+
+    public void RemoveUnit(Unit unit)
+    {
+        //TODO: if multiple units are allowed on a tile, remove only the given unit
+        this.unit = null;
+    }
 }

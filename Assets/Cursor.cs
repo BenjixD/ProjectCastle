@@ -10,7 +10,7 @@ public class Cursor : MonoBehaviour {
     public Vector2 startCoords;
     public Vector2 currCoords { get; set; }
 
-    public bool movementEnabled = true;
+    public bool movementEnabled = false;
 
     void Start()
     {

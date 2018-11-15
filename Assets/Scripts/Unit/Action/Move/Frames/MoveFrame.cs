@@ -8,7 +8,8 @@ public class MoveFrame : Frame {
 		Vector2 next = nextCoord(unit.tile.coordinate, absoluteDir);
 
 		if(board.CheckCoord((int)next.x, (int)next.y)) {
-			unit.tile = board.GetTile((int)next.x, (int)next.y);
+            unit.tile.RemoveUnit(unit);
+            board.GetTile((int)next.x, (int)next.y).PlaceUnit(unit);
 			unit.gameObject.transform.position = unit.tile.gameObject.transform.position;	//TODO: Should be some sort of slow walk to the tile
 			return true;
 		}

@@ -36,7 +36,6 @@ public class MenuManager : MonoBehaviour {
 
     public void OpenActionsMenu(Unit unit)
     {
-        Debug.Log("open");
         CleanButtons(actionButtons);
         foreach (Action skill in unit.skills)
         {
@@ -127,7 +126,8 @@ public class MenuManager : MonoBehaviour {
 
     public void EndDeployPhase()
     {
-        gameManager.nextTurn = true;
+        //gameManager.nextTurn = true;
+        gameManager.endPhase = true;
         ClosePhaseMenu();
         DisableDeployControl();
     }

@@ -43,6 +43,10 @@ public class MoveInput : MonoBehaviour {
             {
                 SubmitInput();
             }
+            if (Input.GetKeyDown("escape") || Input.GetKeyDown("backspace"))
+            {
+                ReturnToDeployment();
+            }
         }
     }
 
@@ -55,14 +59,18 @@ public class MoveInput : MonoBehaviour {
 
     void SubmitInput()
     {
-        acceptingInput = false;
-        Debug.Log(moves);
         foreach (Direction dir in moves)
         {
             unit.QueueAction(skill, dir);
         }
-        //moves.Clear();
-        //deploymentPhaseControl.active = true;
+        ReturnToDeployment();
+    }
+
+    void ReturnToDeployment()
+    {
+        moves.Clear();
+        acceptingInput = false;
         deploymentPhaseControl.SetActive(true);
+        deploymentPhaseControl.GetComponent<DeploymentPhaseControl>().cursor.movementEnabled = true;
     }
 }

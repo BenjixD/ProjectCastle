@@ -4,12 +4,12 @@ using System.Collections.Generic;
 
 public class King : Unit {
 
-	public override bool ConsumeAp(int val) {
-		if(val <= curAp) {
-			curAp -= val;
-			return true;
-		}
-		return false;
+	public override bool CanConsumeAp(Action action) {
+		return action.cost <= curAp;
+	}
+
+	public override void ConsumeAp(Action action) {
+		curAp -= action.cost;
 	}
 
 	public override bool IsDead() {

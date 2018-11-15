@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class MoveInput : MonoBehaviour {
 
+    public GameObject deploymentPhaseControl;
+    public Timeline timeline;
+
     private Unit unit;
     private Action skill;
     private bool acceptingInput = false;
     private List<Direction> moves;
-    public GameObject deploymentPhaseControl;
 
     void Start()
     {
@@ -61,7 +63,7 @@ public class MoveInput : MonoBehaviour {
     {
         foreach (Direction dir in moves)
         {
-            unit.QueueAction(skill, dir);
+            unit.QueueAction(skill, dir, timeline);
         }
         ReturnToDeployment();
     }

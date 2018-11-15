@@ -8,8 +8,10 @@ public class Timeline : Phase {
 
     public UIManager uiManager;
 
+    public ActionType[] actionOrder;
+
     public override IEnumerator Play(Game game, IEnumerator next) {
-		Debug.Log("Playing Timeline!");
+        Debug.Log("Playing Timeline!");
 		for(int i = 0 ; i < maxFrame; i++) {
             uiManager.UpdateTimelineDisplay(i);
             PlayFrame(game.players, game.board);
@@ -21,9 +23,31 @@ public class Timeline : Phase {
 	}
 
 	private void PlayFrame(List<Player> players, Board board) {
-		//Move units one frame
+		Dictionary<ActionType, Queue<Unit>> actionDict = new Dictionary<ActionType, Queue<Unit>>();
+
+		//Adding ActionTypes
+		foreach (ActionType type in actionOrder) {
+            Debug.Log(type);
+
+            actionDict.Add(type, new Queue<Unit>());	
+		}
+
+		//Put the unit actions in the correct queue
 		foreach(Player player in players) {
 			foreach(Unit unit in player.units) {
+				if(unit.plan.Count > 0) {
+					ActionType actionType = unit.plan.Peek().type;
+                    Debug.Log(actionType);
+                    actionDict[actionType].Enqueue(unit);
+				}
+			}
+		}
+
+		//Play Execution Based on Order
+		foreach(ActionType type in actionOrder) {
+			Queue<Unit> actions = actionDict[type];
+			while(actions.Count > 0) {
+				Unit unit = actions.Dequeue();
 				ExecuteUnitCommand(unit, board);
 			}
 		}

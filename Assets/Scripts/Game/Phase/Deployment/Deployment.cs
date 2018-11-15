@@ -5,13 +5,12 @@ using System.Collections.Generic;
 public class Deployment : Phase {
 	public override IEnumerator Play(Game game, IEnumerator next) {
 		Debug.Log("Started Deployment Phase!");
-        game.control.BeginDeploymentPhase();
-		foreach(Player player in game.players) {
+        game.control.InitializeDeploymentPhase();
+        foreach (Player player in game.players) {
 			while(!game.endPhase) {
-                /*if(Input.GetKeyDown("space")) {
-					Debug.Log("Player " + player.playerId + "confirmed deployment!");
-					break;
-				}*/
+                if(Input.GetKeyDown("space")) {
+                    game.endPhase = true;
+                }
                 yield return new WaitForFixedUpdate();
             }
             Debug.Log("Player " + player.playerId + "confirmed deployment!");

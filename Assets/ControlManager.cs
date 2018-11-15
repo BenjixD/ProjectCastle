@@ -7,7 +7,7 @@ public class ControlManager : MonoBehaviour {
     public GameObject deployPhaseControl;
     public MoveInput moveInput;
 
-    public void BeginDeploymentPhase()
+    public void InitializeDeploymentPhase()
     {
         cursor.GetComponent<Cursor>().movementEnabled = true;
         deployPhaseControl.SetActive(true);

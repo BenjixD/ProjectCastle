@@ -14,4 +14,5 @@ public abstract class Action : MonoBehaviour {
     public string actionName;
 	public int cost;
 	public List<Frame> frames { get; set; }
+    public abstract void Select(Unit unit);
 }

@@ -36,11 +36,15 @@ public class MenuManager : MonoBehaviour {
 
     public void OpenActionsMenu(Unit unit)
     {
+        Debug.Log("open");
         CleanButtons(actionButtons);
         foreach (Action skill in unit.skills)
         {
             GameObject newButton = Instantiate(buttonTemplate, listTopPosition - new Vector3(0, actionButtons.Count * buttonTemplateHeight, 0), Quaternion.identity, actionsMenu.transform);
             newButton.GetComponentInChildren<Text>().text = skill.actionName;
+            newButton.GetComponent<Button>().onClick.AddListener(DisableDeployControl);
+            newButton.GetComponent<Button>().onClick.AddListener(CloseAllMenus);
+            newButton.GetComponent<Button>().onClick.AddListener(delegate { skill.Select(unit); });
             actionButtons.Add(newButton);
         }
         SetupNavigation(actionButtons);
@@ -125,6 +129,11 @@ public class MenuManager : MonoBehaviour {
     {
         gameManager.nextTurn = true;
         ClosePhaseMenu();
+        DisableDeployControl();
+    }
+
+    public void DisableDeployControl()
+    {
         deploymentPhaseControl.SetActive(false);
     }
 }

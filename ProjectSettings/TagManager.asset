@@ -44,6 +44,9 @@ TagManager:
   - name: Tiles
     uniqueID: 1178031843
     locked: 0
+  - name: Board UI
+    uniqueID: 55287445
+    locked: 0
   - name: Units
     uniqueID: 2753136837
     locked: 0

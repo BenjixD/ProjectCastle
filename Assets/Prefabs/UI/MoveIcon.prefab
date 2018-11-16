@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 222003725315777044}
   - component: {fileID: 114949413155027972}
   m_Layer: 5
-  m_Name: MoveUpIcon
+  m_Name: MoveIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

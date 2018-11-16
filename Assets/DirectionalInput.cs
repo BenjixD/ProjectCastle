@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveInput : MonoBehaviour {
+public class DirectionalInput : MonoBehaviour {
     public UIManager uiManager;
     public GameObject deploymentPhaseControl;
     public Cursor cursor;
@@ -78,6 +78,7 @@ public class MoveInput : MonoBehaviour {
 
     void SubmitInput()
     {
+        //TODO: remove if not needed for final implementation
         /*foreach (Direction dir in moves)
         {
             unit.QueueAction(skill, dir, timeline);
@@ -87,7 +88,6 @@ public class MoveInput : MonoBehaviour {
 
     void ReturnToDeployment()
     {
-        //moves.Clear();
         actionsCount = 0;
         acceptingInput = false;
         deploymentPhaseControl.SetActive(true);

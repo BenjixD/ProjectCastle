@@ -15,6 +15,6 @@ public class Move : Action {
 
     public override void Select(Unit unit)
     {
-        control.moveInput.BeginInput(unit, this);
+        control.directionalInput.BeginInput(unit, this);
     }
 }

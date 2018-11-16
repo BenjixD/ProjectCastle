@@ -5,7 +5,7 @@ using UnityEngine;
 public class ControlManager : MonoBehaviour {
     public GameObject cursor;
     public GameObject deployPhaseControl;
-    public MoveInput moveInput;
+    public DirectionalInput directionalInput;
 
     public void InitializeDeploymentPhase()
     {

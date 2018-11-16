@@ -75,7 +75,7 @@ MonoBehaviour:
   actionName: Move
   cost: 1
   icons:
-  - {fileID: 0}
+  - {fileID: 1492498545512562, guid: cdf5996b9de64e64eaf0bdaa58b0669d, type: 2}
   actionType: 1
   control: {fileID: 0}
 --- !u!212 &212274110593211470

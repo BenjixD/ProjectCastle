@@ -6,6 +6,7 @@ public class Cursor : MonoBehaviour {
 
     public Board board;
     private Camera cam;
+    public UIManager uiManager;
 
     public Vector2 startCoords;
     public Vector2 currCoords { get; set; }
@@ -26,7 +27,7 @@ public class Cursor : MonoBehaviour {
                 if (board.CheckCoord((int)currCoords.x - 1, (int)currCoords.y))
                 {
                     currCoords = new Vector2(currCoords.x - 1, currCoords.y);
-                    gameObject.transform.position = board.CoordToPosition((int)currCoords.x, (int)currCoords.y);
+                    UpdateAfterMovement();
                 }
             }
             if (Input.GetKeyDown("down"))
@@ -34,7 +35,7 @@ public class Cursor : MonoBehaviour {
                 if (board.CheckCoord((int)currCoords.x + 1, (int)currCoords.y))
                 {
                     currCoords = new Vector2(currCoords.x + 1, currCoords.y);
-                    gameObject.transform.position = board.CoordToPosition((int)currCoords.x, (int)currCoords.y);
+                    UpdateAfterMovement();
                 }
             }
             if (Input.GetKeyDown("left"))
@@ -42,7 +43,7 @@ public class Cursor : MonoBehaviour {
                 if (board.CheckCoord((int)currCoords.x, (int)currCoords.y - 1))
                 {
                     currCoords = new Vector2(currCoords.x, currCoords.y - 1);
-                    gameObject.transform.position = board.CoordToPosition((int)currCoords.x, (int)currCoords.y);
+                    UpdateAfterMovement();
                 }
             }
             if (Input.GetKeyDown("right"))
@@ -50,10 +51,24 @@ public class Cursor : MonoBehaviour {
                 if (board.CheckCoord((int)currCoords.x, (int)currCoords.y + 1))
                 {
                     currCoords = new Vector2(currCoords.x, currCoords.y + 1);
-                    gameObject.transform.position = board.CoordToPosition((int)currCoords.x, (int)currCoords.y);
+                    UpdateAfterMovement();
                 }
             }
-            cam.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, cam.transform.position.z);
+        }
+    }
+
+    public void UpdateAfterMovement()
+    {
+        gameObject.transform.position = board.CoordToPosition((int)currCoords.x, (int)currCoords.y);
+        cam.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, cam.transform.position.z);
+        Unit currUnit = board.GetTile((int)currCoords.x, (int)currCoords.y).unit;
+        if (currUnit != null && currUnit.plan.Count > 0)
+        {
+            uiManager.DisplayTimelineIcons(currUnit.plan);
+        }
+        else
+        {
+            uiManager.DisplayTimelineIcons(null);
         }
     }
 }

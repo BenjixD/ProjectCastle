@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MoveInput : MonoBehaviour {
-
+    public UIManager uiManager;
     public GameObject deploymentPhaseControl;
+    public Cursor cursor;
     public Timeline timeline;
 
     private Unit unit;
     private Action skill;
     private bool acceptingInput = false;
-    private List<Direction> moves;
+    private int actionsCount;
 
     void Start()
     {
-        moves = new List<Direction>();
+        actionsCount = 0;
     }
 
     void Update () {
@@ -23,32 +24,48 @@ public class MoveInput : MonoBehaviour {
         {
             if (Input.GetKeyDown("up"))
             {
-                Debug.Log("Move queued: up");
-                moves.Add(Direction.UP);
+                if (unit.QueueAction(skill, Direction.UP, timeline))
+                {
+                    actionsCount++;
+                }
             }
             else if (Input.GetKeyDown("down"))
             {
-                Debug.Log("Move queued: down");
-                moves.Add(Direction.DOWN);
+                if (unit.QueueAction(skill, Direction.DOWN, timeline))
+                {
+                    actionsCount++;
+                }
             }
             else if (Input.GetKeyDown("left"))
             {
-                Debug.Log("Move queued: left");
-                moves.Add(Direction.LEFT);
+                if (unit.QueueAction(skill, Direction.LEFT, timeline))
+                {
+                    actionsCount++;
+                }
             }
             else if (Input.GetKeyDown("right"))
             {
-                Debug.Log("Move queued: right");
-                moves.Add(Direction.RIGHT);
+                if (unit.QueueAction(skill, Direction.RIGHT, timeline))
+                {
+                    actionsCount++;
+                }
             }
-            if (Input.GetKeyDown("return") && moves.Count > 0)
+            if (Input.GetKeyDown("return") && actionsCount > 0)
             {
                 SubmitInput();
             }
             if (Input.GetKeyDown("escape") || Input.GetKeyDown("backspace"))
             {
+                if (actionsCount > 0)
+                {
+                    actionsCount = 0;
+                    unit.FlushPlan();
+                    //TODO, depending on implementation: refresh unit's curAP, etc.
+                    Debug.Log("All actions for " + unit.unitName + " cancelled.");
+                }
                 ReturnToDeployment();
             }
+            uiManager.DisplayTimelineIcons(unit.plan);
         }
     }
 
@@ -61,18 +78,19 @@ public class MoveInput : MonoBehaviour {
 
     void SubmitInput()
     {
-        foreach (Direction dir in moves)
+        /*foreach (Direction dir in moves)
         {
             unit.QueueAction(skill, dir, timeline);
-        }
+        }*/
         ReturnToDeployment();
     }
 
     void ReturnToDeployment()
     {
-        moves.Clear();
+        //moves.Clear();
+        actionsCount = 0;
         acceptingInput = false;
         deploymentPhaseControl.SetActive(true);
-        deploymentPhaseControl.GetComponent<DeploymentPhaseControl>().cursor.movementEnabled = true;
+        cursor.movementEnabled = true;
     }
 }

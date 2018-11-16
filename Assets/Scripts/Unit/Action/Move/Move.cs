@@ -8,7 +8,9 @@ public class Move : Action {
     void Start() {
 		//Add Move frames in order
 		this.frames = new List<Frame>();
-		this.frames.Add(new MoveFrame());
+        Frame frame = new MoveFrame();
+        frame.icon = icons[0];
+        this.frames.Add(frame);
 	}
 
     public override void Select(Unit unit)

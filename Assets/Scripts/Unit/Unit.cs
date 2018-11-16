@@ -11,6 +11,8 @@ public abstract class Unit : MonoBehaviour {
 	public int maxAp;
 	public int curAp;
 
+	public bool controllable;
+
 	public List<Action> skills;
 	public Queue<Command> plan = new Queue<Command>(); 
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ControlManager : MonoBehaviour {
+public class InputManager : MonoBehaviour {
     public GameObject cursor;
     public GameObject deployPhaseControl;
     public DirectionalInput directionalInput;

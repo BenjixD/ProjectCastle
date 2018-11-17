@@ -8,16 +8,14 @@ public class UIManager : MonoBehaviour {
     public int maxFrames;
     public Image timelineDisplay;
     public Image pointer;
+    public Text phaseDisplay;
 
     private float timelineWidth;
     private float frameWidth;
     public float frameTickOffset;
     private float pointerY;
     private RectTransform pointerTransform;
-
-    public GameObject testIcon; //TODO:remove
-    public List<GameObject> displayedIcons;
-    private float iconsY;
+    private List<GameObject> displayedIcons;
 
     void Start()
     {
@@ -26,7 +24,21 @@ public class UIManager : MonoBehaviour {
         frameWidth = timelineWidth / maxFrames + frameTickOffset;
         pointerTransform = pointer.GetComponent<RectTransform>();
         pointerY = pointerTransform.anchoredPosition.y;
-        iconsY = pointerTransform.anchoredPosition.y - testIcon.GetComponent<RectTransform>().rect.height*2f;
+    }
+
+    public void ShowTurnSetupPhaseUI()
+    {
+        phaseDisplay.text = "Turn Setup";
+    }
+
+    public void ShowDeploymentPhaseUI()
+    {
+        phaseDisplay.text = "Deployment";
+    }
+
+    public void ShowTimelinePhaseUI()
+    {
+        phaseDisplay.text = "Execution";
     }
 
     public float GetPosXOfTick(int tick)
@@ -61,7 +73,8 @@ public class UIManager : MonoBehaviour {
                 {
                     rectTransform.Rotate(0, 0, -90);
                 }
-                rectTransform.anchoredPosition = new Vector3(GetPosXOfTick(i), iconsY, 0);
+                float iconY = pointerTransform.anchoredPosition.y - rectTransform.rect.height * 2f;
+                rectTransform.anchoredPosition = new Vector3(GetPosXOfTick(i), iconY, 0);
                 displayedIcons.Add(icon);
                 i++;
             }

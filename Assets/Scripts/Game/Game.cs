@@ -8,9 +8,10 @@ public class Game : MonoBehaviour {
 	public List<Player> players;
 	public List<Phase> phases;
 	public Board board;
-    public ControlManager control;
+    public UIManager uiManager;
+    public InputManager inputManager;
 
-	private int turn = 0;
+    private int turn = 0;
 	public bool nextTurn = true;
     public bool endPhase = false;
 

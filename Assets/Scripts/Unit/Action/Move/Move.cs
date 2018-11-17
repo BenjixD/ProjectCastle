@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Move : Action {
-    public ControlManager control;
+    public InputManager inputManager;
 
     void Start() {
 		//Add Move frames in order
@@ -15,6 +15,6 @@ public class Move : Action {
 
     public override void Select(Unit unit)
     {
-        control.directionalInput.BeginInput(unit, this);
+        inputManager.directionalInput.BeginInput(unit, this);
     }
 }

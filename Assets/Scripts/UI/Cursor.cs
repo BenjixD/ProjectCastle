@@ -86,6 +86,10 @@ public class Cursor : MonoBehaviour {
             index = index - playerUnits.Count * Mathf.Floor(index / playerUnits.Count);
             SetCoord(playerUnits[(int)index].tile.coordinate);
         }
+        else
+        {
+            //TODO: move to controlling player's king or something
+        }
     }
 
     public void UpdateCursorLocation()

@@ -5,6 +5,11 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour {
 
+    public Game game;
+    public GameObject playerInfoPrefab;
+    public Vector2[] playerInfoAnchors;
+    public GameObject canvas;
+
     public int maxFrames;
     public Image timelineDisplay;
     public Image pointer;
@@ -24,6 +29,26 @@ public class UIManager : MonoBehaviour {
         frameWidth = timelineWidth / maxFrames + frameTickOffset;
         pointerTransform = pointer.GetComponent<RectTransform>();
         pointerY = pointerTransform.anchoredPosition.y;
+        SetupPlayerUI();
+    }
+
+    void SetupPlayerUI()
+    {
+        Debug.Log("setup");
+        for (int i = 0; i < game.players.Count; i++)
+        {
+            GameObject playerInfo = Instantiate(playerInfoPrefab, canvas.transform);
+            // Set anchor to corresponding corner
+            RectTransform rectTransform = playerInfo.GetComponent<RectTransform>();
+            rectTransform.anchorMin = playerInfoAnchors[i];
+            rectTransform.anchorMax = playerInfoAnchors[i];
+            Vector2 position = new Vector2(rectTransform.rect.width / 2, rectTransform.rect.height / 2);
+            // Reflect on each axis if their anchor value is 1
+            position += new Vector2(-2 * position.x, -2 * position.y) * new Vector2(playerInfoAnchors[i].x, playerInfoAnchors[i].y);
+            rectTransform.anchoredPosition = position;
+            // Fill in information
+            playerInfo.GetComponent<PlayerInfoUI>().UpdateInformation(game.players[i]);
+        }
     }
 
     public void ShowTurnSetupPhaseUI()

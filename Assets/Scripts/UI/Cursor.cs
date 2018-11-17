@@ -71,7 +71,7 @@ public class Cursor : MonoBehaviour {
 
     public void SetCoord(Vector2 coords)
     {
-        startCoords = coords;
+        currCoords = coords;
         UpdateCursorLocation();
     }
 
@@ -80,9 +80,11 @@ public class Cursor : MonoBehaviour {
         if (selectedUnit != null) // TODO: also check this unit belongs to the player in control of the cursor
         {
             List<Unit> playerUnits = selectedUnitOwner.units;
-            int index = playerUnits.FindIndex(unit => unit == selectedUnit);
-            index = (index + skipNum) % playerUnits.Count;
-            SetCoord(playerUnits[index].tile.coordinate);
+            float index = playerUnits.FindIndex(unit => unit == selectedUnit);
+            index += skipNum;
+            // True modulo
+            index = index - playerUnits.Count * Mathf.Floor(index / playerUnits.Count);
+            SetCoord(playerUnits[(int)index].tile.coordinate);
         }
     }
 

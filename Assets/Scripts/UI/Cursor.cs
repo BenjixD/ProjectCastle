@@ -9,7 +9,11 @@ public class Cursor : MonoBehaviour {
     public UIManager uiManager;
 
     public Vector2 startCoords;
-    public Vector2 currCoords { get; set; }
+    public Vector2 currCoords;
+
+    //!!
+    public Unit selectedUnit;
+    public Player selectedUnitOwner;
 
     public bool movementEnabled = false;
 
@@ -27,7 +31,7 @@ public class Cursor : MonoBehaviour {
                 if (board.CheckCoord((int)currCoords.x - 1, (int)currCoords.y))
                 {
                     currCoords = new Vector2(currCoords.x - 1, currCoords.y);
-                    UpdateAfterMovement();
+                    UpdateCursorLocation();
                 }
             }
             if (Input.GetKeyDown("down"))
@@ -35,7 +39,7 @@ public class Cursor : MonoBehaviour {
                 if (board.CheckCoord((int)currCoords.x + 1, (int)currCoords.y))
                 {
                     currCoords = new Vector2(currCoords.x + 1, currCoords.y);
-                    UpdateAfterMovement();
+                    UpdateCursorLocation();
                 }
             }
             if (Input.GetKeyDown("left"))
@@ -43,7 +47,7 @@ public class Cursor : MonoBehaviour {
                 if (board.CheckCoord((int)currCoords.x, (int)currCoords.y - 1))
                 {
                     currCoords = new Vector2(currCoords.x, currCoords.y - 1);
-                    UpdateAfterMovement();
+                    UpdateCursorLocation();
                 }
             }
             if (Input.GetKeyDown("right"))
@@ -51,23 +55,50 @@ public class Cursor : MonoBehaviour {
                 if (board.CheckCoord((int)currCoords.x, (int)currCoords.y + 1))
                 {
                     currCoords = new Vector2(currCoords.x, currCoords.y + 1);
-                    UpdateAfterMovement();
+                    UpdateCursorLocation();
                 }
+            }
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                CycleUnits(-1);
+            }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                CycleUnits(1);
             }
         }
     }
 
-    public void UpdateAfterMovement()
+    public void SetCoord(Vector2 coords)
+    {
+        startCoords = coords;
+        UpdateCursorLocation();
+    }
+
+    void CycleUnits(int skipNum)
+    {
+        if (selectedUnit != null) // TODO: also check this unit belongs to the player in control of the cursor
+        {
+            List<Unit> playerUnits = selectedUnitOwner.units;
+            int index = playerUnits.FindIndex(unit => unit == selectedUnit);
+            index = (index + skipNum) % playerUnits.Count;
+            SetCoord(playerUnits[index].tile.coordinate);
+        }
+    }
+
+    public void UpdateCursorLocation()
     {
         gameObject.transform.position = board.CoordToPosition((int)currCoords.x, (int)currCoords.y);
         cam.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, cam.transform.position.z);
-        Unit currUnit = board.GetTile((int)currCoords.x, (int)currCoords.y).unit;
-        if (currUnit != null && currUnit.plan.Count > 0)
+        selectedUnit = board.GetTile((int)currCoords.x, (int)currCoords.y).unit;
+        if (selectedUnit != null)
         {
-            uiManager.DisplayTimelineIcons(currUnit.plan);
+            selectedUnitOwner = selectedUnit.owner;
+            uiManager.DisplayTimelineIcons(selectedUnit.plan);
         }
         else
         {
+            selectedUnitOwner = null;
             uiManager.DisplayTimelineIcons(null);
         }
     }

@@ -12,6 +12,12 @@ public class Board : MonoBehaviour {
     public float tileWidth;
     public float tileHeight;
 
+    public static void MoveUnit(Unit unit, Tile targetTile) {
+        Tile start = unit.tile;
+        start.RemoveUnit(unit);
+        targetTile.PlaceUnit(unit);
+    }
+
     public void InitializeBoard()
     {
         tiles = new Tile[rows, cols];
@@ -36,7 +42,19 @@ public class Board : MonoBehaviour {
         return tiles[x, y];
     }
 
+    public Tile GetTile(Vector2 coord) {
+        return tiles[(int)coord.x, (int)coord.y];
+    }
+
     public bool CheckCoord(int x, int y) {
+        return (x >= 0 && x < rows &&
+            y >= 0 && y < cols);
+    }
+
+    public bool CheckCoord(Vector2 coord) {
+        int x = (int)coord.x;
+        int y = (int)coord.y;
+
         return (x >= 0 && x < rows &&
             y >= 0 && y < cols);
     }

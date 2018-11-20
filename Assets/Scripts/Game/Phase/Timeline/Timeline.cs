@@ -6,14 +6,13 @@ public class Timeline : Phase {
 	public int maxFrame;
 	public float frameDelay;
 
-    public UIManager uiManager;
-
     public ActionType[] actionOrder;
 
     public override IEnumerator Play(Game game, IEnumerator next) {
+        game.uiManager.ShowTimelinePhaseUI();
         Debug.Log("Playing Timeline!");
 		for(int i = 0 ; i < maxFrame; i++) {
-            uiManager.UpdateTimelineDisplay(i);
+            game.uiManager.UpdateTimelineDisplay(i);
             PlayFrame(game.players, game.board);
 			yield return new WaitForSeconds(frameDelay);
 		}

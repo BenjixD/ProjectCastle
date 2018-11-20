@@ -4,7 +4,8 @@ using System.Collections.Generic;
 
 public class TurnSetup : Phase {
 	public override IEnumerator Play(Game game, IEnumerator next) {
-		Debug.Log("Started TurnSetup Phase");
+        game.uiManager.ShowTurnSetupPhaseUI();
+        Debug.Log("Started TurnSetup Phase");
 		ResetAll(game.players);
 		StartCoroutine(next);
 		yield return null;

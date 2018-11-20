@@ -30,10 +30,10 @@ public class Player : MonoBehaviour {
 		units.Add(king);
 	}
 
-	public void AddUnit(Unit unit) {
-		unit.owner = this;
-		units.Add(unit);
-	}
+    public void AddUnit(Unit unit) {
+        unit.owner = this;
+        units.Add(unit);
+    }
 
 	public void RemoveUnit(Unit unit)
 	{

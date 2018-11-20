@@ -11,4 +11,5 @@ public abstract class Frame {
 	public virtual UnitDisplacement GetDisplacement(Unit unit, Direction dir, Board board) {
 		return new AbsoluteDisplacement(unit, unit.tile.coordinate);
 	}
+	public GameObject icon { get; set; }
 }

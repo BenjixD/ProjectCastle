@@ -18,7 +18,6 @@ public class MoveInput : MonoBehaviour {
     }
 
     void Update () {
-        //TODO: check if # of moves surpasses maxFrames
         if (acceptingInput)
         {
             if (Input.GetKeyDown("up"))

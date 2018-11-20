@@ -18,7 +18,9 @@ public enum ActionType {
 }
 
 public abstract class Action : MonoBehaviour {
+    public string actionName;
 	public int cost;
 	public List<Frame> frames { get; set; }
 	public ActionType actionType;
+    public abstract void Select(Unit unit);
 }

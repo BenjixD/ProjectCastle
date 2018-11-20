@@ -58,6 +58,7 @@ MonoBehaviour:
   curHp: 10
   maxAp: 5
   curAp: 5
+  frameUsage: 0
   skills:
   - {fileID: 114728448468219740}
 --- !u!114 &114728448468219740
@@ -71,7 +72,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79c6f8a72690b46df9d82bf03583c320, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  actionName: Move
   cost: 1
+  actionType: 0
+  control: {fileID: 0}
 --- !u!212 &212274110593211470
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -104,8 +108,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1541830459
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 2a72adf696ed5453da3c10f6339e0696, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

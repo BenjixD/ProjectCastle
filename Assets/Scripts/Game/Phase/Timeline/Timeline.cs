@@ -10,11 +10,11 @@ public class Timeline : Phase {
 
     public ActionType[] actionOrder;
 
-    public override IEnumerator Play(List<Player> players, Board board, IEnumerator next) {
-		Debug.Log("Playing Timeline!");
+    public override IEnumerator Play(Game game, IEnumerator next) {
+        Debug.Log("Playing Timeline!");
 		for(int i = 0 ; i < maxFrame; i++) {
             uiManager.UpdateTimelineDisplay(i);
-            PlayFrame(players, board);
+            PlayFrame(game.players, game.board);
 			yield return new WaitForSeconds(frameDelay);
 		}
 
@@ -27,7 +27,9 @@ public class Timeline : Phase {
 
 		//Adding ActionTypes
 		foreach (ActionType type in actionOrder) {
-			actionDict.Add(type, new Queue<Unit>());	
+            Debug.Log(type);
+
+            actionDict.Add(type, new Queue<Unit>());	
 		}
 
 		//Put the unit actions in the correct queue
@@ -35,7 +37,8 @@ public class Timeline : Phase {
 			foreach(Unit unit in player.units) {
 				if(unit.plan.Count > 0) {
 					ActionType actionType = unit.plan.Peek().type;
-					actionDict[actionType].Enqueue(unit);
+                    Debug.Log(actionType);
+                    actionDict[actionType].Enqueue(unit);
 				}
 			}
 		}

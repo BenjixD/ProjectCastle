@@ -8,9 +8,11 @@ public class Game : MonoBehaviour {
 	public List<Player> players;
 	public List<Phase> phases;
 	public Board board;
+    public ControlManager control;
 
 	private int turn = 0;
 	public bool nextTurn = true;
+    public bool endPhase = false;
 
 	void Start() {
 		//Init Board
@@ -27,7 +29,7 @@ public class Game : MonoBehaviour {
 			//Init Turn, Insert Phases in reverse order
 			IEnumerator next = EndTurn();
 			for(int i = phases.Count - 1; i >= 0; i--) {
-				next = phases[i].Play(players, board, next);
+				next = phases[i].Play(this, next);
 			}
 			IEnumerator start = StartTurn(next);
 

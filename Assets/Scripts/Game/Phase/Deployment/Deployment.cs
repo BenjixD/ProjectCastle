@@ -5,7 +5,8 @@ using System.Collections.Generic;
 public class Deployment : Phase {
 	public override IEnumerator Play(Game game, IEnumerator next) {
 		Debug.Log("Started Deployment Phase!");
-        game.control.InitializeDeploymentPhase();
+        game.uiManager.ShowDeploymentPhaseUI();
+        game.inputManager.InitializeDeploymentPhase();
         foreach (Player player in game.players) {
 			while(!game.endPhase) {
                 if(Input.GetKeyDown("space")) {

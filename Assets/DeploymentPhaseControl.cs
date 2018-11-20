@@ -13,7 +13,6 @@ public class DeploymentPhaseControl : MonoBehaviour
         if (Input.GetKeyDown("return"))
         {
             cursor.movementEnabled = false;
-            //gameObject.SetActive(false);
             Tile tile = board.GetTile((int)cursor.currCoords.x, (int)cursor.currCoords.y);
             Unit unit = tile.unit;
             if (unit != null)
@@ -31,9 +30,5 @@ public class DeploymentPhaseControl : MonoBehaviour
             menuManager.CloseAllMenus();
             cursor.movementEnabled = true;
         }
-        //if (menuManager.MenuActive())
-        //{
-        //    active = false;
-        //}
     }
 }

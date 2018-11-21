@@ -18,7 +18,8 @@ public enum ActionType {
 }
 
 public abstract class Action : MonoBehaviour {
-    public string actionName;
+	public InputManager inputManager;
+	public string actionName;
 	public int cost;
 	public List<Frame> frames { get; set; }
     public GameObject[] icons;

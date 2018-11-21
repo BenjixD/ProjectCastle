@@ -9,9 +9,9 @@ public class Piece : MonoBehaviour {
     public int row;
     public int cols;
     public Board board;
-    public Tile[,] tiles;
+	public Tile[,] tiles;
 
-    void Start() {
+	void Start() {
     	//Set tiles appropriately
     	tiles = new Tile[row, cols];
     	foreach(Tile tile in GetComponentsInChildren<Tile>())
@@ -32,7 +32,13 @@ public class Piece : MonoBehaviour {
 		}
     }
 
-    public void RotateCounterClockwise() {
+	public void SetPosition(Vector2 coords)
+	{
+		transform.position = board.CoordToPosition((int)coords.x, (int)coords.y);
+		UpdatePosition();
+	}
+
+	public void RotateCounterClockwise() {
 	    Tile[,] ret = new Tile[cols, row];
 
 	    for (int i = 0; i < cols; ++i) {

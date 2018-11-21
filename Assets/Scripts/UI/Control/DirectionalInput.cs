@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class DirectionalInput : MonoBehaviour {
     public UIManager uiManager;
-    public GameObject deploymentPhaseControl;
-    public Cursor cursor;
+	public MenuManager menuManager;
+	public Cursor cursor;
     public Timeline timeline;
 
     private Unit unit;
@@ -19,7 +19,6 @@ public class DirectionalInput : MonoBehaviour {
     }
 
     void Update () {
-        //TODO: check if # of moves surpasses maxFrames
         if (acceptingInput)
         {
             if (Input.GetKeyDown("up"))
@@ -62,7 +61,7 @@ public class DirectionalInput : MonoBehaviour {
                     unit.FlushPlan();
                     //TODO, depending on implementation: refresh unit's curAP, etc.
                     Debug.Log("All actions for " + unit.unitName + " cancelled.");
-                }
+				}
                 ReturnToDeployment();
             }
             uiManager.DisplayTimelineIcons(unit.plan);
@@ -90,7 +89,7 @@ public class DirectionalInput : MonoBehaviour {
     {
         actionsCount = 0;
         acceptingInput = false;
-        deploymentPhaseControl.SetActive(true);
         cursor.movementEnabled = true;
-    }
+		cursor.deploymentMenusControl.SetActive(true);
+	}
 }

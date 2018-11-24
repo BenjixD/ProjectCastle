@@ -103,6 +103,8 @@ public class Timeline : Phase {
 			}
 		}
 
+		//TODO: Move all units who've had a push applied to them
+
 		//Add all units who wait
 		foreach(Player player in players) {
 			foreach(Unit unit in player.units) {
@@ -131,6 +133,7 @@ public class Timeline : Phase {
 
 		//Simulate until relaxed
 		simulation = ResolveConflicts(simulation);
+
 		//All simulation entries should only have one unit at this point
 		foreach(KeyValuePair<Vector2, Queue<SimulatedDisplacement>> pair in simulation) {
 			results.Add(pair.Value.Dequeue());

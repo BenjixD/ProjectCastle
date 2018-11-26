@@ -51,10 +51,10 @@ public class Board : MonoBehaviour {
         return tiles[(int)coord.x, (int)coord.y];
     }
 
-    public bool CheckCoord(int x, int y) {
-        return (x >= 0 && x < rows &&
-            y >= 0 && y < cols);
-    }
+	public bool CheckCoord(int x, int y) {
+		return (x >= 0 && x < rows &&
+		y >= 0 && y < cols);
+	}
 
     public bool CheckCoord(Vector2 coord) {
         int x = (int)coord.x;
@@ -87,20 +87,20 @@ public class Board : MonoBehaviour {
         return neighbours;
     }
 
-    public bool CheckPlacePiece(Piece piece, Vector2 origin) {
-        int x = (int)origin.x;
-        int y = (int)origin.y;
+	public bool CheckPlacePiece(Piece piece, Vector2 origin) {
+		int x = (int)origin.x;
+		int y = (int)origin.y;
 
-        for(int i = 0; i < piece.row; i++) {
-            for(int j = 0; j < piece.cols; j++) {
-                if(piece.tiles[i,j] != null && this.tiles[i + x, j + y] != null) {
-                    return false;
-                }
-            }
-        }
+		for (int i = 0; i < piece.row; i++) {
+			for (int j = 0; j < piece.cols; j++) {
+				if (piece.tiles[i, j] != null && this.tiles[i + x, j + y] != null) {
+					return false;
+				}
+			}
+		}
 
-        return true;
-    }
+		return true;
+	}
 
     public void PlacePiece(Piece piece, Vector2 origin) {
         if(CheckPlacePiece(piece, origin)) {

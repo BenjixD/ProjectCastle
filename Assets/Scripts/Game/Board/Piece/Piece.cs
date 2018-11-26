@@ -32,12 +32,6 @@ public class Piece : MonoBehaviour {
 		}
     }
 
-	public void SetPosition(Vector2 coords)
-	{
-		transform.position = board.CoordToPosition((int)coords.x, (int)coords.y);
-		UpdatePosition();
-	}
-
 	public void RotateCounterClockwise() {
 	    Tile[,] ret = new Tile[cols, row];
 

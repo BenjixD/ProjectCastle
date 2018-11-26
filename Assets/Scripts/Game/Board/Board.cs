@@ -8,7 +8,7 @@ public class Board : MonoBehaviour {
     public int cols;
     private Tile[,] tiles;
 
-    public GameObject baseTile;         // Base tile for testing
+    public GameObject emptyTile;
     public float tileWidth;
     public float tileHeight;
 
@@ -31,11 +31,10 @@ public class Board : MonoBehaviour {
         {
             for (int j = 0; j < cols; j++)
             {
-                GameObject tileObj = Instantiate(baseTile, CoordToPosition(i, j), Quaternion.identity, gameObject.transform);
-                Tile tile = tileObj.GetComponent<Tile>();
-                tile.coordinate = new Vector2(i, j); 
-                tiles[i, j] = tile;
-            }
+				GameObject tileObj = Instantiate(emptyTile, gameObject.transform);
+				Tile tile = tileObj.GetComponent<Tile>();
+				PlaceTile(tile, i, j);
+			}
         }
     }
 
@@ -110,8 +109,8 @@ public class Board : MonoBehaviour {
 
             for(int i = 0; i < piece.row; i++) {
                 for(int j = 0; j < piece.cols; j++) {
-                    this.tiles[i + x, j + y] = piece.tiles[i, j];
-                }
+					PlaceTile(piece.tiles[i, j], i + x, j + y);
+				}
             }
         }
     }
@@ -123,9 +122,20 @@ public class Board : MonoBehaviour {
         for(int i = 0; i < piece.row; i++) {
             for(int j = 0; j < piece.cols; j++) {
                 if(piece.tiles[i,j] != null && this.tiles[i + x, j + y] == null) {
-                    this.tiles[i + x, j + y] = piece.tiles[i, j];
-                }
+					PlaceTile(piece.tiles[i, j], i + x, j + y);
+				}
             }
         }
     }
+
+	public void PlaceTile(Tile tile, int x, int y)
+	{
+		tile.coordinate = new Vector2(x, y);
+		tile.transform.position = CoordToPosition(x, y);
+		if (this.tiles[x, y] != null)
+		{
+			Destroy(this.tiles[x, y].gameObject);
+		}
+		this.tiles[x, y] = tile;
+	}
 }

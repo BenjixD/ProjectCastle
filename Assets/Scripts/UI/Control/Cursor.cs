@@ -17,11 +17,10 @@ public class Cursor : MonoBehaviour
 	private Unit selectedUnit;
 	private Player selectedUnitOwner;
 
-	public Piece piece;
+	public GameObject piece;
 
 	public bool movementEnabled = false;
-	public bool placingPiece = false;
-	public Piece testPiece; //TODO: remove after finished testing
+	public GameObject testPiece; //TODO: remove after finished testing
 
 	void Start()
 	{
@@ -73,32 +72,33 @@ public class Cursor : MonoBehaviour
 			{
 				CycleUnits(1);
 			}
-			if (Input.GetKeyDown(KeyCode.B))
+			if (Input.GetKeyDown(KeyCode.B) && piece == null)
 			{
-				Debug.Log("Piece spawned.");
-				placingPiece = true;
-				piece = Instantiate(testPiece);
-				piece.transform.position = this.transform.position;
-				deploymentMenusControl.SetActive(false);
+				Debug.Log("Testing piece spawned.");
+				BeginPiecePlacement(testPiece);
 			}
-			if (placingPiece)
+			// Piece placement inputs
+			if (piece != null)
 			{
 				if (Input.GetKeyUp("a"))
 				{
-					piece.RotateCounterClockwise();
+					piece.GetComponent<Piece>().RotateCounterClockwise();
 				}
 				else if (Input.GetKeyUp("d"))
 				{
-					piece.RotateClockwise();
+					piece.GetComponent<Piece>().RotateClockwise();
 				}
 				else if (Input.GetKeyDown("return"))
 				{
 					//TODO: if necessary, make + open menu before placing piece (confirmation menu?)
 					Debug.Log("Piece placed.");
-					board.PlacePiece(piece, currCoords);
-					piece = null;
-					placingPiece = false;
-					deploymentMenusControl.SetActive(true);
+					board.PlacePieceAsPossible(piece.GetComponent<Piece>(), currCoords);
+					EndPiecePlacement();
+				}
+				else if (Input.GetKeyDown("escape") || Input.GetKeyDown("backspace"))
+				{
+					Destroy(piece);
+					EndPiecePlacement();
 				}
 			}
 		}
@@ -117,7 +117,7 @@ public class Cursor : MonoBehaviour
 			List<Unit> playerUnits = selectedUnitOwner.units;
 			float index = playerUnits.FindIndex(unit => unit == selectedUnit);
 			index += skipNum;
-			// True modulo
+			// True modulo, not C#'s
 			index = index - playerUnits.Count * Mathf.Floor(index / playerUnits.Count);
 			SetCoord(playerUnits[(int)index].tile.coordinate);
 		}
@@ -125,6 +125,19 @@ public class Cursor : MonoBehaviour
 		{
 			//TODO: move to controlling player's king or something
 		}
+	}
+
+	public void BeginPiecePlacement(GameObject piece)
+	{
+		this.piece = Instantiate(piece, this.transform.position, Quaternion.identity, board.transform);
+		piece.GetComponent<Piece>().board = board;
+		deploymentMenusControl.SetActive(false);
+	}
+
+	public void EndPiecePlacement()
+	{
+		piece = null;
+		deploymentMenusControl.SetActive(true);
 	}
 
 	public void OnCursorAction()
@@ -154,7 +167,7 @@ public class Cursor : MonoBehaviour
 	{
 		if(piece != null)
 		{
-			piece.SetPosition(currCoords);
+			piece.transform.position = board.CoordToPosition((int)currCoords.x, (int)currCoords.y);
 		}
 	}
 }

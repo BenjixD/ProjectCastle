@@ -28,7 +28,7 @@ public class DeploymentMenusControl : MonoBehaviour
         if (Input.GetKeyDown("escape") || Input.GetKeyDown("backspace"))
         {
 			menuManager.CloseAllMenus();
-            cursor.movementEnabled = true;
+			cursor.movementEnabled = true;
         }
 	}
 }

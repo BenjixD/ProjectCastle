@@ -91,9 +91,9 @@ public class Board : MonoBehaviour {
 		int x = (int)origin.x;
 		int y = (int)origin.y;
 
-		for (int i = 0; i < piece.row; i++) {
-			for (int j = 0; j < piece.cols; j++) {
-				if (piece.tiles[i, j] != null && this.tiles[i + x, j + y] != null) {
+		for(int i = 0; i < piece.row; i++) {
+			for(int j = 0; j < piece.cols; j++) {
+				if(piece.tiles[i,j] != null && this.tiles[i + x, j + y] != null) {
 					return false;
 				}
 			}
@@ -132,10 +132,10 @@ public class Board : MonoBehaviour {
 	{
 		tile.coordinate = new Vector2(x, y);
 		tile.transform.position = CoordToPosition(x, y);
-		if (this.tiles[x, y] != null)
+		if (this.tiles[x,y] != null)
 		{
 			Destroy(this.tiles[x, y].gameObject);
 		}
-		this.tiles[x, y] = tile;
+		this.tiles[x,y] = tile;
 	}
 }

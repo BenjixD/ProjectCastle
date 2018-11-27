@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4136581459228970}
   - component: {fileID: 114739047883504446}
-  - component: {fileID: 114816216799756698}
   m_Layer: 0
   m_Name: TestPiece
   m_TagString: Untagged
@@ -120,7 +119,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1146416420789754}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.9, y: -22.5, z: 0}
+  m_LocalPosition: {x: -9.9, y: -13.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4335843378182378}
@@ -207,7 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de9dc4ab854cd3845940b8bc1e30106d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileName: 
+  tileName: tile4
   coordinate: {x: 1, y: 2}
 --- !u!114 &114305700621870284
 MonoBehaviour:
@@ -220,7 +219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de9dc4ab854cd3845940b8bc1e30106d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileName: 
+  tileName: tile5
   coordinate: {x: 1, y: 3}
 --- !u!114 &114585799919500478
 MonoBehaviour:
@@ -233,7 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de9dc4ab854cd3845940b8bc1e30106d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileName: 
+  tileName: tile3
   coordinate: {x: 1, y: 1}
 --- !u!114 &114739047883504446
 MonoBehaviour:
@@ -261,20 +260,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de9dc4ab854cd3845940b8bc1e30106d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileName: 
+  tileName: tile1
   coordinate: {x: 0, y: 0}
---- !u!114 &114816216799756698
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1146416420789754}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d60c07a27468347dcbd13b11be92f5f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  piece: {fileID: 114739047883504446}
 --- !u!114 &114974973427404088
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -286,7 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de9dc4ab854cd3845940b8bc1e30106d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileName: 
+  tileName: tile2
   coordinate: {x: 0, y: 1}
 --- !u!212 &212236874217734738
 SpriteRenderer:
@@ -320,8 +307,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -422017101
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e020b904d690b6f4184374f47d701250, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -366,8 +353,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -422017101
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e020b904d690b6f4184374f47d701250, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -412,8 +399,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -422017101
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e020b904d690b6f4184374f47d701250, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -458,8 +445,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -422017101
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e020b904d690b6f4184374f47d701250, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -504,8 +491,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -422017101
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e020b904d690b6f4184374f47d701250, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

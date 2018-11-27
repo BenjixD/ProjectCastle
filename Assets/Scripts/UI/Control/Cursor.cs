@@ -97,7 +97,6 @@ public class Cursor : MonoBehaviour
 				}
 				else if (Input.GetKeyDown("escape") || Input.GetKeyDown("backspace"))
 				{
-					Destroy(piece);
 					EndPiecePlacement();
 				}
 			}
@@ -129,13 +128,14 @@ public class Cursor : MonoBehaviour
 
 	public void BeginPiecePlacement(GameObject piece)
 	{
-		this.piece = Instantiate(piece, this.transform.position, Quaternion.identity, board.transform);
+		this.piece = Instantiate(piece, this.transform.position, Quaternion.identity);
 		piece.GetComponent<Piece>().board = board;
 		deploymentMenusControl.SetActive(false);
 	}
 
 	public void EndPiecePlacement()
 	{
+		Destroy(piece);
 		piece = null;
 		deploymentMenusControl.SetActive(true);
 	}

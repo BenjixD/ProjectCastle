@@ -34,35 +34,19 @@ public class Cursor : MonoBehaviour
 		{
 			if (Input.GetKeyDown("up"))
 			{
-				if (board.CheckCoord(currCoords + new Vector2(-1, 0)))
-				{
-					currCoords = new Vector2(currCoords.x - 1, currCoords.y);
-					OnCursorAction();
-				}
+				MoveCursor(new Vector2(-1, 0));
 			}
 			if (Input.GetKeyDown("down"))
 			{
-				if (board.CheckCoord(currCoords + new Vector2(1, 0)))
-				{
-					currCoords = new Vector2(currCoords.x + 1, currCoords.y);
-					OnCursorAction();
-				}
+				MoveCursor(new Vector2(1, 0));
 			}
 			if (Input.GetKeyDown("left"))
 			{
-				if (board.CheckCoord(currCoords + new Vector2(0, -1)))
-				{
-					currCoords = new Vector2(currCoords.x, currCoords.y - 1);
-					OnCursorAction();
-				}
+				MoveCursor(new Vector2(0, -1));
 			}
 			if (Input.GetKeyDown("right"))
 			{
-				if (board.CheckCoord(currCoords + new Vector2(0, 1)))
-				{
-					currCoords = new Vector2(currCoords.x, currCoords.y + 1);
-					OnCursorAction();
-				}
+				MoveCursor(new Vector2(0, 1));
 			}
 			if (Input.GetKeyDown(KeyCode.Q))
 			{
@@ -138,6 +122,15 @@ public class Cursor : MonoBehaviour
 		Destroy(piece);
 		piece = null;
 		deploymentMenusControl.SetActive(true);
+	}
+
+	void MoveCursor(Vector2 movement)
+	{
+		if (board.CheckCoord(currCoords + movement))
+		{
+			currCoords = currCoords + movement;
+		}
+		OnCursorAction();
 	}
 
 	public void OnCursorAction()

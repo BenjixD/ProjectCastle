@@ -3,31 +3,46 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class MoveFrame : Frame {
-	public override bool Execute(Unit unit, Direction dir, Board board) {
-		Direction absoluteDir = (Direction)(((int)relativeDir + (int)dir) % 4);
-		Vector2 next = nextCoord(unit.tile.coordinate, absoluteDir);
-
-		if(board.CheckCoord((int)next.x, (int)next.y)) {
-            unit.tile.RemoveUnit(unit);
-            board.GetTile((int)next.x, (int)next.y).PlaceUnit(unit);
-			unit.gameObject.transform.position = unit.tile.gameObject.transform.position;	//TODO: Should be some sort of slow walk to the tile
-			return true;
-		}
-
-		return false;
+	public override bool CanExecute(SimulatedDisplacement sim, Direction dir, Board board) {
+		//The execution of a move should technically never fail
+		return board.CheckCoord(sim.GetCurrentVector());
 	}
 
-	private Vector2 nextCoord(Vector2 coord, Direction dir) {
-		if(dir == Direction.UP) {
-			return new Vector2(coord.x - 1, coord.y);
-		} else if (dir == Direction.RIGHT) {
-			return new Vector2(coord.x, coord.y + 1);
-		} else if (dir == Direction.DOWN) {
-			return new Vector2(coord.x + 1, coord.y);
-		} else if (dir == Direction.LEFT) {
-			return new Vector2(coord.x, coord.y - 1);
-		} else {
-			return coord;
+	public override bool ExecuteEffect(SimulatedDisplacement sim, Direction dir, Board board) {
+		return true;
+	}
+
+	public override bool ExecuteAnimation(SimulatedDisplacement sim, Direction dir, Board board) {
+		Unit unit = sim.displacement.unit;
+		bool collision = sim.conflict;
+		if(!collision) {
+			//Unit's logical location is already on the target
+			unit.gameObject.transform.position = unit.tile.gameObject.transform.position;
+			return true;
+		}else {
+			//Play some kind of collision
+			return false;
 		}
-	} 
+	}
+
+	public override UnitDisplacement GetDisplacement(Unit unit, Direction dir, Board board) {
+		Vector2 movement = GetMovement(unit, dir, board);
+		return new RelativeDisplacement(unit, movement);
+	}
+
+	private Vector2 GetMovement(Unit unit, Direction dir, Board board) {
+		Direction absoluteDir = (Direction)(((int)relativeDir + (int)dir) % 4);
+
+		if(absoluteDir == Direction.UP) {
+			return new Vector2(-1, 0);
+		} else if (absoluteDir == Direction.RIGHT) {
+			return new Vector2(0, 1);
+		} else if (absoluteDir == Direction.DOWN) {
+			return new Vector2(1, 0);
+		} else if (absoluteDir == Direction.LEFT) {
+			return new Vector2(0, -1);
+		} else {
+			return new Vector2(0, 0);
+		}
+	}
 }

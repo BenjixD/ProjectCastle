@@ -43,7 +43,12 @@ public class Board : MonoBehaviour {
         return new Vector3((y-x)*tileWidth, (x+y)*-tileHeight, 0);
     }
 
-    public Tile GetTile(int x, int y) {
+	public Vector3 CoordToPosition(Vector2 coord)
+	{
+		return new Vector3((coord.y - coord.x) * tileWidth, (coord.x + coord.y) * -tileHeight, 0);
+	}
+
+	public Tile GetTile(int x, int y) {
         return tiles[x, y];
     }
 
@@ -109,8 +114,8 @@ public class Board : MonoBehaviour {
 
             for(int i = 0; i < piece.row; i++) {
                 for(int j = 0; j < piece.cols; j++) {
-                    PlaceTile(piece.tiles[i, j], i + x, j + y);
-                }
+					PlaceTile(piece.tiles[i, j], i + x, j + y);
+				}
             }
         }
     }
@@ -121,7 +126,7 @@ public class Board : MonoBehaviour {
 
         for(int i = 0; i < piece.row; i++) {
             for(int j = 0; j < piece.cols; j++) {
-                if(piece.tiles[i,j] != null && this.tiles[i + x, j + y] == null) {
+                if(piece.tiles[i,j] != null && CheckCoord(i + x, j + y) && this.tiles[i + x, j + y].tileType == emptyTile.GetComponent<Tile>().tileType) {
                     PlaceTile(piece.tiles[i, j], i + x, j + y);
                 }
             }
@@ -137,7 +142,6 @@ public class Board : MonoBehaviour {
         {
             Destroy(this.tiles[x, y].gameObject);
         }
-
         this.tiles[x,y] = tile;
     }
 }

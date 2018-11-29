@@ -34,7 +34,7 @@ public class Cursor : MonoBehaviour
 		{
 			if (Input.GetKeyDown("up"))
 			{
-				if (board.CheckCoord((int)currCoords.x - 1, (int)currCoords.y))
+				if (board.CheckCoord(currCoords + new Vector2(-1, 0)))
 				{
 					currCoords = new Vector2(currCoords.x - 1, currCoords.y);
 					OnCursorAction();
@@ -42,7 +42,7 @@ public class Cursor : MonoBehaviour
 			}
 			if (Input.GetKeyDown("down"))
 			{
-				if (board.CheckCoord((int)currCoords.x + 1, (int)currCoords.y))
+				if (board.CheckCoord(currCoords + new Vector2(1, 0)))
 				{
 					currCoords = new Vector2(currCoords.x + 1, currCoords.y);
 					OnCursorAction();
@@ -50,7 +50,7 @@ public class Cursor : MonoBehaviour
 			}
 			if (Input.GetKeyDown("left"))
 			{
-				if (board.CheckCoord((int)currCoords.x, (int)currCoords.y - 1))
+				if (board.CheckCoord(currCoords + new Vector2(0, -1)))
 				{
 					currCoords = new Vector2(currCoords.x, currCoords.y - 1);
 					OnCursorAction();
@@ -58,7 +58,7 @@ public class Cursor : MonoBehaviour
 			}
 			if (Input.GetKeyDown("right"))
 			{
-				if (board.CheckCoord((int)currCoords.x, (int)currCoords.y + 1))
+				if (board.CheckCoord(currCoords + new Vector2(0, 1)))
 				{
 					currCoords = new Vector2(currCoords.x, currCoords.y + 1);
 					OnCursorAction();
@@ -148,9 +148,9 @@ public class Cursor : MonoBehaviour
 
 	void UpdateCursorLocation()
 	{
-		gameObject.transform.position = board.CoordToPosition((int)currCoords.x, (int)currCoords.y);
+		gameObject.transform.position = board.CoordToPosition(currCoords);
 		cam.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, cam.transform.position.z);
-		selectedUnit = board.GetTile((int)currCoords.x, (int)currCoords.y).unit;
+		selectedUnit = board.GetTile(currCoords).unit;
 		if (selectedUnit != null)
 		{
 			selectedUnitOwner = selectedUnit.owner;
@@ -167,7 +167,7 @@ public class Cursor : MonoBehaviour
 	{
 		if(piece != null)
 		{
-			piece.transform.position = board.CoordToPosition((int)currCoords.x, (int)currCoords.y);
+			piece.transform.position = board.CoordToPosition(currCoords);
 		}
 	}
 }

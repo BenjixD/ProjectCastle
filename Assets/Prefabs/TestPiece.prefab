@@ -207,6 +207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileName: tile4
+  tiletype: 1
   coordinate: {x: 1, y: 2}
 --- !u!114 &114305700621870284
 MonoBehaviour:
@@ -220,6 +221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileName: tile5
+  tiletype: 1
   coordinate: {x: 1, y: 3}
 --- !u!114 &114585799919500478
 MonoBehaviour:
@@ -233,6 +235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileName: tile3
+  tiletype: 1
   coordinate: {x: 1, y: 1}
 --- !u!114 &114739047883504446
 MonoBehaviour:
@@ -261,6 +264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileName: tile1
+  tiletype: 1
   coordinate: {x: 0, y: 0}
 --- !u!114 &114974973427404088
 MonoBehaviour:
@@ -274,6 +278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileName: tile2
+  tiletype: 1
   coordinate: {x: 0, y: 1}
 --- !u!212 &212236874217734738
 SpriteRenderer:

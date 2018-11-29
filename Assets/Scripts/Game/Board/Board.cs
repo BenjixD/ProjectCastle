@@ -58,7 +58,7 @@ public class Board : MonoBehaviour {
 
     public bool CheckCoord(int x, int y) {
         return (x >= 0 && x < rows &&
-        y >= 0 && y < cols);
+            y >= 0 && y < cols);
     }
 
     public bool CheckCoord(Vector2 coord) {
@@ -98,7 +98,7 @@ public class Board : MonoBehaviour {
 
         for(int i = 0; i < piece.row; i++) {
             for(int j = 0; j < piece.cols; j++) {
-                if(piece.tiles[i,j] != null && this.tiles[i + x, j + y] != null) {
+                if(piece.tiles[i,j] != null && !CheckPlaceTile(i + x, j + y)) {
                     return false;
                 }
             }
@@ -114,7 +114,7 @@ public class Board : MonoBehaviour {
 
             for(int i = 0; i < piece.row; i++) {
                 for(int j = 0; j < piece.cols; j++) {
-					PlaceTile(piece.tiles[i, j], i + x, j + y);
+                    PlaceTile(piece.tiles[i, j], i + x, j + y);
 				}
             }
         }
@@ -126,11 +126,16 @@ public class Board : MonoBehaviour {
 
         for(int i = 0; i < piece.row; i++) {
             for(int j = 0; j < piece.cols; j++) {
-                if(piece.tiles[i,j] != null && CheckCoord(i + x, j + y) && this.tiles[i + x, j + y].tileType == emptyTile.GetComponent<Tile>().tileType) {
+                if(piece.tiles[i,j] != null && CheckPlaceTile(i + x, j + y)) {
                     PlaceTile(piece.tiles[i, j], i + x, j + y);
                 }
             }
         }
+    }
+
+    public bool CheckPlaceTile(int x, int y)
+    {
+        return CheckCoord(x, y) && this.tiles[x, y].tileType == emptyTile.GetComponent<Tile>().tileType;
     }
 
     public void PlaceTile(Tile tile, int x, int y)

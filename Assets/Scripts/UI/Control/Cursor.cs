@@ -15,7 +15,6 @@ public class Cursor : MonoBehaviour
 	public Vector2 currCoords;
 
 	private Unit selectedUnit;
-	private Player selectedUnitOwner;
 
 	public GameObject piece;
 
@@ -97,7 +96,7 @@ public class Cursor : MonoBehaviour
 	{
 		if (selectedUnit != null) // TODO: also check this unit belongs to the player in control of the cursor
 		{
-			List<Unit> playerUnits = selectedUnitOwner.units;
+			List<Unit> playerUnits = selectedUnit.owner.units;
 			float index = playerUnits.FindIndex(unit => unit == selectedUnit);
 			index += skipNum;
 			// True modulo, not C#'s
@@ -129,8 +128,8 @@ public class Cursor : MonoBehaviour
 		if (board.CheckCoord(currCoords + movement))
 		{
 			currCoords = currCoords + movement;
+			OnCursorAction();
 		}
-		OnCursorAction();
 	}
 
 	public void OnCursorAction()
@@ -146,12 +145,10 @@ public class Cursor : MonoBehaviour
 		selectedUnit = board.GetTile(currCoords).unit;
 		if (selectedUnit != null)
 		{
-			selectedUnitOwner = selectedUnit.owner;
 			uiManager.DisplayTimelineIcons(selectedUnit.plan);
 		}
 		else
 		{
-			selectedUnitOwner = null;
 			uiManager.DisplayTimelineIcons(null);
 		}
 	}

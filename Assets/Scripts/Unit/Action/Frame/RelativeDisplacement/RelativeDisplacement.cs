@@ -21,10 +21,14 @@ public class RelativeDisplacement : UnitDisplacement {
 	}
 
 	public Vector2 GetUnitStep() {
-		if(displacement.x >= displacement.y) {
-			return displacement / displacement.x;
+		if(displacement.Equals(new Vector2(0, 0))) {
+			if(Mathf.Abs(displacement.x) >= Mathf.Abs(displacement.y)) {
+				return displacement / displacement.x;
+			} else {
+				return displacement / displacement.y;
+			}
 		} else {
-			return displacement / displacement.y;
+			return displacement;
 		}
 	}
 

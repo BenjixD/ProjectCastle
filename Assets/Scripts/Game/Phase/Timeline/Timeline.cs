@@ -41,7 +41,7 @@ public class Timeline : Phase {
 
 		//Play Execution Based on Order
 		foreach(ActionType type in actionOrder) {
-			Queue<Unit> actions = FilterCanExecute(actionDict[type], board);
+			Queue<Unit> actions = actionDict[type];
 			HashSet<Unit> toExecute = UnitsToExecute(actions);
 			Dictionary<Unit, UnitDisplacement> displacements = GetDisplacements(players, actions, board);
 			List<SimulatedDisplacement> result = SimulateDisplacements(displacements, board);
@@ -50,9 +50,11 @@ public class Timeline : Phase {
 				Unit unit = sim.displacement.unit;
 				if(toExecute.Contains(unit)) {
 					Command command = unit.plan.Dequeue();
-					command.frame.ExecuteEffect(sim, command.dir, board);
-					sim.DisplaceUnit(board);
-					command.frame.ExecuteAnimation(sim, command.dir, board);
+					if(command.frame.CanExecute(sim, command.dir, board)) {
+						command.frame.ExecuteEffect(sim, command.dir, board);
+						Board.MoveUnit(sim, board);
+						command.frame.ExecuteAnimation(sim, command.dir, board);
+					}
 				}
 			}
 		}
@@ -63,18 +65,6 @@ public class Timeline : Phase {
 				KillUnitWhenDead(unit, board);
 			}
 		}
-	}
-
-	private Queue<Unit> FilterCanExecute(Queue<Unit> units, Board board) {
-		Queue<Unit> filtered = new Queue<Unit>();
-		while(units.Count > 0) {
-			Unit unit = units.Dequeue();
-			Command command = unit.plan.Peek();
-			if(command.frame.CanExecute(unit, command.dir, board)) {
-				filtered.Enqueue(unit);
-			}
-		}
-		return filtered;
 	}
 
 	private HashSet<Unit> UnitsToExecute(Queue<Unit> units) {
@@ -123,16 +113,16 @@ public class Timeline : Phase {
 
 		//Initialize Simulation
 		foreach(KeyValuePair<Unit, UnitDisplacement> pair in units) {
-			SimulatedDisplacement sim = new SimulatedDisplacement(pair.Value, pair.Value.GetTargetCoordinate());
-			Vector2 next = sim.GetNextSimulationStep();
-			if(!simulation.ContainsKey(next)) {
-				simulation.Add(next, new Queue<SimulatedDisplacement>());
+			SimulatedDisplacement sim = new SimulatedDisplacement(pair.Value);
+			Vector2 startCoord = pair.Value.GetStartCoordinate();
+			if(!simulation.ContainsKey(startCoord)) {
+				simulation.Add(startCoord, new Queue<SimulatedDisplacement>());
 			}
-			simulation[next].Enqueue(sim);
+			simulation[startCoord].Enqueue(sim);
 		}
 
 		//Simulate until relaxed
-		simulation = ResolveConflicts(simulation);
+		simulation = ResolveConflicts(simulation, board);
 
 		//All simulation entries should only have one unit at this point
 		foreach(KeyValuePair<Vector2, Queue<SimulatedDisplacement>> pair in simulation) {
@@ -142,7 +132,7 @@ public class Timeline : Phase {
 		return results;
 	}
 
-	private Dictionary<Vector2, Queue<SimulatedDisplacement>> ResolveConflicts(Dictionary<Vector2, Queue<SimulatedDisplacement>> simulation) {
+	private Dictionary<Vector2, Queue<SimulatedDisplacement>> ResolveConflicts(Dictionary<Vector2, Queue<SimulatedDisplacement>> simulation, Board board) {
 		bool changed;
 
 		do {
@@ -155,11 +145,11 @@ public class Timeline : Phase {
 					//No Conflict Resolution Needed, update unit values
 					while(simQueue.Count > 0) {
 						SimulatedDisplacement sim = simQueue.Dequeue();
-						Vector2 current = sim.current;
+						Vector2 current = sim.GetCurrentVector();
 						Vector2 next;
 
-						if(!sim.conflict) {
-							next = sim.GetNextSimulationStep();
+						if(!sim.conflict && !sim.outOfBounds) {
+							next = sim.GetNextSimulationStep(board);
 							changed = changed || next != current;
 						} else {
 							next = current; //do not move forward
@@ -176,8 +166,8 @@ public class Timeline : Phase {
 					while(simQueue.Count > 0) {
 						SimulatedDisplacement sim = simQueue.Dequeue();
 						sim.conflict = true;
-						Vector2 current = sim.current;
-						Vector2 prev = sim.GetPreviousSimulationStep();
+						Vector2 current = sim.GetCurrentVector();
+						Vector2 prev = sim.GetPreviousSimulationStep(board);
 						changed = changed || prev != current;
 
 						//Create and push to simulation our new location

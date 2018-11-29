@@ -6,44 +6,59 @@ using System;
 public class SimulatedDisplacement {
 	public UnitDisplacement displacement;
 	public Vector2 result;
-	public Vector2 current;
 	public bool conflict;
+	public bool outOfBounds;
 
-	public SimulatedDisplacement(UnitDisplacement displacement, Vector2 target) {
+	private Vector2 current;
+
+	public SimulatedDisplacement(UnitDisplacement displacement) {
 		this.displacement = displacement;
-		this.result = target;
+		this.result = displacement.GetTargetCoordinate();
 		this.current = displacement.GetStartCoordinate();
 		this.conflict = false;
+		this.outOfBounds = false;
 	}
 
-	public Vector2 GetNextSimulationStep() {
+	public Vector2 GetNextSimulationStep(Board board) {
 		if(displacement.type == UnitDisplacementType.RELATIVE && !CheckCoordinateEquality(current, result)) {
 			RelativeDisplacement rd = (RelativeDisplacement)displacement;
-			current += rd.GetUnitStep();
-			current = new Vector2(Mathf.Round(current.x), Mathf.Round(current.y));
+			Vector2 next = current + rd.GetUnitStep();
+			if(board.CheckCoord(new Vector2(Mathf.Round(next.x), Mathf.Round(next.y)))) {
+				current = next;
+			} else {
+				outOfBounds = true;
+			}
 		} else if(displacement.type == UnitDisplacementType.ABSOLUTE){
 			current = result;
 		}
-		return current;
+		Debug.Log(current);
+		return GetCurrentVector();
 	}
 
-	public Vector2 GetPreviousSimulationStep() {
+	public Vector2 GetPreviousSimulationStep(Board board) {
 		if(displacement.type == UnitDisplacementType.RELATIVE && !CheckCoordinateEquality(current, displacement.GetStartCoordinate())) {
 			RelativeDisplacement rd = (RelativeDisplacement)displacement;
-			current -= rd.GetUnitStep();
-			current = new Vector2(Mathf.Round(current.x), Mathf.Round(current.y));
+			Vector2 prev = current - rd.GetUnitStep();
+			if(board.CheckCoord(new Vector2(Mathf.Round(prev.x), Mathf.Round(prev.y)))) {
+				current = prev;
+			} else {
+				outOfBounds = true;
+			}
 		} else if(displacement.type == UnitDisplacementType.ABSOLUTE){
 			current = displacement.GetStartCoordinate();
 		}
-		return current;
+		return GetCurrentVector();
 	}
 
-	public void DisplaceUnit(Board board) {
-		Unit unit = displacement.unit;
-		unit.tile = board.GetTile(new Vector2(Mathf.Round(current.x), Mathf.Round(current.y)));
+	public Vector2 GetCurrentVector() {
+		return new Vector2(Mathf.Round(current.x), Mathf.Round(current.y));
+	}
+
+	public Unit GetUnit() {
+		return displacement.unit;
 	}
 
 	static private bool CheckCoordinateEquality(Vector2 a, Vector2 b) {
-		return Math.Round(a.x) == Math.Round(b.x) && Math.Round(a.y) == Math.Round(b.y);
+		return Mathf.Round(a.x) == Mathf.Round(b.x) && Mathf.Round(a.y) == Mathf.Round(b.y);
 	}
 }

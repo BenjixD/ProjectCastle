@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class MoveFrame : Frame {
-	public override bool CanExecute(Unit unit, Direction dir, Board board) {
-		Vector2 next = GetRelativeDisplacement(unit, dir, board);
-		return board.CheckCoord(next);
+	public override bool CanExecute(SimulatedDisplacement sim, Direction dir, Board board) {
+		//The execution of a move should technically never fail
+		return board.CheckCoord(sim.GetCurrentVector());
 	}
 
 	public override bool ExecuteEffect(SimulatedDisplacement sim, Direction dir, Board board) {
@@ -26,13 +26,12 @@ public class MoveFrame : Frame {
 	}
 
 	public override UnitDisplacement GetDisplacement(Unit unit, Direction dir, Board board) {
-		Vector2 relative = GetRelativeDisplacement(unit, dir, board);
-		return new RelativeDisplacement(unit, relative);
+		Vector2 movement = GetMovement(unit, dir, board);
+		return new RelativeDisplacement(unit, movement);
 	}
 
-	private Vector2 GetRelativeDisplacement(Unit unit, Direction dir, Board board) {
+	private Vector2 GetMovement(Unit unit, Direction dir, Board board) {
 		Direction absoluteDir = (Direction)(((int)relativeDir + (int)dir) % 4);
-		Vector2 coord = unit.tile.coordinate;
 
 		if(absoluteDir == Direction.UP) {
 			return new Vector2(-1, 0);
@@ -43,7 +42,7 @@ public class MoveFrame : Frame {
 		} else if (absoluteDir == Direction.LEFT) {
 			return new Vector2(0, -1);
 		} else {
-			return coord;
+			return new Vector2(0, 0);
 		}
 	}
 }

@@ -18,6 +18,10 @@ public class Board : MonoBehaviour {
         targetTile.PlaceUnit(unit);
     }
 
+    public static void MoveUnit(SimulatedDisplacement sim, Board board) {
+        MoveUnit(sim.GetUnit(), board.GetTile(sim.GetCurrentVector()));
+    }
+
     public void InitializeBoard()
     {
         tiles = new Tile[rows, cols];

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public enum TileType
 {
-	EMPTY = 0,
-	PLAINS = 1
+    EMPTY = 0,
+    PLAINS = 1
 }
 
 public class Tile : MonoBehaviour {

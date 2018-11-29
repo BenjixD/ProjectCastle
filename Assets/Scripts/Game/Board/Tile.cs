@@ -11,7 +11,7 @@ public enum TileType
 public class Tile : MonoBehaviour {
 
     public string tileName;
-	public TileType tileType;
+    public TileType tileType;
     public Unit unit { get; set; }
     //TODO: private Building building;
     public Vector2 coordinate;

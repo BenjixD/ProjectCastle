@@ -115,7 +115,7 @@ public class Board : MonoBehaviour {
             for(int i = 0; i < piece.row; i++) {
                 for(int j = 0; j < piece.cols; j++) {
                     PlaceTile(piece.tiles[i, j], i + x, j + y);
-				}
+                }
             }
         }
     }

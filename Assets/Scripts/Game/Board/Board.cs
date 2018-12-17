@@ -135,7 +135,7 @@ public class Board : MonoBehaviour {
 
     public bool CheckPlaceTile(int x, int y)
     {
-        return CheckCoord(x, y) && this.tiles[x, y].tileType == emptyTile.GetComponent<Tile>().tileType;
+        return CheckCoord(x, y) && this.tiles[x, y].tileType == TileType.EMPTY;
     }
 
     public void PlaceTile(Tile tile, int x, int y)

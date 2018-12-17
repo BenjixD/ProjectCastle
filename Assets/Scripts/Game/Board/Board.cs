@@ -98,7 +98,7 @@ public class Board : MonoBehaviour {
 
         for(int i = 0; i < piece.row; i++) {
             for(int j = 0; j < piece.cols; j++) {
-                if(piece.tiles[i,j] != null && !CheckPlaceTile(i + x, j + y)) {
+                if(piece.tiles[i,j].tileType != TileType.EMPTY && !CheckPlaceTile(i + x, j + y)) {
                     return false;
                 }
             }
@@ -126,7 +126,7 @@ public class Board : MonoBehaviour {
 
         for(int i = 0; i < piece.row; i++) {
             for(int j = 0; j < piece.cols; j++) {
-                if(piece.tiles[i,j] != null && CheckPlaceTile(i + x, j + y)) {
+                if(piece.tiles[i,j].tileType != TileType.EMPTY && CheckPlaceTile(i + x, j + y)) {
                     PlaceTile(piece.tiles[i, j], i + x, j + y);
                 }
             }

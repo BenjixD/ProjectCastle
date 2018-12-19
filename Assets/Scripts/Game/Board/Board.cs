@@ -31,8 +31,7 @@ public class Board : MonoBehaviour {
         {
             for (int j = 0; j < cols; j++)
             {
-                GameObject tileObj = Instantiate(emptyTile, gameObject.transform);
-                Tile tile = tileObj.GetComponent<Tile>();
+                Tile tile = emptyTile.GetComponent<Tile>();
                 PlaceTile(tile, i, j);
             }
         }
@@ -140,13 +139,12 @@ public class Board : MonoBehaviour {
 
     public void PlaceTile(Tile tile, int x, int y)
     {
-        tile.coordinate = new Vector2(x, y);
-        tile.transform.position = CoordToPosition(x, y);
-        tile.transform.parent = this.transform;
         if (this.tiles[x,y] != null)
         {
             Destroy(this.tiles[x, y].gameObject);
         }
-        this.tiles[x,y] = tile;
+        this.tiles[x,y] = Instantiate(tile.gameObject, gameObject.transform).GetComponent<Tile>();
+        this.tiles[x, y].coordinate = new Vector2(x, y);
+        this.tiles[x, y].transform.position = CoordToPosition(x, y);
     }
 }

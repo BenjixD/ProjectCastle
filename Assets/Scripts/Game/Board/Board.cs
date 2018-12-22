@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -113,7 +113,6 @@ public class Board : MonoBehaviour {
 
             for(int i = 0; i < piece.row; i++) {
                 for(int j = 0; j < piece.cols; j++) {
-                    piece.tiles[i, j].PlaceUnit(this.tiles[x, y].unit);
                     PlaceTile(piece.tiles[i, j], i + x, j + y);
                 }
             }
@@ -140,15 +139,12 @@ public class Board : MonoBehaviour {
 
     public void PlaceTile(Tile tile, int x, int y)
     {
-        Tile replacedTile = this.tiles[x, y];        
-        this.tiles[x, y] = Instantiate(tile.gameObject, gameObject.transform).GetComponent<Tile>();
+        if (this.tiles[x,y] != null)
+        {
+            Destroy(this.tiles[x, y].gameObject);
+        }
+        this.tiles[x,y] = Instantiate(tile.gameObject, gameObject.transform).GetComponent<Tile>();
         this.tiles[x, y].coordinate = new Vector2(x, y);
         this.tiles[x, y].transform.position = CoordToPosition(x, y);
-        if (replacedTile != null) {
-            if (replacedTile.unit != null) {
-                this.tiles[x, y].PlaceUnit(replacedTile.unit);
-            }
-            Destroy(replacedTile.gameObject);
-        }
     }
 }

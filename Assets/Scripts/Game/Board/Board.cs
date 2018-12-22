@@ -139,12 +139,15 @@ public class Board : MonoBehaviour {
 
     public void PlaceTile(Tile tile, int x, int y)
     {
-        if (this.tiles[x,y] != null)
-        {
-            Destroy(this.tiles[x, y].gameObject);
-        }
-        this.tiles[x,y] = Instantiate(tile.gameObject, gameObject.transform).GetComponent<Tile>();
+        Tile replacedTile = this.tiles[x, y];        
+        this.tiles[x, y] = Instantiate(tile.gameObject, gameObject.transform).GetComponent<Tile>();
         this.tiles[x, y].coordinate = new Vector2(x, y);
         this.tiles[x, y].transform.position = CoordToPosition(x, y);
+        if (replacedTile != null) {
+            if (replacedTile.unit != null) {
+                this.tiles[x, y].PlaceUnit(replacedTile.unit);
+            }
+            Destroy(replacedTile.gameObject);
+        }
     }
 }

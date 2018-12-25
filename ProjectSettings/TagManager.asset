@@ -47,6 +47,9 @@ TagManager:
   - name: TileUI
     uniqueID: 3872950195
     locked: 0
+  - name: Cursor
+    uniqueID: 2860527823
+    locked: 0
   - name: Units
     uniqueID: 2753136837
     locked: 0

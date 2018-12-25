@@ -3,9 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Move : Action {
-    public InputManager inputManager;
-
-    void Start() {
+	void Start() {
 		//Add Move frames in order
 		this.frames = new List<Frame>();
         Frame frame = new MoveFrame();

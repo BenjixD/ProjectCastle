@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class InputManager : MonoBehaviour {
-    public GameObject cursor;
-    public GameObject deployPhaseControl;
+    public Cursor cursor;
     public DirectionalInput directionalInput;
 
     public void InitializeDeploymentPhase()
     {
-        cursor.GetComponent<Cursor>().movementEnabled = true;
-        deployPhaseControl.SetActive(true);
+        cursor.movementEnabled = true;
+        cursor.deploymentMenusControl.SetActive(true);
     }
 }

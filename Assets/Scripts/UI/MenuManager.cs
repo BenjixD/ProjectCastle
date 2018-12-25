@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class MenuManager : MonoBehaviour {
 
     public Game gameManager;
-    public GameObject deploymentPhaseControl;
+    public Cursor cursor;
 
     private List<GameObject> actionButtons;
     public GameObject actionsMenu;
@@ -17,7 +17,7 @@ public class MenuManager : MonoBehaviour {
     public GameObject deployMenu;
 
     public Vector3 listTopPosition;
-
+    
     void Awake()
     {
         actionButtons = new List<GameObject>();
@@ -41,7 +41,7 @@ public class MenuManager : MonoBehaviour {
         {
             GameObject newButton = Instantiate(buttonTemplate, listTopPosition - new Vector3(0, actionButtons.Count * buttonTemplateHeight, 0), Quaternion.identity, actionsMenu.transform);
             newButton.GetComponentInChildren<Text>().text = skill.actionName;
-            newButton.GetComponent<Button>().onClick.AddListener(DisableDeployControl);
+            newButton.GetComponent<Button>().onClick.AddListener(delegate { cursor.deploymentMenusControl.SetActive(false); });
             newButton.GetComponent<Button>().onClick.AddListener(CloseAllMenus);
             newButton.GetComponent<Button>().onClick.AddListener(delegate { skill.Select(unit); });
             actionButtons.Add(newButton);
@@ -126,14 +126,8 @@ public class MenuManager : MonoBehaviour {
 
     public void EndDeployPhase()
     {
-        //gameManager.nextTurn = true;
         gameManager.endPhase = true;
         ClosePhaseMenu();
-        DisableDeployControl();
-    }
-
-    public void DisableDeployControl()
-    {
-        deploymentPhaseControl.SetActive(false);
+        cursor.deploymentMenusControl.SetActive(false);
     }
 }

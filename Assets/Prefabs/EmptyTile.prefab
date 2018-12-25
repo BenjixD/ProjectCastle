@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212506987948927378}
   - component: {fileID: 114098428337310548}
   m_Layer: 0
-  m_Name: BaseTile
+  m_Name: EmptyTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,6 +52,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de9dc4ab854cd3845940b8bc1e30106d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tileName: 
+  coordinate: {x: 0, y: 0}
 --- !u!212 &212506987948927378
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -87,7 +89,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e020b904d690b6f4184374f47d701250, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b69144badd8f2d745a259f70f87d56a7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -230,7 +230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1013115836}
-  deploymentPhaseControl: {fileID: 1685173638}
+  cursor: {fileID: 1414521162}
   actionsMenu: {fileID: 921232818}
   buttonTemplate: {fileID: 1395589652517990, guid: 78d998e82cc8bd54c8a4cb3e138833f5,
     type: 2}
@@ -275,11 +275,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 125722434}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b948523af4c873949b458cc0123775cd, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f98df84a7e1c4ea9b2b6cbf77b0ab4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   uiManager: {fileID: 1013115839}
-  deploymentPhaseControl: {fileID: 1685173638}
+  menuManager: {fileID: 101211451}
   cursor: {fileID: 1414521162}
   timeline: {fileID: 1013115834}
 --- !u!1 &230143115
@@ -487,6 +487,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f0f960b2add946c188f5ce5ee80e9c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputManager: {fileID: 959419240}
   playerId: 0
   gold: 0
   kingObject: {fileID: 1990141191843838, guid: 163be1838408a4439aa888e059b8d3f2, type: 2}
@@ -519,7 +520,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rows: 20
   cols: 20
-  baseTile: {fileID: 1306597555463206, guid: b29b67f04a6cdd642a99a944cddc85d3, type: 2}
+  emptyTile: {fileID: 1306597555463206, guid: b29b67f04a6cdd642a99a944cddc85d3, type: 2}
   tileWidth: 9.9
   tileHeight: 4.5
 --- !u!4 &597238867
@@ -659,8 +660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 478d64a3de03bae4094259866b3de891, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursor: {fileID: 1414521161}
-  deployPhaseControl: {fileID: 1685173638}
+  cursor: {fileID: 1414521162}
   directionalInput: {fileID: 125722436}
 --- !u!1 &1013115833
 GameObject:
@@ -694,7 +694,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxFrame: 10
-  frameDelay: 0.5
+  frameDelay: 0.1
   actionOrder: 00000000010000000200000003000000
 --- !u!114 &1013115835
 MonoBehaviour:
@@ -859,6 +859,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f0f960b2add946c188f5ce5ee80e9c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputManager: {fileID: 959419240}
   playerId: 1
   gold: 0
   kingObject: {fileID: 1990141191843838, guid: 163be1838408a4439aa888e059b8d3f2, type: 2}
@@ -1048,8 +1049,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   board: {fileID: 597238866}
   uiManager: {fileID: 1013115839}
+  menuManager: {fileID: 101211451}
+  deploymentMenusControl: {fileID: 1685173638}
   startCoords: {x: 0, y: 0}
+  currCoords: {x: 0, y: 0}
+  piece: {fileID: 0}
   movementEnabled: 1
+  testPiece: {fileID: 1146416420789754, guid: b5d94b40f41174652b848ee15d2a7adf, type: 2}
 --- !u!212 &1414521163
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1119,7 +1125,7 @@ GameObject:
   - component: {fileID: 1685173640}
   - component: {fileID: 1685173639}
   m_Layer: 0
-  m_Name: DeployPhaseControl
+  m_Name: DeployMenusControl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

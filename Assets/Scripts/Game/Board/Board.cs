@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +8,7 @@ public class Board : MonoBehaviour {
     public int cols;
     private Tile[,] tiles;
 
-    public GameObject baseTile;         // Base tile for testing
+    public GameObject emptyTile;
     public float tileWidth;
     public float tileHeight;
 
@@ -31,10 +31,8 @@ public class Board : MonoBehaviour {
         {
             for (int j = 0; j < cols; j++)
             {
-                GameObject tileObj = Instantiate(baseTile, CoordToPosition(i, j), Quaternion.identity, gameObject.transform);
-                Tile tile = tileObj.GetComponent<Tile>();
-                tile.coordinate = new Vector2(i, j); 
-                tiles[i, j] = tile;
+                Tile tile = emptyTile.GetComponent<Tile>();
+                PlaceTile(tile, i, j);
             }
         }
     }
@@ -44,7 +42,12 @@ public class Board : MonoBehaviour {
         return new Vector3((y-x)*tileWidth, (x+y)*-tileHeight, 0);
     }
 
-    public Tile GetTile(int x, int y) {
+	public Vector3 CoordToPosition(Vector2 coord)
+	{
+		return new Vector3((coord.y - coord.x) * tileWidth, (coord.x + coord.y) * -tileHeight, 0);
+	}
+
+	public Tile GetTile(int x, int y) {
         return tiles[x, y];
     }
 
@@ -94,7 +97,7 @@ public class Board : MonoBehaviour {
 
         for(int i = 0; i < piece.row; i++) {
             for(int j = 0; j < piece.cols; j++) {
-                if(piece.tiles[i,j] != null && this.tiles[i + x, j + y] != null) {
+                if(piece.tiles[i,j].tileType != TileType.EMPTY && !CheckPlaceTile(i + x, j + y)) {
                     return false;
                 }
             }
@@ -110,7 +113,7 @@ public class Board : MonoBehaviour {
 
             for(int i = 0; i < piece.row; i++) {
                 for(int j = 0; j < piece.cols; j++) {
-                    this.tiles[i + x, j + y] = piece.tiles[i, j];
+                    PlaceTile(piece.tiles[i, j], i + x, j + y);
                 }
             }
         }
@@ -122,10 +125,29 @@ public class Board : MonoBehaviour {
 
         for(int i = 0; i < piece.row; i++) {
             for(int j = 0; j < piece.cols; j++) {
-                if(piece.tiles[i,j] != null && this.tiles[i + x, j + y] == null) {
-                    this.tiles[i + x, j + y] = piece.tiles[i, j];
+                if(piece.tiles[i,j].tileType != TileType.EMPTY && CheckPlaceTile(i + x, j + y)) {
+                    PlaceTile(piece.tiles[i, j], i + x, j + y);
                 }
             }
+        }
+    }
+
+    public bool CheckPlaceTile(int x, int y)
+    {
+        return CheckCoord(x, y) && this.tiles[x, y].tileType == TileType.EMPTY;
+    }
+
+    public void PlaceTile(Tile tile, int x, int y)
+    {
+        Tile replacedTile = this.tiles[x, y];        
+        this.tiles[x, y] = Instantiate(tile.gameObject, gameObject.transform).GetComponent<Tile>();
+        this.tiles[x, y].coordinate = new Vector2(x, y);
+        this.tiles[x, y].transform.position = CoordToPosition(x, y);
+        if (replacedTile != null) {
+            if (replacedTile.unit != null) {
+                this.tiles[x, y].PlaceUnit(replacedTile.unit);
+            }
+            Destroy(replacedTile.gameObject);
         }
     }
 }

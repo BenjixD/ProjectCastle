@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Player : MonoBehaviour {
+    public InputManager inputManager;
+
 	public int playerId;
 
 	public int gold;
@@ -12,7 +14,7 @@ public class Player : MonoBehaviour {
 	private Board board;
 	public List<Unit> units { get; private set; }
 
-	//TODO:List of Cards
+    //TODO:List of Cards
 
 	public void InitializePlayer(int playerId, Vector2 coord, Board board)
 	{
@@ -23,12 +25,13 @@ public class Player : MonoBehaviour {
 		GameObject kingObj = Instantiate(kingObject, board.CoordToPosition((int)coord.x, (int)coord.y), Quaternion.identity, gameObject.transform);
 		Unit king = kingObj.GetComponent<Unit>();
 
-		//set unit values
-		board.GetTile((int)coord.x, (int)coord.y).PlaceUnit(king);
-		king.owner = this;
+        //set unit values
+        board.GetTile((int)coord.x, (int)coord.y).PlaceUnit(king);
+        king.owner = this;
+        king.skills[0].inputManager = inputManager;
 
-		units.Add(king);
-	}
+        units.Add(king);
+    }
 
     public void AddUnit(Unit unit) {
         unit.owner = this;

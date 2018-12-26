@@ -34,7 +34,7 @@ public class MenuManager : MonoBehaviour {
         }
     }
 
-    public void OpenActionsMenu(Unit unit)
+    public void OpenActionsMenu(Unit unit, Cursor cursor)
     {
         CleanButtons(actionButtons);
         foreach (Action skill in unit.skills)
@@ -127,7 +127,8 @@ public class MenuManager : MonoBehaviour {
     public void EndDeployPhase()
     {
         gameManager.endPhase = true;
-        ClosePhaseMenu();
-        cursor.deploymentMenusControl.SetActive(false);
+        CloseAllMenus();
+        //ClosePhaseMenu();
+        //cursor.deploymentMenusControl.SetActive(false);
     }
 }

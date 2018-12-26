@@ -6,25 +6,30 @@ public class Cursor : MonoBehaviour
 {
 
     public Board board;
-    private Camera cam;
     public UIManager uiManager;
     public MenuManager menuManager;
     public GameObject deploymentMenusControl;
 
     public Vector2 startCoords;
-    public Vector2 currCoords;
 
-    private Unit selectedUnit;
-
+    //TODO: Piece Placement should not be in the Cursor script
     public GameObject piece;
 
     public bool movementEnabled = false;
     public GameObject testPiece; //TODO: remove after finished testing
 
-    void Start()
+    private Camera cam;
+    private Vector2 currCoords;
+    private Unit selectedUnit;
+
+    void Awake()
     {
         cam = Camera.main;
         currCoords = startCoords;
+    }
+
+    void OnEnable() {
+        UpdateCursorLocation();
     }
 
     void Update()
@@ -84,6 +89,26 @@ public class Cursor : MonoBehaviour
                 }
             }
         }
+        if (Input.GetKeyDown("return"))
+        {
+            movementEnabled = false;
+            Tile tile = board.GetTile(currCoords);
+            Unit unit = tile.unit;
+            if (unit != null)
+            {
+                //TODO: if unit belongs to current player:
+                menuManager.OpenActionsMenu(unit, this);
+            }
+            else
+            {
+                menuManager.OpenPhaseMenu();
+            }
+        }
+        if (Input.GetKeyDown("escape") || Input.GetKeyDown("backspace"))
+        {
+            menuManager.CloseAllMenus();
+            movementEnabled = true;
+        }
     }
 
     public void SetCoord(Vector2 coords)
@@ -92,21 +117,8 @@ public class Cursor : MonoBehaviour
         UpdateCursorLocation();
     }
 
-    void CycleUnits(int skipNum)
-    {
-        if (selectedUnit != null) // TODO: also check this unit belongs to the player in control of the cursor
-        {
-            List<Unit> playerUnits = selectedUnit.owner.units;
-            float index = playerUnits.FindIndex(unit => unit == selectedUnit);
-            index += skipNum;
-            // True modulo, not C#'s
-            index = index - playerUnits.Count * Mathf.Floor(index / playerUnits.Count);
-            SetCoord(playerUnits[(int)index].tile.coordinate);
-        }
-        else
-        {
-            //TODO: move to controlling player's king or something
-        }
+    public Vector2 GetCoord() {
+        return currCoords;
     }
 
     public void BeginPiecePlacement(GameObject piece)
@@ -136,12 +148,42 @@ public class Cursor : MonoBehaviour
     {
         UpdateCursorLocation();
         UpdatePieceLocation();
+        UpdateTimeline();
+    }
+
+    void CycleUnits(int skipNum)
+    {
+        if (selectedUnit != null) // TODO: also check this unit belongs to the player in control of the cursor
+        {
+            List<Unit> playerUnits = selectedUnit.owner.units;
+            float index = playerUnits.FindIndex(unit => unit == selectedUnit);
+            index += skipNum;
+            // True modulo, not C#'s
+            index = index - playerUnits.Count * Mathf.Floor(index / playerUnits.Count);
+            SetCoord(playerUnits[(int)index].tile.coordinate);
+        }
+        else
+        {
+            //TODO: move to controlling player's king or something
+        }
     }
 
     void UpdateCursorLocation()
     {
         gameObject.transform.position = board.CoordToPosition(currCoords);
         cam.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, cam.transform.position.z);
+    }
+
+    void UpdatePieceLocation()
+    {
+        if(piece != null)
+        {
+            piece.transform.position = board.CoordToPosition(currCoords);
+        }
+    }
+
+    void UpdateTimeline() 
+    {
         selectedUnit = board.GetTile(currCoords).unit;
         if (selectedUnit != null)
         {
@@ -150,14 +192,6 @@ public class Cursor : MonoBehaviour
         else
         {
             uiManager.DisplayTimelineIcons(null);
-        }
-    }
-
-    void UpdatePieceLocation()
-    {
-        if(piece != null)
-        {
-            piece.transform.position = board.CoordToPosition(currCoords);
         }
     }
 }

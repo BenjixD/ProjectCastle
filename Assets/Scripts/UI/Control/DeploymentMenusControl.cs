@@ -13,12 +13,13 @@ public class DeploymentMenusControl : MonoBehaviour
 		if (Input.GetKeyDown("return"))
 		{
 			cursor.movementEnabled = false;
-			Tile tile = board.GetTile((int)cursor.currCoords.x, (int)cursor.currCoords.y);
+			Tile tile = board.GetTile(0,0);
+			//Tile tile = board.GetTile((int)cursor.currCoords.x, (int)cursor.currCoords.y);
 			Unit unit = tile.unit;
 			if (unit != null)
 			{
 				//TODO: if unit belongs to current player:
-				menuManager.OpenActionsMenu(unit);
+				menuManager.OpenActionsMenu(unit, cursor);
 			}
 			else
 			{

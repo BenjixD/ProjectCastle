@@ -9,9 +9,6 @@ public class Deployment : Phase {
         game.inputManager.InitializeDeploymentPhase();
         foreach (Player player in game.players) {
 			while(!game.endPhase) {
-                if(Input.GetKeyDown("space")) {
-                    game.endPhase = true;
-                }
                 yield return new WaitForFixedUpdate();
             }
             Debug.Log("Player " + player.playerId + "confirmed deployment!");

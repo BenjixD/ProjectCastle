@@ -10,16 +10,16 @@ public class Player : MonoBehaviour {
 	public int gold;
 
 	public GameObject kingObject;   //Note unit[0] holds a reference to king
-
-	private Board board;
 	public List<Unit> units { get; private set; }
+
+	//private Board board;
 
     //TODO:List of Cards
 
 	public void InitializePlayer(int playerId, Vector2 coord, Board board)
 	{
 		this.playerId = playerId;
-		this.board = board;
+		//this.board = board;
 		units = new List<Unit>();
 
 		GameObject kingObj = Instantiate(kingObject, board.CoordToPosition((int)coord.x, (int)coord.y), Quaternion.identity, gameObject.transform);

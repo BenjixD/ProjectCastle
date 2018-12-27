@@ -8,6 +8,7 @@ public class Deployment : Phase {
         foreach (Player player in game.players) {
             game.uiManager.ShowDeploymentPhaseUI(player.playerName);
             player.cursor.gameObject.SetActive(true);
+            player.cursor.EnableUserInput();
 			while(player.cursor.state != CursorState.END) {
                 yield return new WaitForFixedUpdate();
             }

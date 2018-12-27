@@ -32,7 +32,6 @@ public class Cursor : MonoBehaviour
     }
 
     void OnEnable() {
-        state = CursorState.ENABLED;
         UpdateCursorLocation();
         UpdateTimeline();
     }

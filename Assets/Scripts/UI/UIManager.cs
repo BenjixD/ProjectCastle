@@ -31,9 +31,9 @@ public class UIManager : MonoBehaviour {
         phaseDisplay.text = "Turn Setup";
     }
 
-    public void ShowDeploymentPhaseUI()
+    public void ShowDeploymentPhaseUI(string playerName)
     {
-        phaseDisplay.text = "Deployment";
+        phaseDisplay.text = "Deployment - " + playerName;
     }
 
     public void ShowTimelinePhaseUI()

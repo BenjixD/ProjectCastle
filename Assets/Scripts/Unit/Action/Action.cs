@@ -18,11 +18,15 @@ public enum ActionType {
 }
 
 public abstract class Action : MonoBehaviour {
-	public InputManager inputManager;
 	public string actionName;
 	public int cost;
 	public List<Frame> frames { get; set; }
 	public GameObject[] icons;
 	public ActionType actionType;
-	public abstract void Select(Unit unit);
+	public ActionUI actionUI;
+
+	public virtual IEnumerator Select(Unit unit, Timeline timeline, IEnumerator next) {
+		StartCoroutine(next);
+		yield return null;
+	}
 }

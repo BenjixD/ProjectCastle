@@ -8,7 +8,7 @@ public class InputManager : MonoBehaviour {
 
     public void InitializeDeploymentPhase()
     {
-        cursor.movementEnabled = true;
-        cursor.deploymentMenusControl.SetActive(true);
+        //cursor.movementEnabled = true;
+        //cursor.deploymentMenusControl.SetActive(true);
     }
 }

@@ -30,10 +30,13 @@ public abstract class Unit : MonoBehaviour {
 		return action.cost <= curAp;
 	}
 
+	public virtual bool CanConsumeAp(int cost) {
+		return cost <= curAp;	
+	}
+
 	public virtual void ConsumeAp(Action action) {
 		curAp -= action.cost;
 	}
-
 
 	// Frame related methods
 	public virtual void ResetFrameUsage() {
@@ -43,6 +46,11 @@ public abstract class Unit : MonoBehaviour {
 	public virtual bool CanUseFrame(Action action, Timeline timeline) {
 		return action.frames.Count + frameUsage <= timeline.maxFrame;
 	}
+
+	public virtual bool CanUseFrame(int frames, Timeline timeline) {
+		return frames + frameUsage <= timeline.maxFrame;	
+	}
+
 	public virtual void UseFrame(Action action, Timeline timeline) {
 		frameUsage += action.frames.Count;
 	}

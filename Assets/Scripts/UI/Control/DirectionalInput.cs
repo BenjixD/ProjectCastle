@@ -89,7 +89,5 @@ public class DirectionalInput : MonoBehaviour {
 	{
 		actionsCount = 0;
 		acceptingInput = false;
-		cursor.movementEnabled = true;
-		cursor.deploymentMenusControl.SetActive(true);
 	}
 }

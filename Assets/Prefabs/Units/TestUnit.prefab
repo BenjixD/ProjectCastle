@@ -58,6 +58,7 @@ MonoBehaviour:
   curHp: 10
   maxAp: 5
   curAp: 5
+  controllable: 0
   frameUsage: 0
   skills:
   - {fileID: 114728448468219740}
@@ -77,7 +78,7 @@ MonoBehaviour:
   icons:
   - {fileID: 1492498545512562, guid: cdf5996b9de64e64eaf0bdaa58b0669d, type: 2}
   actionType: 1
-  control: {fileID: 0}
+  actionUI: {fileID: 114570406660022952, guid: bc287e541d26d4ed1b00a50c7b40c918, type: 2}
 --- !u!212 &212274110593211470
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -111,7 +112,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1541830459
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 2a72adf696ed5453da3c10f6339e0696, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

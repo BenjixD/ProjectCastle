@@ -3,15 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Player : MonoBehaviour {
-    public InputManager inputManager;
-
 	public int playerId;
+	public string playerName;
 
 	public int gold;
 
 	public GameObject kingObject;   //Note unit[0] holds a reference to king
 	public List<Unit> units { get; private set; }
 
+	public Cursor cursor;
 	//private Board board;
 
     //TODO:List of Cards
@@ -28,9 +28,11 @@ public class Player : MonoBehaviour {
         //set unit values
         board.GetTile((int)coord.x, (int)coord.y).PlaceUnit(king);
         king.owner = this;
-        king.skills[0].inputManager = inputManager;
 
         units.Add(king);
+
+        //update cursor
+        cursor.SetCoords(coord);
     }
 
     public void AddUnit(Unit unit) {
@@ -41,5 +43,10 @@ public class Player : MonoBehaviour {
 	public void RemoveUnit(Unit unit)
 	{
 		units.Remove(unit);
+	}
+
+	public bool IsOwner(Unit unit) {
+		var found = units.Find(x => x == unit);
+		return found != null;
 	}
 }

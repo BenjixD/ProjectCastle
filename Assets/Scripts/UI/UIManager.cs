@@ -51,14 +51,13 @@ public class UIManager : MonoBehaviour {
         pointerTransform.anchoredPosition = new Vector2(GetPosXOfTick(frame), pointerY);
     }
 
-    public void DisplayTimelineIcons(Queue<Command> commands)
+    public void DisplayTimelineIcons(Plan plan)
     {
         ClearTimelineIcons();
-        if (commands != null)
-        {
-            int i = 0;
-            foreach (Command command in commands)
-            {
+        if(plan != null) {
+            int frames = plan.GetTotalFramesCount();
+            for(int i = 0; i < frames; i++) {
+                Command command = plan.GetCommand(i);
                 GameObject icon = Instantiate(command.frame.icon, timelineDisplay.transform);
                 RectTransform rectTransform = icon.GetComponent<RectTransform>();
                 if (command.dir == Direction.LEFT)
@@ -76,7 +75,6 @@ public class UIManager : MonoBehaviour {
                 float iconY = pointerTransform.anchoredPosition.y - rectTransform.rect.height * 2f;
                 rectTransform.anchoredPosition = new Vector3(GetPosXOfTick(i), iconY, 0);
                 displayedIcons.Add(icon);
-                i++;
             }
         }
     }

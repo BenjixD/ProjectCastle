@@ -14,8 +14,6 @@ public class TurnSetup : Phase {
 	private void ResetAll(List<Player> players) {
 		foreach(Player player in players) {
 			foreach(Unit unit in player.units) {
-				unit.RefreshAp();
-				unit.ResetFrameUsage();
 				unit.FlushPlan();
 			}
 		}

@@ -24,7 +24,6 @@ public class Tile : MonoBehaviour {
 
     public void RemoveUnit(Unit unit)
     {
-        //TODO: if multiple units are allowed on a tile, remove only the given unit
         this.unit = null;
     }
 }

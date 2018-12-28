@@ -32,8 +32,8 @@ public class Timeline : Phase {
 		//Put the unit actions in the correct queue
 		foreach(Player player in players) {
 			foreach(Unit unit in player.units) {
-				if(unit.plan.Count > 0) {
-					ActionType actionType = unit.plan.Peek().type;
+				if(unit.plan.GetRemainingFramesCount() > 0) {
+					ActionType actionType = unit.plan.PeekNext().Value.type;
                     actionDict[actionType].Enqueue(unit);
 				}
 			}
@@ -49,7 +49,7 @@ public class Timeline : Phase {
 			foreach(SimulatedDisplacement sim in result) {
 				Unit unit = sim.displacement.unit;
 				if(toExecute.Contains(unit)) {
-					Command command = unit.plan.Dequeue();
+					Command command = unit.plan.ExecuteNext().Value;
 					if(command.frame.CanExecute(sim, command.dir, board)) {
 						command.frame.ExecuteEffect(sim, command.dir, board);
 						Board.MoveUnit(sim, board);
@@ -82,7 +82,7 @@ public class Timeline : Phase {
 		//Add all units making actions
 		while(units.Count > 0) {
 			Unit unit = units.Dequeue();
-			Command command = unit.plan.Peek();
+			Command command = unit.plan.PeekNext().Value;
 			UnitDisplacement displacement = command.frame.GetDisplacement(unit, command.dir, board);
 
 			//Amalgamate displacement

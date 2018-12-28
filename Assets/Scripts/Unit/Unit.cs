@@ -9,52 +9,37 @@ public abstract class Unit : MonoBehaviour {
 	public int curHp;
 
 	public int maxAp;
-	public int curAp;
+	//public int curAp;
 
 	public bool controllable;
 	public int frameUsage;
 
 	public List<Action> skills;
-	public Queue<Command> plan = new Queue<Command>(); 
+
+	public Plan plan;
 
 	public Tile tile { get; set; }
 	public Player owner { get; set; }
 
-
-	// AP Related Methods
-	public virtual void RefreshAp() {
-		curAp = maxAp;
+	void Awake() {
+		plan = new Plan();
 	}
 
 	public virtual bool CanConsumeAp(Action action) {
-		return action.cost <= curAp;
+		return action.cost < maxAp - plan.GetApCost();
 	}
 
 	public virtual bool CanConsumeAp(int cost) {
-		return cost <= curAp;	
-	}
-
-	public virtual void ConsumeAp(Action action) {
-		curAp -= action.cost;
-	}
-
-	// Frame related methods
-	public virtual void ResetFrameUsage() {
-		frameUsage = 0;
+		return cost < maxAp - plan.GetApCost();	
 	}
 
 	public virtual bool CanUseFrame(Action action, Timeline timeline) {
-		return action.frames.Count + frameUsage <= timeline.maxFrame;
+		return plan.GetRemainingFramesCount() + action.frames.Count <= timeline.maxFrame;
 	}
 
 	public virtual bool CanUseFrame(int frames, Timeline timeline) {
-		return frames + frameUsage <= timeline.maxFrame;	
+		return plan.GetRemainingFramesCount() + frames <= timeline.maxFrame;
 	}
-
-	public virtual void UseFrame(Action action, Timeline timeline) {
-		frameUsage += action.frames.Count;
-	}
-
 
 	// Damage Related Methods
 	public virtual void TakeDamage(int val) {
@@ -68,18 +53,7 @@ public abstract class Unit : MonoBehaviour {
 	// Queue Action method
 	public bool QueueAction(Action action, Direction dir, Timeline timeline) {
 		if(this.CanConsumeAp(action) && this.CanUseFrame(action, timeline)) {
-			//Consume Costs
-			this.ConsumeAp(action);
-			this.UseFrame(action, timeline);
-			//Add to queue
-			List<Frame> frames = action.frames;
-			foreach(Frame frame in frames) {
-				Command c = new Command();
-				c.frame = frame;
-				c.dir = dir;
-				c.type = action.actionType;
-				plan.Enqueue(c);
-			}
+			plan.QueueAction(action, dir, timeline);
 			return true;
 		}
 
@@ -87,8 +61,7 @@ public abstract class Unit : MonoBehaviour {
 		return false;
 	}
 
-	//FLush Plan helper
 	public void FlushPlan() {
-		plan.Clear();
-	}
+		plan.Flush();
+	}		
 }

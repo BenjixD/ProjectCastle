@@ -2,35 +2,43 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum CursorState {
+    END = 0,
+    ENABLED = 1,
+    DISABLED = 2
+}
+
 public class Cursor : MonoBehaviour
 {
-
     public Board board;
-    private Camera cam;
     public UIManager uiManager;
     public MenuManager menuManager;
-    public GameObject deploymentMenusControl;
+    public Player player;
 
-    public Vector2 startCoords;
-    public Vector2 currCoords;
-
-    private Unit selectedUnit;
-
+    //TODO: Piece Placement should not be in the Cursor script
     public GameObject piece;
 
-    public bool movementEnabled = false;
     public GameObject testPiece; //TODO: remove after finished testing
 
-    void Start()
+    public CursorState state;
+
+    private Camera cam;
+    private Vector2 currCoords;
+    private Unit selectedUnit;
+
+    void Awake()
     {
         cam = Camera.main;
-        currCoords = startCoords;
+    }
+
+    void OnEnable() {
+        UpdateCursorLocation();
+        UpdateTimeline();
     }
 
     void Update()
     {
-        if (movementEnabled)
-        {
+        if(state == CursorState.ENABLED) {
             if (Input.GetKeyDown("up"))
             {
                 MoveCursor(new Vector2(-1, 0));
@@ -55,13 +63,27 @@ public class Cursor : MonoBehaviour
             {
                 CycleUnits(1);
             }
+            if (Input.GetKeyDown("return"))
+            {
+                Tile tile = board.GetTile(currCoords);
+                Unit unit = tile.unit;
+                if (unit != null && player.IsOwner(unit))
+                {
+                    menuManager.OpenActionsMenu(unit, this);
+                }
+                else
+                {
+                    //TODO: A different menu for enemy units
+                    menuManager.OpenPhaseMenu(this);
+                }
+            }
+            // Piece placement inputs TODO: MOVE TO A DIFFERENT GAMEOBJECT
             if (Input.GetKeyDown(KeyCode.B) && piece == null)
             {
                 Debug.Log("Testing piece spawned.");
                 BeginPiecePlacement(testPiece);
             }
-            // Piece placement inputs
-            if (piece != null)
+            else if (piece != null)
             {
                 if (Input.GetKeyUp("a"))
                 {
@@ -71,7 +93,7 @@ public class Cursor : MonoBehaviour
                 {
                     piece.GetComponent<Piece>().RotateClockwise();
                 }
-                else if (Input.GetKeyDown("return"))
+                else if (Input.GetKeyDown(KeyCode.B))
                 {
                     //TODO: if necessary, make + open menu before placing piece (confirmation menu?)
                     Debug.Log("Piece placed.");
@@ -82,45 +104,48 @@ public class Cursor : MonoBehaviour
                 {
                     EndPiecePlacement();
                 }
-            }
+            }    
         }
     }
 
-    public void SetCoord(Vector2 coords)
+    public void SetCoords(Vector2 coords)
     {
         currCoords = coords;
-        UpdateCursorLocation();
     }
 
-    void CycleUnits(int skipNum)
-    {
-        if (selectedUnit != null) // TODO: also check this unit belongs to the player in control of the cursor
-        {
-            List<Unit> playerUnits = selectedUnit.owner.units;
-            float index = playerUnits.FindIndex(unit => unit == selectedUnit);
-            index += skipNum;
-            // True modulo, not C#'s
-            index = index - playerUnits.Count * Mathf.Floor(index / playerUnits.Count);
-            SetCoord(playerUnits[(int)index].tile.coordinate);
-        }
-        else
-        {
-            //TODO: move to controlling player's king or something
-        }
+    public Vector2 GetCoords() {
+        return currCoords;
     }
 
     public void BeginPiecePlacement(GameObject piece)
     {
         this.piece = Instantiate(piece, this.transform.position, Quaternion.identity);
         piece.GetComponent<Piece>().board = board;
-        deploymentMenusControl.SetActive(false);
     }
 
     public void EndPiecePlacement()
     {
         Destroy(piece);
         piece = null;
-        deploymentMenusControl.SetActive(true);
+    }
+
+    public void OnCursorAction()
+    {
+        UpdateCursorLocation();
+        UpdatePieceLocation();
+        UpdateTimeline();
+    }
+
+    public void EnableUserInput() {
+        state = CursorState.ENABLED;
+    }
+
+    public void DisableUserInput() {
+        state = CursorState.DISABLED;
+    }
+
+    public void EndUserInput() {
+        state = CursorState.END;
     }
 
     void MoveCursor(Vector2 movement)
@@ -132,25 +157,28 @@ public class Cursor : MonoBehaviour
         }
     }
 
-    public void OnCursorAction()
+    void CycleUnits(int skipNum)
     {
-        UpdateCursorLocation();
-        UpdatePieceLocation();
+        if (selectedUnit != null) // TODO: also check this unit belongs to the player in control of the cursor
+        {
+            List<Unit> playerUnits = selectedUnit.owner.units;
+            float index = playerUnits.FindIndex(unit => unit == selectedUnit);
+            index += skipNum;
+            // True modulo, not C#'s
+            index = index - playerUnits.Count * Mathf.Floor(index / playerUnits.Count);
+            SetCoords(playerUnits[(int)index].tile.coordinate);
+            UpdateCursorLocation();
+        }
+        else
+        {
+            //TODO: move to controlling player's king or something
+        }
     }
 
     void UpdateCursorLocation()
     {
         gameObject.transform.position = board.CoordToPosition(currCoords);
         cam.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, cam.transform.position.z);
-        selectedUnit = board.GetTile(currCoords).unit;
-        if (selectedUnit != null)
-        {
-            uiManager.DisplayTimelineIcons(selectedUnit.plan);
-        }
-        else
-        {
-            uiManager.DisplayTimelineIcons(null);
-        }
     }
 
     void UpdatePieceLocation()
@@ -158,6 +186,19 @@ public class Cursor : MonoBehaviour
         if(piece != null)
         {
             piece.transform.position = board.CoordToPosition(currCoords);
+        }
+    }
+
+    void UpdateTimeline() 
+    {
+        selectedUnit = board.GetTile(currCoords).unit;
+        if (selectedUnit != null && player.IsOwner(selectedUnit))
+        {
+            uiManager.DisplayTimelineIcons(selectedUnit.plan);
+        }
+        else
+        {
+            uiManager.DisplayTimelineIcons(null);
         }
     }
 }

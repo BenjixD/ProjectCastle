@@ -10,8 +10,9 @@ public class Wait : Action {
 		this.frames.Add(new WaitFrame());
 	}
 
-    public override void Select(Unit unit)
+    public override IEnumerator Select(Unit unit, Timeline timeline, IEnumerator next)
     {
-        
+        StartCoroutine(next);
+        yield return null;
     }
 }

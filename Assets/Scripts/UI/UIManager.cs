@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour {
 
-    public int maxFrames;
+    public Timeline timeline;
     public Image timelineDisplay;
     public Image pointer;
     public Text phaseDisplay;
@@ -21,7 +21,7 @@ public class UIManager : MonoBehaviour {
     {
         displayedIcons = new List<GameObject>();
         timelineWidth = timelineDisplay.GetComponent<RectTransform>().rect.width;
-        frameWidth = timelineWidth / maxFrames + frameTickOffset;
+        frameWidth = timelineWidth / timeline.maxFrame + frameTickOffset;
         pointerTransform = pointer.GetComponent<RectTransform>();
         pointerY = pointerTransform.anchoredPosition.y;
     }
@@ -31,9 +31,9 @@ public class UIManager : MonoBehaviour {
         phaseDisplay.text = "Turn Setup";
     }
 
-    public void ShowDeploymentPhaseUI()
+    public void ShowDeploymentPhaseUI(string playerName)
     {
-        phaseDisplay.text = "Deployment";
+        phaseDisplay.text = "Deployment - " + playerName;
     }
 
     public void ShowTimelinePhaseUI()

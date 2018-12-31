@@ -8,12 +8,10 @@ public class Game : MonoBehaviour {
 	public List<Player> players;
 	public List<Phase> phases;
 	public Board board;
-    public UIManager uiManager;
-    public InputManager inputManager;
+	public UIManager uiManager;
 
     private int turn = 0;
 	public bool nextTurn = true;
-    public bool endPhase = false;
 
 	void Start() {
 		//Init Board
@@ -48,6 +46,14 @@ public class Game : MonoBehaviour {
         } else {
         	return new Vector2(-1, -1);
         }
+    }
+
+    public Deployment GetDeploymentPhase() {
+    	return gameObject.GetComponent<Deployment>();
+    }
+
+    public Timeline GetTimelinePhase() {
+    	return gameObject.GetComponent<Timeline>();
     }
 
     private IEnumerator StartTurn(IEnumerator next) {

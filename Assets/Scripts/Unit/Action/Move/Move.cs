@@ -11,8 +11,15 @@ public class Move : Action {
         this.frames.Add(frame);
 	}
 
-    public override void Select(Unit unit)
+    public override IEnumerator Select(Unit unit, Timeline timeline, IEnumerator next)
     {
-        inputManager.directionalInput.BeginInput(unit, this);
+        ActionUI ui = Instantiate(actionUI.gameObject, gameObject.transform).GetComponent<ActionUI>();
+        ui.Initialize(unit, this, timeline);
+        while(ui.state != ActionSubmissionState.SUBMITTED && ui.state != ActionSubmissionState.CANCELLED) {
+            yield return new WaitForFixedUpdate();
+        }
+        Destroy(ui.gameObject);
+        StartCoroutine(next);
+        yield return null;
     }
 }

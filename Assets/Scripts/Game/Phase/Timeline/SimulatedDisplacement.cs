@@ -31,7 +31,6 @@ public class SimulatedDisplacement {
 		} else if(displacement.type == UnitDisplacementType.ABSOLUTE){
 			current = result;
 		}
-		Debug.Log(current);
 		return GetCurrentVector();
 	}
 

@@ -4,8 +4,11 @@ using System.Collections.Generic;
 
 public class MoveFrame : Frame {
 	public override bool CanExecute(SimulatedDisplacement sim, Direction dir, Board board) {
-		//The execution of a move should technically never fail
-		return board.CheckCoord(sim.GetCurrentVector());
+		if(board.CheckCoord(sim.GetCurrentVector())) {
+			Tile tile = board.GetTile(sim.GetCurrentVector());
+			return tile.tileType == TileType.PLAINS;
+		}
+		return false;
 	}
 
 	public override bool ExecuteEffect(SimulatedDisplacement sim, Direction dir, Board board) {

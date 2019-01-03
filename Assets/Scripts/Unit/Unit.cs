@@ -16,21 +16,23 @@ public abstract class Unit : MonoBehaviour {
 
 	public List<Action> skills;
 
-	public Plan plan;
-
 	public Tile tile { get; set; }
 	public Player owner { get; set; }
 
+	public Plan plan { get; private set; }
+	public StatusController statusController { get; private set; }
+
 	void Awake() {
 		plan = new Plan();
+		statusController = new StatusController();
 	}
 
 	public virtual bool CanConsumeAp(Action action) {
-		return action.cost < maxAp - plan.GetApCost();
+		return action.cost <= maxAp - plan.GetApCost();
 	}
 
 	public virtual bool CanConsumeAp(int cost) {
-		return cost < maxAp - plan.GetApCost();	
+		return cost <= maxAp - plan.GetApCost();	
 	}
 
 	public virtual bool CanUseFrame(Action action, Timeline timeline) {

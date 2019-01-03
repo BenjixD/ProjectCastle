@@ -4,27 +4,35 @@ using UnityEngine;
 
 public class DirectionalActionUI : ActionUI {
 
-	//TODO: create a new class for the preview
 	public GameObject actionPreview;
-    Piece previewPiece;
-	Direction dir = Direction.NONE;
+    ActionPiece actionPiece;
+    public Vector2 actionOrigin;
 
-	void Update () {
+    //TODO: remove after testing
+    Unit testUnit;
+
+    void Start()
+    {
+        //TODO: for testing; remove after first Action is created and tested
+        state = ActionSubmissionState.ACTIVE;
+        unit = testUnit;
+    }
+
+    void Update () {
 		if(state == ActionSubmissionState.ACTIVE) {
-			//TODO: start with no direction?
 			if (Input.GetKeyDown("up"))
 			{
                 ChangePreviewDirection(Direction.UP);
-			}
-			else if (Input.GetKeyDown("down"))
+            }
+            else if (Input.GetKeyDown("down"))
 			{
-				dir = Direction.DOWN;
+                ChangePreviewDirection(Direction.DOWN);
 			}
 			else if (Input.GetKeyDown("left"))
-			{
-				dir = Direction.LEFT;
-			}
-			else if (Input.GetKeyDown("right"))
+            {
+                ChangePreviewDirection(Direction.LEFT);
+            }
+            else if (Input.GetKeyDown("right"))
 			{
                 ChangePreviewDirection(Direction.RIGHT);
 			}
@@ -41,21 +49,20 @@ public class DirectionalActionUI : ActionUI {
 
 	void ChangePreviewDirection(Direction newDir)
 	{
-        if (previewPiece == null)
+        if (actionPiece == null)
         {
-            previewPiece = Instantiate(actionPreview, this.transform.position, Quaternion.identity).GetComponent<Piece>();
+            actionPiece = Instantiate(actionPreview).GetComponent<ActionPiece>();
+            actionPiece.absoluteOrigin = unit.tile.coordinate;
         }
-        int timesToRotate = (newDir - dir) % 4;
-        for (int i = timesToRotate; i > 0; i--)
-        {
-            previewPiece.RotateClockwise();
-        }
-        dir = newDir;
+        actionPiece.ChangeDirection(newDir);
     }
 
-	public override void SubmitInput() {
-		unit.QueueAction(action, dir, timeline);
-		state = ActionSubmissionState.SUBMITTED;
+    public override void SubmitInput() {
+        if (actionPiece != null)
+        {
+            unit.QueueAction(action, actionPiece.dir, timeline);
+            state = ActionSubmissionState.SUBMITTED;
+        }
 	}
 
 	public override void CancelInput()

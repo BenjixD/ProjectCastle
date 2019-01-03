@@ -57,14 +57,10 @@ public class Timeline : Phase {
 				if(unit.plan.GetRemainingFramesCount() > 0) {
 					Command peek = unit.plan.PeekNext().Value;
 					ActionType actionType = peek.type;
-					List<KeyValuePair<string, StatusEffect>> interruptables = peek.frame.IsInterrupted(unit.statusController);
 
 					//Interrupt Next Skill
-					if(interruptables.Count > 0) {
+					if(peek.frame.IsInterrupted(unit.statusController)) {
 						unit.plan.InterruptNext(new Wait());
-						foreach(KeyValuePair<string, StatusEffect> pair in interruptables) {
-							actionDict[actionType].Add(new KeyValuePair<Unit, Command>(unit, pair.Value.GetCommand()));
-						}
 					}
 
 					Command command = unit.plan.ExecuteNext().Value;

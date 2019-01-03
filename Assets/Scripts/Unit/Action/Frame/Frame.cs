@@ -15,21 +15,19 @@ public abstract class Frame {
 	public abstract bool ExecuteAnimation(SimulatedDisplacement sim, Direction dir, Board board);
 	public abstract bool CanExecute(SimulatedDisplacement sim, Direction dir, Board board);
 
-	public virtual List<KeyValuePair<string, StatusEffect>> IsInterrupted(StatusController statusController) {
-		List<KeyValuePair<string, StatusEffect>> results = new List<KeyValuePair<string, StatusEffect>>();
-
+	public virtual bool IsInterrupted(StatusController statusController) {
 		foreach (KeyValuePair<string, StatusEffect> pair in statusController) {
 			StatusEffect status = pair.Value;
 
 			//TODO: FIX THIS
 			if(status.GetType().Name == "Stun") {
 				if(frameTypes.Contains(FrameType.Skill) || frameTypes.Contains(FrameType.Movement)) {
-					results.Add(pair);
+					return true;
 				}
 			}
 		}
 
-		return results;
+		return false;
 	}
 
 	public virtual UnitDisplacement GetDisplacement(Unit unit, Direction dir, Board board) {

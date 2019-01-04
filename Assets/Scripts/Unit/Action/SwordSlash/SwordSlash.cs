@@ -8,6 +8,7 @@ public class SwordSlash : Action {
 		this.frames = new List<Frame>();
         this.frames.Add(new SwordSlashFrameAttack());
         this.frames.Add(new SwordSlashFrameAttack());
+        this.frames.Add(new SwordSlashFrameAttack());
         this.frames.Add(new SwordSlashFrameEnd());
         this.frames.Add(new SwordSlashFrameEnd());
 	}

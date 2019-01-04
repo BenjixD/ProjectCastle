@@ -7,35 +7,30 @@ public class DirectionalActionUI : ActionUI {
 	public GameObject actionPreview;
 	ActionPiece actionPiece;
 	public Vector2 actionOrigin;
-
-	//TODO: remove after testing
-	Unit testUnit;
-
-	void Start()
-	{
-		//TODO: for testing; remove after first Action is created and tested
-		state = ActionSubmissionState.ACTIVE;
-		unit = testUnit;
-	}
+    Direction dir = Direction.NONE;
 
 	void Update () {
 		if(state == ActionSubmissionState.ACTIVE) {
 			if (Input.GetKeyDown("up"))
 			{
-				ChangePreviewDirection(Direction.UP);
-			}
+                //ChangePreviewDirection(Direction.UP);
+                dir = Direction.UP;
+            }
 			else if (Input.GetKeyDown("down"))
 			{
-				ChangePreviewDirection(Direction.DOWN);
-			}
+                //ChangePreviewDirection(Direction.DOWN);
+                dir = Direction.DOWN;
+            }
 			else if (Input.GetKeyDown("left"))
 			{
-				ChangePreviewDirection(Direction.LEFT);
-			}
+                //ChangePreviewDirection(Direction.LEFT);
+                dir = Direction.LEFT;
+            }
 			else if (Input.GetKeyDown("right"))
 			{
-				ChangePreviewDirection(Direction.RIGHT);
-			}
+                //ChangePreviewDirection(Direction.RIGHT);
+                dir = Direction.RIGHT;
+            }
 			else if (Input.GetKeyDown("return"))
 			{
 				SubmitInput();
@@ -52,17 +47,19 @@ public class DirectionalActionUI : ActionUI {
 		if (actionPiece == null)
 		{
 			actionPiece = Instantiate(actionPreview).GetComponent<ActionPiece>();
+            actionPiece.board = board;
 			actionPiece.absoluteOrigin = unit.tile.coordinate;
 		}
 		actionPiece.ChangeDirection(newDir);
 	}
 
 	public override void SubmitInput() {
-		if (actionPiece != null)
+		if (dir != Direction.NONE)
 		{
-			unit.QueueAction(action, actionPiece.dir, timeline);
+			unit.QueueAction(action, dir, timeline);
 			state = ActionSubmissionState.SUBMITTED;
-		}
+            //Destroy(actionPiece.gameObject);
+        }
 	}
 
 	public override void CancelInput()

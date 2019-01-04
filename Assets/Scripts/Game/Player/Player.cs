@@ -9,10 +9,10 @@ public class Player : MonoBehaviour {
 	public int gold;
 
 	public GameObject kingObject;   //Note unit[0] holds a reference to king
+
 	public List<Unit> units { get; private set; }
 
 	public Cursor cursor;
-	//private Board board;
 
     //TODO:List of Cards
 

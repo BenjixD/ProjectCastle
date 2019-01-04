@@ -37,14 +37,22 @@ public class Board : MonoBehaviour {
         }
     }
 
+    public void InitializePreBuiltBoard() {
+        tiles = new Tile[rows, cols];
+
+        foreach(Tile tile in GetComponentsInChildren<Tile>()) {
+            tiles[(int)Mathf.Round(tile.coordinate.x), (int)Mathf.Round(tile.coordinate.y)] = tile;
+        }
+    }
+
     public Vector3 CoordToPosition(int x, int y)
     {
-        return new Vector3((y-x)*tileWidth, (x+y)*-tileHeight, 0);
+        return (new Vector3((y-x)*tileWidth, (x+y)*-tileHeight, 0) + gameObject.transform.position);
     }
 
 	public Vector3 CoordToPosition(Vector2 coord)
 	{
-		return new Vector3((coord.y - coord.x) * tileWidth, (coord.x + coord.y) * -tileHeight, 0);
+		return (new Vector3((coord.y - coord.x) * tileWidth, (coord.x + coord.y) * -tileHeight, 0) + gameObject.transform.position);
 	}
 
 	public Tile GetTile(int x, int y) {

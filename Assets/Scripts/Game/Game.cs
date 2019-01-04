@@ -15,8 +15,12 @@ public class Game : MonoBehaviour {
 
 	void Start() {
 		//Init Board
-		board.InitializeBoard();
-
+		if(board.gameObject.GetComponentsInChildren<Tile>().Length > 0) {
+			board.InitializePreBuiltBoard();
+		}else {
+			board.InitializeBoard();	
+		}
+		
 		//Init Players
 		for(int i = 0; i < players.Count; i++) {
 			players[i].InitializePlayer(i, CoordsForPlayerSetup(i), board);
@@ -40,12 +44,24 @@ public class Game : MonoBehaviour {
 
 	public Vector2 CoordsForPlayerSetup(int player) {
         if(player % players.Count == 0) {
-        	return new Vector2(0,0);
+        	for(int i = 0; i < board.rows; i++) {
+        		for(int j = 0; j < board.cols; j++) {
+        			if(board.GetTile(i,j).tileType == TileType.PLAINS && board.GetTile(i,j).unit == null) {
+        				return new Vector2(i, j);
+        			}
+        		}
+        	}
         } else if(player % players.Count == 1) {
-        	return new Vector2(board.rows - 1, board.cols - 1);
-        } else {
-        	return new Vector2(-1, -1);
+        	for(int i = board.rows - 1; i >= 0; i--) {
+        		for(int j = board.cols - 1; j >= 0; j--) {
+        			if(board.GetTile(i,j).tileType == TileType.PLAINS && board.GetTile(i,j).unit == null) {
+        				return new Vector2(i, j);
+        			}
+        		}
+        	}
         }
+
+        return new Vector2(-1, -1);
     }
 
     public Deployment GetDeploymentPhase() {

@@ -159,19 +159,23 @@ public class Cursor : MonoBehaviour
 
     void CycleUnits(int skipNum)
     {
-        if (selectedUnit != null) // TODO: also check this unit belongs to the player in control of the cursor
+        if (selectedUnit != null && selectedUnit.owner == player)
         {
-            List<Unit> playerUnits = selectedUnit.owner.units;
-            float index = playerUnits.FindIndex(unit => unit == selectedUnit);
+            float index = player.units.FindIndex(unit => unit == selectedUnit);
             index += skipNum;
             // True modulo, not C#'s
-            index = index - playerUnits.Count * Mathf.Floor(index / playerUnits.Count);
-            SetCoords(playerUnits[(int)index].tile.coordinate);
+            index = index - player.units.Count * Mathf.Floor(index / player.units.Count);
+            SetCoords(player.units[(int)index].tile.coordinate);
             UpdateCursorLocation();
         }
         else
         {
-            //TODO: move to controlling player's king or something
+            // Move to this player's first unit
+            if (player.units.Count > 0)
+            {
+                SetCoords(player.units[0].tile.coordinate);
+                UpdateCursorLocation();
+            }
         }
     }
 

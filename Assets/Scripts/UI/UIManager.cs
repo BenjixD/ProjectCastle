@@ -58,23 +58,27 @@ public class UIManager : MonoBehaviour {
             int frames = plan.GetTotalFramesCount();
             for(int i = 0; i < frames; i++) {
                 Command command = plan.GetCommand(i);
-                GameObject icon = Instantiate(command.frame.icon, timelineDisplay.transform);
-                RectTransform rectTransform = icon.GetComponent<RectTransform>();
-                if (command.dir == Direction.LEFT)
+                if (command.frame.icon)
                 {
-                    rectTransform.Rotate(0, 0, 90);
+                    GameObject icon = Instantiate(command.frame.icon, timelineDisplay.transform);
+
+                    RectTransform rectTransform = icon.GetComponent<RectTransform>();
+                    if (command.dir == Direction.LEFT)
+                    {
+                        rectTransform.Rotate(0, 0, 90);
+                    }
+                    else if (command.dir == Direction.DOWN)
+                    {
+                        rectTransform.Rotate(0, 0, 180);
+                    }
+                    else if (command.dir == Direction.RIGHT)
+                    {
+                        rectTransform.Rotate(0, 0, -90);
+                    }
+                    float iconY = pointerTransform.anchoredPosition.y - rectTransform.rect.height * 2f;
+                    rectTransform.anchoredPosition = new Vector3(GetPosXOfTick(i), iconY, 0);
+                    displayedIcons.Add(icon);
                 }
-                else if (command.dir == Direction.DOWN)
-                {
-                    rectTransform.Rotate(0, 0, 180);
-                }
-                else if (command.dir == Direction.RIGHT)
-                {
-                    rectTransform.Rotate(0, 0, -90);
-                }
-                float iconY = pointerTransform.anchoredPosition.y - rectTransform.rect.height * 2f;
-                rectTransform.anchoredPosition = new Vector3(GetPosXOfTick(i), iconY, 0);
-                displayedIcons.Add(icon);
             }
         }
     }

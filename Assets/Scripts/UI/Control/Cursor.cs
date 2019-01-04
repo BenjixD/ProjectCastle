@@ -159,6 +159,7 @@ public class Cursor : MonoBehaviour
 
     void CycleUnits(int skipNum)
     {
+        Unit selectedUnit = board.GetTile(currCoords).unit;
         if (selectedUnit != null && selectedUnit.owner == player)
         {
             float index = player.units.FindIndex(unit => unit == selectedUnit);

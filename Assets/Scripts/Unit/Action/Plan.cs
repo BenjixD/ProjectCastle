@@ -12,12 +12,16 @@ public class Plan {
 	private bool isInterrupted;
 	private Action defaultAction;
 
+    public HashSet<Unit> victims;
+
 	public Plan() {
 		commandOrder = new List<Command>();
 		actionOrder = new List<Action>();
 
 		nextCommand = 0;
 		nextAction = 0;
+
+        victims = new HashSet<Unit>();
 	} 
 
 	public int GetApCost() {
@@ -140,6 +144,7 @@ public class Plan {
 		
 		if(newActionIndex > nextAction) {
 			ResetInterrupt();
+            victims.Clear();
 		}
 
 		nextAction = newActionIndex;

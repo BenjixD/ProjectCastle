@@ -62,7 +62,7 @@ public class MenuManager : MonoBehaviour {
             newButton.GetComponentInChildren<Text>().text = skill.actionName;
             newButton.GetComponent<Button>().onClick.AddListener(delegate {
                 CloseAllMenus();
-                StartCoroutine(DisableCursorUI(cursor, skill.Select(unit, gameManager.GetTimelinePhase(), EnableCursorUI(cursor))));
+                StartCoroutine(DisableCursorUI(cursor, skill.Select(unit, gameManager.board, gameManager.GetTimelinePhase(), EnableCursorUI(cursor))));
             });
             actionButtons.Add(newButton);
         }

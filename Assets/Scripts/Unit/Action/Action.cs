@@ -25,7 +25,7 @@ public abstract class Action : MonoBehaviour {
 	public ActionType actionType;
 	public ActionUI actionUI;
 
-	public virtual IEnumerator Select(Unit unit, Timeline timeline, IEnumerator next) {
+	public virtual IEnumerator Select(Unit unit, Board board, Timeline timeline, IEnumerator next) {
 		StartCoroutine(next);
 		yield return null;
 	}

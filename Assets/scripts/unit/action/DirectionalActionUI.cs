@@ -8,16 +8,6 @@ public class DirectionalActionUI : ActionUI {
 	ActionPiece actionPiece;
 	public Vector2 actionOrigin;
 
-	//TODO: remove after testing
-	Unit testUnit;
-
-	void Start()
-	{
-		//TODO: for testing; remove after first Action is created and tested
-		state = ActionSubmissionState.ACTIVE;
-		unit = testUnit;
-	}
-
 	void Update () {
 		if(state == ActionSubmissionState.ACTIVE) {
 			if (Input.GetKeyDown("up"))
@@ -52,6 +42,7 @@ public class DirectionalActionUI : ActionUI {
 		if (actionPiece == null)
 		{
 			actionPiece = Instantiate(actionPreview).GetComponent<ActionPiece>();
+            actionPiece.board = board;
 			actionPiece.absoluteOrigin = unit.tile.coordinate;
 		}
 		actionPiece.ChangeDirection(newDir);
@@ -62,7 +53,8 @@ public class DirectionalActionUI : ActionUI {
 		{
 			unit.QueueAction(action, actionPiece.dir, timeline);
 			state = ActionSubmissionState.SUBMITTED;
-		}
+            Destroy(actionPiece.gameObject);
+        }
 	}
 
 	public override void CancelInput()

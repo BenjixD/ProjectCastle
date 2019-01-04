@@ -11,10 +11,10 @@ public class Move : Action {
         this.frames.Add(frame);
 	}
 
-    public override IEnumerator Select(Unit unit, Timeline timeline, IEnumerator next)
+    public override IEnumerator Select(Unit unit, Board board, Timeline timeline, IEnumerator next)
     {
         ActionUI ui = Instantiate(actionUI.gameObject, gameObject.transform).GetComponent<ActionUI>();
-        ui.Initialize(unit, this, timeline);
+        ui.Initialize(unit, this, board, timeline);
         while(ui.state != ActionSubmissionState.SUBMITTED && ui.state != ActionSubmissionState.CANCELLED) {
             yield return new WaitForFixedUpdate();
         }

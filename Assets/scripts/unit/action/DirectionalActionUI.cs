@@ -5,36 +5,36 @@ using UnityEngine;
 public class DirectionalActionUI : ActionUI {
 
 	public GameObject actionPreview;
-    ActionPiece actionPiece;
-    public Vector2 actionOrigin;
+	ActionPiece actionPiece;
+	public Vector2 actionOrigin;
 
-    //TODO: remove after testing
-    Unit testUnit;
+	//TODO: remove after testing
+	Unit testUnit;
 
-    void Start()
-    {
-        //TODO: for testing; remove after first Action is created and tested
-        state = ActionSubmissionState.ACTIVE;
-        unit = testUnit;
-    }
+	void Start()
+	{
+		//TODO: for testing; remove after first Action is created and tested
+		state = ActionSubmissionState.ACTIVE;
+		unit = testUnit;
+	}
 
-    void Update () {
+	void Update () {
 		if(state == ActionSubmissionState.ACTIVE) {
 			if (Input.GetKeyDown("up"))
 			{
-                ChangePreviewDirection(Direction.UP);
-            }
-            else if (Input.GetKeyDown("down"))
+				ChangePreviewDirection(Direction.UP);
+			}
+			else if (Input.GetKeyDown("down"))
 			{
-                ChangePreviewDirection(Direction.DOWN);
+				ChangePreviewDirection(Direction.DOWN);
 			}
 			else if (Input.GetKeyDown("left"))
-            {
-                ChangePreviewDirection(Direction.LEFT);
-            }
-            else if (Input.GetKeyDown("right"))
 			{
-                ChangePreviewDirection(Direction.RIGHT);
+				ChangePreviewDirection(Direction.LEFT);
+			}
+			else if (Input.GetKeyDown("right"))
+			{
+				ChangePreviewDirection(Direction.RIGHT);
 			}
 			else if (Input.GetKeyDown("return"))
 			{
@@ -49,20 +49,20 @@ public class DirectionalActionUI : ActionUI {
 
 	void ChangePreviewDirection(Direction newDir)
 	{
-        if (actionPiece == null)
-        {
-            actionPiece = Instantiate(actionPreview).GetComponent<ActionPiece>();
-            actionPiece.absoluteOrigin = unit.tile.coordinate;
-        }
-        actionPiece.ChangeDirection(newDir);
-    }
+		if (actionPiece == null)
+		{
+			actionPiece = Instantiate(actionPreview).GetComponent<ActionPiece>();
+			actionPiece.absoluteOrigin = unit.tile.coordinate;
+		}
+		actionPiece.ChangeDirection(newDir);
+	}
 
-    public override void SubmitInput() {
-        if (actionPiece != null)
-        {
-            unit.QueueAction(action, actionPiece.dir, timeline);
-            state = ActionSubmissionState.SUBMITTED;
-        }
+	public override void SubmitInput() {
+		if (actionPiece != null)
+		{
+			unit.QueueAction(action, actionPiece.dir, timeline);
+			state = ActionSubmissionState.SUBMITTED;
+		}
 	}
 
 	public override void CancelInput()

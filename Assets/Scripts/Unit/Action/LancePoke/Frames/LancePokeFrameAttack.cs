@@ -17,7 +17,7 @@ public class LancePokeFrameAttack : Frame {
         // TODO deal damage to enemies on tiles
         Unit user = sim.displacement.unit;
         Vector2 attackDir;
-        if ((attackDir = GetMovement(user, dir, board)) == Vector2.zero){
+        if ((attackDir = GetDirectionVector(user, dir, board)) == Vector2.zero){
             // bad direction input
             return false;
         }
@@ -76,7 +76,7 @@ public class LancePokeFrameAttack : Frame {
         return true;
 	}
 
-	private Vector2 GetMovement(Unit unit, Direction dir, Board board) {
+	private Vector2 GetDirectionVector(Unit unit, Direction dir, Board board) {
         // Keep this for attack direction
 		Direction absoluteDir = (Direction)(((int)relativeDir + (int)dir) % 4);
 

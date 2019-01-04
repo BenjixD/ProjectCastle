@@ -22,7 +22,7 @@ public class Piece : MonoBehaviour {
 		UpdatePosition();
     }
 
-    void UpdatePosition() {
+    protected virtual void UpdatePosition() {
     	//Move tiles to their corresponding locations
 		for(int i = 0; i < tiles.GetLength(0); i++) {
 			for(int j = 0; j < tiles.GetLength(1); j++) {
@@ -32,7 +32,7 @@ public class Piece : MonoBehaviour {
 		}
     }
 
-    public void RotateCounterClockwise() {
+    public void RotateClockwise() {
 	    Tile[,] ret = new Tile[cols, row];
 
 	    for (int i = 0; i < cols; ++i) {
@@ -48,7 +48,7 @@ public class Piece : MonoBehaviour {
 	    UpdatePosition();
 	}
 
-	public void RotateClockwise() {
+	public void RotateCounterClockwise() {
 		Tile[,] ret = new Tile[cols, row];
 
 	    for (int i = 0; i < cols; ++i) {

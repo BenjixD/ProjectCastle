@@ -82,6 +82,7 @@ public class Timeline : Phase {
 			Command command = pair.Value;
 			SimulatedDisplacement sim = result[unit];
 			if(command.frame.CanExecute(sim, command.dir, board)) {
+				sim.displacement.unit.FaceDirection(command.dir);
 				command.frame.ExecuteEffect(sim, command.dir, board);
 				Board.MoveUnit(sim, board);
 				command.frame.ExecuteAnimation(sim, command.dir, board);

@@ -5852,7 +5852,7 @@ MonoBehaviour:
   playerId: 1
   playerName: Player 2
   gold: 0
-  kingObject: {fileID: 1925371710403464, guid: 31a94773d981a4bf6a1c4360afcc4b57, type: 2}
+  kingObject: {fileID: 1234694667220030, guid: 587aebd8a57044a8a9dbe1c394b7d0ce, type: 2}
   cursor: {fileID: 1982245118}
 --- !u!4 &270459464
 Transform:

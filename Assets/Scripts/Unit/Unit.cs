@@ -9,7 +9,7 @@ public abstract class Unit : MonoBehaviour {
 	public int curHp;
 
 	public int maxAp;
-	//public int curAp;
+	public Direction dir;
 
 	public bool controllable;
 	public int frameUsage;
@@ -22,9 +22,13 @@ public abstract class Unit : MonoBehaviour {
 	public Plan plan { get; private set; }
 	public StatusController statusController { get; private set; }
 
+	public UnitAnimator animator { get; set; }
+
 	void Awake() {
 		plan = new Plan();
 		statusController = new StatusController();
+		dir = Direction.DOWN;
+		animator = GetComponentInChildren<UnitAnimator>();
 	}
 
 	public virtual bool CanConsumeAp(Action action) {
@@ -50,6 +54,13 @@ public abstract class Unit : MonoBehaviour {
 	
 	public virtual bool IsDead() {
 		return curHp <= 0;
+	}
+
+	public virtual void FaceDirection(Direction dir) {
+		if(dir != Direction.NONE) {
+			this.dir = dir;
+			animator.SetDirection(this.dir);
+		}
 	}
 
 	// Queue Action method

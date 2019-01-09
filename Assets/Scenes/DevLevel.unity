@@ -5852,7 +5852,7 @@ MonoBehaviour:
   playerId: 1
   playerName: Player 2
   gold: 0
-  kingObject: {fileID: 1990141191843838, guid: 163be1838408a4439aa888e059b8d3f2, type: 2}
+  kingObject: {fileID: 1234694667220030, guid: 587aebd8a57044a8a9dbe1c394b7d0ce, type: 2}
   cursor: {fileID: 1982245118}
 --- !u!4 &270459464
 Transform:
@@ -13346,54 +13346,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1001 &703987045
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4753581784383508, guid: ebfd87a081e6e44949b3d91bce3169ad, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4753581784383508, guid: ebfd87a081e6e44949b3d91bce3169ad, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4753581784383508, guid: ebfd87a081e6e44949b3d91bce3169ad, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4753581784383508, guid: ebfd87a081e6e44949b3d91bce3169ad, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4753581784383508, guid: ebfd87a081e6e44949b3d91bce3169ad, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4753581784383508, guid: ebfd87a081e6e44949b3d91bce3169ad, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4753581784383508, guid: ebfd87a081e6e44949b3d91bce3169ad, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4753581784383508, guid: ebfd87a081e6e44949b3d91bce3169ad, type: 2}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 212377704208000228, guid: ebfd87a081e6e44949b3d91bce3169ad,
-        type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300016, guid: 754e3e9a07358462b9a7aced5e3e6390,
-        type: 3}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: ebfd87a081e6e44949b3d91bce3169ad, type: 2}
-  m_IsPrefabAsset: 0
 --- !u!1 &714245300
 GameObject:
   m_ObjectHideFlags: 0
@@ -25181,7 +25133,7 @@ MonoBehaviour:
   playerId: 0
   playerName: Player 1
   gold: 0
-  kingObject: {fileID: 1237413535366884, guid: ebfd87a081e6e44949b3d91bce3169ad, type: 2}
+  kingObject: {fileID: 1234694667220030, guid: 587aebd8a57044a8a9dbe1c394b7d0ce, type: 2}
   cursor: {fileID: 687879830}
 --- !u!4 &1325361522
 Transform:

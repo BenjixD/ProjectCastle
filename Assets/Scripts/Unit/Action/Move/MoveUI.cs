@@ -65,7 +65,8 @@ public class MoveUI : ActionUI {
 	}
 
 	public override bool CanAddAction(Action action) {
-		if(!unit.CanConsumeAp(action.cost + GetApCost())) {
+
+		if(!unit.CanConsumeAp(action.descriptor.cost + GetApCost())) {
 			Debug.Log("Unit cannnot consume anymore AP!");
 			return false;
 		}
@@ -79,7 +80,7 @@ public class MoveUI : ActionUI {
 	public override int GetApCost() {
 		int total = 0;
 		foreach(KeyValuePair<Direction, Action> pair in moves) {
-			total += pair.Value.cost;
+			total += pair.Value.descriptor.cost;
 		}
 		return total;
 	}

@@ -17,16 +17,11 @@ public enum ActionType {
 	Attack
 }
 
-public abstract class Action : MonoBehaviour {
-	public string actionName;
-	public int cost;
+public abstract class Action {
 	public List<Frame> frames { get; set; }
-	public GameObject[] icons;
-	public ActionType actionType;
-	public ActionUI actionUI;
+	public ActionDescriptor descriptor;
 
-	public virtual IEnumerator Select(Unit unit, Board board, Timeline timeline, IEnumerator next) {
-		StartCoroutine(next);
-		yield return null;
+	public Action(ActionDescriptor descriptor) {
+		this.descriptor = descriptor;
 	}
 }

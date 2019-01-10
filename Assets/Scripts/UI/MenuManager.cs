@@ -56,7 +56,7 @@ public class MenuManager : MonoBehaviour {
     public void OpenActionsMenu(Unit unit, Cursor cursor)
     {
         CleanButtons(actionButtons);
-        foreach (Action skill in unit.skills)
+        foreach (ActionDescriptor skill in unit.skills)
         {
             GameObject newButton = Instantiate(buttonTemplate, actionListTopPosition - new Vector3(0, actionButtons.Count * buttonTemplateHeight, 0), Quaternion.identity, actionsMenu.transform);
             newButton.GetComponentInChildren<Text>().text = skill.actionName;

@@ -60,7 +60,7 @@ public class Timeline : Phase {
 
 					//Interrupt Next Skill
 					if(peek.frame.IsInterrupted(unit.statusController)) {
-						unit.plan.InterruptNext(new Wait());
+						unit.plan.InterruptNext(new Wait(null));
 					}
 
 					Command command = unit.plan.ExecuteNext().Value;

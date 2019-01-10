@@ -8,6 +8,8 @@ public class LancePokeFrameAttack : Frame {
     public const int OKSPOTDMG = 40;
     public const int SWEETSPOTDMG = 50;
 
+    public LancePokeFrameAttack(Action instance) : base(instance) {}
+
     public override bool CanExecute(SimulatedDisplacement sim, Direction dir, Board board) {
 		// TODO Fail upon stun or silence
 		return true;
@@ -40,31 +42,31 @@ public class LancePokeFrameAttack : Frame {
 
         // Deal damage to units on top of tiles
         foreach (Tile t in sourSpots) {
-            if (t.unit && !user.plan.victims.Contains(t.unit))
+            if (t.unit && !IsAlreadyHit(t.unit))
             {
                 // Deal sourspot damage (30)
                 t.unit.TakeDamage(SOURSPOTDMG);
-                user.plan.victims.Add(t.unit);
+                AddUnitHit(t.unit);
                 Debug.Log("Ouch! " + t.unit.unitName + " just took " + SOURSPOTDMG + " damage!");
             }
         }
         foreach (Tile t in okSpots)
         {
-            if (t.unit && !user.plan.victims.Contains(t.unit))
+            if (t.unit && !IsAlreadyHit(t.unit))
             {
                 // Deal okspot damage (40)
                 t.unit.TakeDamage(OKSPOTDMG);
-                user.plan.victims.Add(t.unit);
+                AddUnitHit(t.unit);
                 Debug.Log("Ouch! " + t.unit.unitName + " just took " + OKSPOTDMG + " damage!");
             }
         }
         foreach (Tile t in sweetSpots)
         {
-            if (t.unit && !user.plan.victims.Contains(t.unit))
+            if (t.unit && !IsAlreadyHit(t.unit))
             {
                 // Deal sweetspot damage (50)
                 t.unit.TakeDamage(SWEETSPOTDMG);
-                user.plan.victims.Add(t.unit);
+                AddUnitHit(t.unit);
                 Debug.Log("Ouch! " + t.unit.unitName + " just took " + SWEETSPOTDMG + " damage!");
             }
         }
@@ -75,6 +77,16 @@ public class LancePokeFrameAttack : Frame {
         // TODO attack anims
         return true;
 	}
+
+    private bool IsAlreadyHit(Unit unit) {
+        LancePoke parentAction = (LancePoke)actionInstance;
+        return parentAction.victims.Contains(unit); 
+    }
+
+    private void AddUnitHit(Unit unit) {
+        LancePoke parentAction = (LancePoke)actionInstance;
+        parentAction.victims.Add(unit);
+    }
 
 	private Vector2 GetDirectionVector(Unit unit, Direction dir, Board board) {
         // Keep this for attack direction

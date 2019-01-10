@@ -3,25 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class LancePoke: Action {
-	void Start() {
+
+    public HashSet<Unit> victims;
+
+	public LancePoke(ActionDescriptor descriptor) : base(descriptor) {
 		//Add frames in order
 		this.frames = new List<Frame>();
-        this.frames.Add(new LancePokeFrameAttack());
-        this.frames.Add(new LancePokeFrameAttack());
-        this.frames.Add(new LancePokeFrameEnd());
-        this.frames.Add(new LancePokeFrameEnd());
+        this.frames.Add(new LancePokeFrameAttack(this));
+        this.frames.Add(new LancePokeFrameAttack(this));
+        this.frames.Add(new LancePokeFrameEnd(this));
+        this.frames.Add(new LancePokeFrameEnd(this));
+
+        //Initialize "one time hit"
+        victims = new HashSet<Unit>();
 	}
 
-    public override IEnumerator Select(Unit unit, Board board, Timeline timeline, IEnumerator next)
-    {
-        ActionUI ui = Instantiate(actionUI.gameObject, gameObject.transform).GetComponent<ActionUI>();
-        ui.Initialize(unit, this, board, timeline);
-        while (ui.state != ActionSubmissionState.SUBMITTED && ui.state != ActionSubmissionState.CANCELLED)
-        {
-            yield return new WaitForFixedUpdate();
-        }
-        Destroy(ui.gameObject);
-        StartCoroutine(next);
-        yield return null;
-    }
+    
 }

@@ -14,7 +14,7 @@ public abstract class Unit : MonoBehaviour {
 	public bool controllable;
 	public int frameUsage;
 
-	public List<Action> skills;
+	public List<ActionDescriptor> skills;
 
 	public Tile tile { get; set; }
 	public Player owner { get; set; }
@@ -29,10 +29,11 @@ public abstract class Unit : MonoBehaviour {
 		statusController = new StatusController();
 		dir = Direction.DOWN;
 		animator = GetComponentInChildren<UnitAnimator>();
+		curHp = maxHp;
 	}
 
 	public virtual bool CanConsumeAp(Action action) {
-		return action.cost <= maxAp - plan.GetApCost();
+		return action.descriptor.cost <= maxAp - plan.GetApCost();
 	}
 
 	public virtual bool CanConsumeAp(int cost) {

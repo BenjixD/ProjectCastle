@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class KnockbackFrame : Frame {
+
+	public KnockbackFrame(Action instance) : base(instance) {}
+
 	public override bool CanExecute(SimulatedDisplacement sim, Direction dir, Board board) {
 		if(board.CheckCoord(sim.GetCurrentVector())) {
 			Tile tile = board.GetTile(sim.GetCurrentVector());
@@ -22,7 +25,7 @@ public class KnockbackFrame : Frame {
 			//Unit's logical location is already on the target
 			unit.gameObject.transform.position = unit.tile.gameObject.transform.position;
 			return true;
-		}else {
+		} else {
 			//Play some kind of collision
 			return false;
 		}
@@ -48,4 +51,4 @@ public class KnockbackFrame : Frame {
 			return new Vector2(0, 0);
 		}
 	}
-	}
+}

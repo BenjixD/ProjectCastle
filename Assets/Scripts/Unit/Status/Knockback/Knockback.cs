@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Knockback : Action {
-	void Start() {
+	public Knockback(ActionDescriptor descriptor) : base(descriptor) {
 		this.frames = new List<Frame>();
-        Frame frame = new KnockbackFrame();
-        this.frames.Add(frame);
+		Frame frame = new KnockbackFrame(this);
+		this.frames.Add(frame);
 	}
 }

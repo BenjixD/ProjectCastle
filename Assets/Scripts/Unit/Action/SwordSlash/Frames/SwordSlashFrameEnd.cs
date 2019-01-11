@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SwordSlashFrameEnd : Frame {
-    public override bool CanExecute(SimulatedDisplacement sim, Direction dir, Board board) {
+
+	public SwordSlashFrameEnd(Action instance) : base(instance) {}
+
+	public override bool CanExecute(SimulatedDisplacement sim, Direction dir, Board board) {
         // ending lag doesn't need to fail
         return true;
 	}

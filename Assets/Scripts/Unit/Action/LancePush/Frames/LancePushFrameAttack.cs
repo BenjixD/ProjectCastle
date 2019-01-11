@@ -6,13 +6,15 @@ public class LancePushFrameAttack : Frame {
 
     public const int DMG = 30;
 
-    public override bool CanExecute(SimulatedDisplacement sim, Direction dir, Board board) {
+	public LancePushFrameAttack(Action instance) : base(instance) {}
+
+	public override bool CanExecute(SimulatedDisplacement sim, Direction dir, Board board) {
 		// TODO Fail upon stun or silence
 		return true;
 	}
 
 	public override bool ExecuteEffect(SimulatedDisplacement sim, Direction dir, Board board) {
-		// TODO deal damage to enemies on tiles?
+		// TODO deal damage to enemies on tiles
 		Unit user = sim.displacement.unit;
 		Vector2 frontVect;
 		if ((frontVect = GetDirectionVector(relativeDir, dir)) == Vector2.zero) {
@@ -31,12 +33,12 @@ public class LancePushFrameAttack : Frame {
 		}
 		// Apply effects to units on top of tiles
 		foreach (Tile t in hitSpots) {
-			if (t.unit && !user.plan.victims.Contains(t.unit))
+			if (t.unit && !IsAlreadyHit(t.unit))
 			{
 				// Deal damage (30) and apply knockback status effect
 				t.unit.TakeDamage(DMG);
-				//t.unit.statusController.QueueAddStatus(new KnockbackEffect());
-				user.plan.victims.Add(t.unit);
+				t.unit.statusController.QueueAddStatus(new KnockbackEffect(dir));
+				AddUnitHit(t.unit);
 				Debug.Log("Ouch! " + t.unit.unitName + " just got knocked back and took " + DMG + " damage!");
 			}
 		}
@@ -47,6 +49,16 @@ public class LancePushFrameAttack : Frame {
         // TODO attack anims
         return true;
 	}
+
+	private bool IsAlreadyHit(Unit unit) {
+        LancePush parentAction = (LancePush)actionInstance;
+        return parentAction.victims.Contains(unit); 
+    }
+
+    private void AddUnitHit(Unit unit) {
+		LancePush parentAction = (LancePush)actionInstance;
+        parentAction.victims.Add(unit);
+}
 
 	private Vector2 GetDirectionVector(Direction startDir, Direction relativeDir) {
 		Direction absoluteDir = (Direction)(((int)startDir + (int)relativeDir) % 4);

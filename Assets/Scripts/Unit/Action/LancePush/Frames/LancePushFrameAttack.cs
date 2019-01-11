@@ -51,15 +51,16 @@ public class LancePushFrameAttack : Frame {
 	}
 
 	private bool IsAlreadyHit(Unit unit) {
-        LancePush parentAction = (LancePush)actionInstance;
-        return parentAction.victims.Contains(unit); 
-    }
-
-    private void AddUnitHit(Unit unit) {
 		LancePush parentAction = (LancePush)actionInstance;
-        parentAction.victims.Add(unit);
-}
+		return parentAction.victims.Contains(unit); 
+	}
 
+	private void AddUnitHit(Unit unit) {
+		LancePush parentAction = (LancePush)actionInstance;
+		parentAction.victims.Add(unit);
+	}
+
+	// TODO move elsewhere
 	private Vector2 GetDirectionVector(Direction startDir, Direction relativeDir) {
 		Direction absoluteDir = (Direction)(((int)startDir + (int)relativeDir) % 4);
 		return DirectionToVector(absoluteDir);

@@ -62,13 +62,14 @@ public class SwordSlashFrameAttack : Frame {
 	private void AddUnitHit(Unit unit) {
 		SwordSlash parentAction = (SwordSlash)actionInstance;
 		parentAction.victims.Add(unit);
-}
+	}
 
 	private Vector2 GetDirectionVector(Direction startDir, Direction relativeDir) {
 		Direction absoluteDir = (Direction)(((int)startDir + (int)relativeDir) % 4);
 		return DirectionToVector(absoluteDir);
 	}
 
+	// TODO move elsewhere
 	private Vector2 DirectionToVector(Direction dir)
 	{
 		if (dir == Direction.UP) {

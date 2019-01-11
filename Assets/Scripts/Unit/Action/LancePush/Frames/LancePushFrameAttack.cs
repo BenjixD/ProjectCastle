@@ -79,19 +79,4 @@ public class LancePushFrameAttack : Frame {
 			return new Vector2(0, 0);
 		}
 	}
-
-	private Direction VectorToDirection(Vector2 v)
-	{
-		if (v == new Vector2(-1, 0)) {
-			return Direction.UP;
-		} else if (v == new Vector2(0, 1)) {
-			return Direction.RIGHT;
-		} else if (v == new Vector2(1, 0)) {
-			return Direction.DOWN;
-		} else if (v == new Vector2(0, -1)) {
-			return Direction.LEFT;
-		} else {
-			return Direction.NONE;
-		}
-	}
 }

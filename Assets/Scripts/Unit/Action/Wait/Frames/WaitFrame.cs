@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class WaitFrame : Frame {
+
+	public WaitFrame(Action instance) : base(instance) {}
+
 	public override bool CanExecute(SimulatedDisplacement sim, Direction dir, Board board) {
 		return true;
 	}

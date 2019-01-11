@@ -12,22 +12,18 @@ public class Plan {
 	private bool isInterrupted;
 	private Action defaultAction;
 
-    public HashSet<Unit> victims;
-
 	public Plan() {
 		commandOrder = new List<Command>();
 		actionOrder = new List<Action>();
 
 		nextCommand = 0;
 		nextAction = 0;
-
-        victims = new HashSet<Unit>();
 	} 
 
 	public int GetApCost() {
 		int total = 0;
 		foreach(Action action in actionOrder) {
-			total += action.cost;
+			total += action.descriptor.cost;
 		}
 		return total;
 	}
@@ -38,7 +34,7 @@ public class Plan {
 			Command c = new Command();
 				c.frame = frame;
 				c.dir = dir;
-				c.type = action.actionType;
+				c.type = action.descriptor.actionType;
 				commandOrder.Add(c);
 		}
 	}
@@ -94,7 +90,7 @@ public class Plan {
 
 		interruptedCommand.frame = defaultAction.frames[0];
 		interruptedCommand.dir = command.dir;
-		interruptedCommand.type = defaultAction.actionType; 
+		interruptedCommand.type = defaultAction.descriptor.actionType; 
 		return interruptedCommand;
 	}
 
@@ -144,7 +140,6 @@ public class Plan {
 		
 		if(newActionIndex > nextAction) {
 			ResetInterrupt();
-            victims.Clear();
 		}
 
 		nextAction = newActionIndex;

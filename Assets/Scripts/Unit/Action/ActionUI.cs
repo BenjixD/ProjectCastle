@@ -30,7 +30,7 @@ public abstract class ActionUI : MonoBehaviour {
 	}
 
 	public virtual int GetApCost() {
-		return action.cost;
+		return action.descriptor.cost;
 	}
 	public virtual int GetFrameCost() {
 		return action.frames.Count;

@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class MoveFrame : Frame {
+
+	public MoveFrame(Action instance) : base(instance) {}
+
 	public override bool CanExecute(SimulatedDisplacement sim, Direction dir, Board board) {
 		if(board.CheckCoord(sim.GetCurrentVector())) {
 			Tile tile = board.GetTile(sim.GetCurrentVector());

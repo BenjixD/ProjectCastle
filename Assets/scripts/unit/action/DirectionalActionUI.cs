@@ -69,7 +69,7 @@ public class DirectionalActionUI : ActionUI {
 
 	public override bool CanAddAction(Action action)
 	{
-		if (!unit.CanConsumeAp(action.cost + GetApCost()))
+		if (!unit.CanConsumeAp(action.descriptor.cost + GetApCost()))
 		{
 			Debug.Log("Unit cannnot consume anymore AP!");
 			return false;

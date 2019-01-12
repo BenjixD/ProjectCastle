@@ -15,7 +15,6 @@ public class LancePushFrameAttack : Frame {
 
 	public override bool ExecuteEffect(SimulatedDisplacement sim, Direction dir, Board board) {
 		// TODO deal damage to enemies on tiles
-		Unit user = sim.displacement.unit;
 		Vector2 frontVect;
 		if ((frontVect = GetDirectionVector(relativeDir, dir)) == Vector2.zero) {
 			// bad direction input
@@ -27,7 +26,7 @@ public class LancePushFrameAttack : Frame {
 			hitSpots.Add(board.GetTile(sim.result + frontVect));
 		}
 		// 2nd hitspot: two tiles in front of user
-		if (board.CheckCoord(sim.result + frontVect + frontVect))
+		if (board.CheckCoord(sim.result + frontVect * 2))
 		{
 			hitSpots.Add(board.GetTile(sim.result + frontVect * 2));
 		}

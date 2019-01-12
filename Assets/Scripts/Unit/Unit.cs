@@ -24,6 +24,8 @@ public abstract class Unit : MonoBehaviour {
 
 	public UnitAnimator animator { get; set; }
 
+	public UnitInfoUI unitInfoUI;
+
 	void Awake() {
 		plan = new Plan();
 		statusController = new StatusController();
@@ -32,12 +34,17 @@ public abstract class Unit : MonoBehaviour {
 		curHp = maxHp;
 	}
 
+	public virtual int GetConsumedAp()
+	{
+		return plan.GetApCost();
+	}
+
 	public virtual bool CanConsumeAp(Action action) {
-		return action.descriptor.cost <= maxAp - plan.GetApCost();
+		return action.descriptor.cost <= maxAp - GetConsumedAp();
 	}
 
 	public virtual bool CanConsumeAp(int cost) {
-		return cost <= maxAp - plan.GetApCost();	
+		return cost <= maxAp - GetConsumedAp();	
 	}
 
 	public virtual bool CanUseFrame(Action action, Timeline timeline) {

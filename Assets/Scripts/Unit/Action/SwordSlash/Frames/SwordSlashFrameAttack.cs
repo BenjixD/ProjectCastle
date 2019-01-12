@@ -14,8 +14,7 @@ public class SwordSlashFrameAttack : Frame {
 	}
 
 	public override bool ExecuteEffect(SimulatedDisplacement sim, Direction dir, Board board) {
-		// TODO deal damage to enemies on tiles?
-		Unit user = sim.displacement.unit;
+		// TODO deal damage to enemies on tiles
 		Vector2 frontVect;
 		if ((frontVect = GetDirectionVector(relativeDir, dir)) == Vector2.zero) {
 			// bad direction input

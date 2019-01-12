@@ -14,7 +14,10 @@ public class KnockbackFrame : Frame {
 		return false;
 	}
 
-	public override bool ExecuteEffect(SimulatedDisplacement sim, Direction dir, Board board) {
+	public override bool ExecuteEffect(SimulatedDisplacement sim, Direction dir, Board board)
+	{
+		Unit victim = sim.displacement.unit;
+		victim.FaceDirection(GetOppositeDirection(dir));
 		return true;
 	}
 
@@ -32,20 +35,32 @@ public class KnockbackFrame : Frame {
 	}
 
 	public override UnitDisplacement GetDisplacement(Unit unit, Direction dir, Board board) {
-		Vector2 movement = GetMovement(unit, dir, board);
+		Vector2 movement = GetDirectionVector(relativeDir, dir);
 		return new RelativeDisplacement(unit, movement);
 	}
 
-	private Vector2 GetMovement(Unit unit, Direction dir, Board board) {
-		Direction absoluteDir = (Direction)(((int)relativeDir + (int)dir) % 4);
+	// TODO move elsewhere
+	private Direction GetOppositeDirection(Direction dir)
+	{
+		return (Direction)(((int)dir + 2) % 4);
+	}
 
-		if(absoluteDir == Direction.UP) {
+	// TODO move elsewhere
+	private Vector2 GetDirectionVector(Direction startDir, Direction relativeDir) {
+		Direction absoluteDir = (Direction)(((int)startDir + (int)relativeDir) % 4);
+		return DirectionToVector(absoluteDir);
+	}
+
+	// TODO move elsewhere
+	private Vector2 DirectionToVector(Direction dir)
+	{
+		if (dir == Direction.UP) {
 			return new Vector2(-1, 0);
-		} else if (absoluteDir == Direction.RIGHT) {
+		} else if (dir == Direction.RIGHT) {
 			return new Vector2(0, 1);
-		} else if (absoluteDir == Direction.DOWN) {
+		} else if (dir == Direction.DOWN) {
 			return new Vector2(1, 0);
-		} else if (absoluteDir == Direction.LEFT) {
+		} else if (dir == Direction.LEFT) {
 			return new Vector2(0, -1);
 		} else {
 			return new Vector2(0, 0);

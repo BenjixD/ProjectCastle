@@ -34,8 +34,7 @@ public abstract class Unit : MonoBehaviour {
 		curHp = maxHp;
 	}
 
-	public virtual int GetConsumedAp()
-	{
+	public virtual int GetConsumedAp() {
 		return plan.GetApCost();
 	}
 

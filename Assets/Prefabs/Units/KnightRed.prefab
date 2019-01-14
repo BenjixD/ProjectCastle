@@ -9,81 +9,81 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1234694667220030}
+  m_RootGameObject: {fileID: 1709763162096502}
   m_IsPrefabAsset: 1
---- !u!1 &1234694667220030
+--- !u!1 &1669797661600584
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4764972078359554}
-  - component: {fileID: 114602573623831726}
-  - component: {fileID: 114901598660030098}
-  - component: {fileID: 114961818912534782}
+  - component: {fileID: 4292957543203992}
+  - component: {fileID: 212166431815294856}
+  - component: {fileID: 95512820763075312}
+  - component: {fileID: 114305170818160784}
   m_Layer: 0
-  m_Name: TacticianRed
+  m_Name: KnightSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1335375907303462
+--- !u!1 &1709763162096502
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4706586521983068}
-  - component: {fileID: 212256897214979982}
-  - component: {fileID: 95541121878625916}
-  - component: {fileID: 114843259048657780}
+  - component: {fileID: 4677154185398392}
+  - component: {fileID: 114425862240798324}
+  - component: {fileID: 114905482457182482}
+  - component: {fileID: 114721279573633934}
   m_Layer: 0
-  m_Name: TacticianSprite
+  m_Name: KnightRed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4706586521983068
+--- !u!4 &4292957543203992
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1335375907303462}
+  m_GameObject: {fileID: 1669797661600584}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4764972078359554}
+  m_Father: {fileID: 4677154185398392}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4764972078359554
+--- !u!4 &4677154185398392
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1234694667220030}
+  m_GameObject: {fileID: 1709763162096502}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4706586521983068}
+  - {fileID: 4292957543203992}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &95541121878625916
+--- !u!95 &95512820763075312
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1335375907303462}
+  m_GameObject: {fileID: 1669797661600584}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: 980f0c565e7a6374dba0901fb843ee25, type: 2}
+  m_Controller: {fileID: 22100000, guid: 7fbdb12f9a3e73b49bb5f10797741b79, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -92,12 +92,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114602573623831726
+--- !u!114 &114305170818160784
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1234694667220030}
+  m_GameObject: {fileID: 1669797661600584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e6259f8428894071834514831ed9947, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+--- !u!114 &114425862240798324
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1709763162096502}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6fd41105e23644f9ea20b100805091d7, type: 3}
@@ -111,26 +123,30 @@ MonoBehaviour:
   controllable: 1
   frameUsage: 0
   skills:
-  - {fileID: 114901598660030098}
-  - {fileID: 114961818912534782}
---- !u!114 &114843259048657780
+  - {fileID: 114905482457182482}
+  - {fileID: 114721279573633934}
+--- !u!114 &114721279573633934
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1335375907303462}
+  m_GameObject: {fileID: 1709763162096502}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e6259f8428894071834514831ed9947, type: 3}
+  m_Script: {fileID: 11500000, guid: efcd3b63c3ce68c4a9bc25179cad76b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
---- !u!114 &114901598660030098
+  actionName: Sword Slash
+  cost: 3
+  actionType: 3
+  actionUI: {fileID: 114201947593612934, guid: 09eb5c7d4ec2e43509e5360f14e029aa, type: 2}
+  icons: []
+--- !u!114 &114905482457182482
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1234694667220030}
+  m_GameObject: {fileID: 1709763162096502}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eab1b86148f1e47baa4312b0b60f67ad, type: 3}
@@ -141,28 +157,12 @@ MonoBehaviour:
   actionType: 1
   actionUI: {fileID: 114570406660022952, guid: bc287e541d26d4ed1b00a50c7b40c918, type: 2}
   icons: []
---- !u!114 &114961818912534782
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1234694667220030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6b1c8708263348e9a3f2d5ee1305ae4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actionName: Lance Poke
-  cost: 3
-  actionType: 3
-  actionUI: {fileID: 114201947593612934, guid: 09eb5c7d4ec2e43509e5360f14e029aa, type: 2}
-  icons: []
---- !u!212 &212256897214979982
+--- !u!212 &212166431815294856
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1335375907303462}
+  m_GameObject: {fileID: 1669797661600584}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -192,7 +192,7 @@ SpriteRenderer:
   m_SortingLayerID: -1541830459
   m_SortingLayer: 4
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300010, guid: 754e3e9a07358462b9a7aced5e3e6390, type: 3}
+  m_Sprite: {fileID: 21300002, guid: 754e3e9a07358462b9a7aced5e3e6390, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

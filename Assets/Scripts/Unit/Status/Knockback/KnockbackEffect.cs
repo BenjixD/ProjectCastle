@@ -10,22 +10,7 @@ public class KnockbackEffect : StatusEffect {
 		this.dir = dir;
 	}
 
-	public override Command GetCommand(Direction dir)
-	{
-		Command command = new Command();
-		command.dir = dir;
-		command.frame = action.frames[0];
-		command.type = ActionType.Effect;
-
-		return command;
-	}
-
-	public override Command GetCommand() {
-		Command command = new Command();
-		command.dir = this.dir;
-		command.frame = action.frames[0];
-		command.type = ActionType.Effect;
-
-		return command;
-	}
+	//No need to override GetCommand
+	//public override Command GetCommand(Direction dir);
+	//public override Command GetCommand();	
 }

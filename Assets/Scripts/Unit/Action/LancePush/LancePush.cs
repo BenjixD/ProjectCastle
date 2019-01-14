@@ -8,11 +8,10 @@ public class LancePush : Action {
 
 	public LancePush(ActionDescriptor descriptor) : base(descriptor) {
 		//Add frames in order
-		this.frames = new List<Frame>();
-		this.frames.Add(new LancePushFrameAttack(this));
-		this.frames.Add(new LancePushFrameAttack(this));
-		this.frames.Add(new LancePushFrameEnd(this));
-		this.frames.Add(new LancePushFrameEnd(this));
+		this.AddFrame(new LancePushFrameEffectAttack(this), new LancePushFrameAnimAttack(this));
+		this.AddFrame(new LancePushFrameEffectAttack(this), new LancePushFrameAnimAttack(this));
+		this.AddFrame(new LancePushFrameEffectEnd(this), new LancePushFrameAnimEnd(this));
+		this.AddFrame(new LancePushFrameEffectEnd(this), new LancePushFrameAnimEnd(this));
 
 		//Initialize "one time hit"
 		victims = new HashSet<Unit>();

@@ -8,12 +8,11 @@ public class SwordSlash : Action {
 
 	public SwordSlash(ActionDescriptor descriptor) : base(descriptor) {
 		//Add frames in order
-		this.frames = new List<Frame>();
-		this.frames.Add(new SwordSlashFrameAttack(this));
-		this.frames.Add(new SwordSlashFrameAttack(this));
-		this.frames.Add(new SwordSlashFrameAttack(this));
-		this.frames.Add(new SwordSlashFrameEnd(this));
-		this.frames.Add(new SwordSlashFrameEnd(this));
+		this.AddFrame(new SwordSlashFrameEffectAttack(this), new SwordSlashFrameAnimAttack(this));
+		this.AddFrame(new SwordSlashFrameEffectAttack(this), new SwordSlashFrameAnimAttack(this));
+		this.AddFrame(new SwordSlashFrameEffectAttack(this), new SwordSlashFrameAnimAttack(this));
+		this.AddFrame(new SwordSlashFrameEffectEnd(this), new SwordSlashFrameAnimEnd(this));
+		this.AddFrame(new SwordSlashFrameEffectEnd(this), new SwordSlashFrameAnimEnd(this));
 
 		//Initialize "one time hit"
 		victims = new HashSet<Unit>();

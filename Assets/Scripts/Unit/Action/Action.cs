@@ -44,6 +44,11 @@ public abstract class Action {
 		}
 	}
 
+	public static Direction GetOppositeDirection(Direction dir)
+	{
+		return (Direction)(((int)dir + 2) % 4);
+	}
+
 	public Direction GetAbsoluteDir(Direction dir) {
 		if(dir == Direction.NONE) {
 			return relativeDir;

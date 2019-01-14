@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4497375856352388}
-  - component: {fileID: 114738347900610730}
+  - component: {fileID: 114932274009486516}
   - component: {fileID: 114062442122610384}
   - component: {fileID: 114125268965905178}
   m_Layer: 0
@@ -124,27 +124,6 @@ MonoBehaviour:
   actionType: 3
   actionUI: {fileID: 114201947593612934, guid: 09eb5c7d4ec2e43509e5360f14e029aa, type: 2}
   icons: []
---- !u!114 &114738347900610730
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1073787337485116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fd41105e23644f9ea20b100805091d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unitName: Tactician
-  maxHp: 200
-  curHp: 10
-  maxAp: 5
-  dir: 0
-  controllable: 1
-  frameUsage: 0
-  skills:
-  - {fileID: 114062442122610384}
-  - {fileID: 114125268965905178}
 --- !u!114 &114876461801103962
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -157,6 +136,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
+--- !u!114 &114932274009486516
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1073787337485116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5c6a716fdf120c4a888dc7dfa1586e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitName: Knight
+  maxHp: 175
+  curHp: 175
+  maxAp: 6
+  dir: 0
+  controllable: 1
+  frameUsage: 0
+  skills:
+  - {fileID: 114062442122610384}
+  - {fileID: 114125268965905178}
 --- !u!212 &212908498214205218
 SpriteRenderer:
   m_ObjectHideFlags: 1

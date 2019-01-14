@@ -105,7 +105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: Tactician
   maxHp: 200
-  curHp: 10
+  curHp: 200
   maxAp: 5
   dir: 0
   controllable: 1

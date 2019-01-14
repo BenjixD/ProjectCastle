@@ -5,6 +5,10 @@ AnimatorOverrideController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: BlueTacticianAnim
-  m_Controller: {fileID: 0}
-  m_Clips: []
+  m_Name: KnightBlueAnim
+  m_Controller: {fileID: 9100000, guid: 26fc2e83a69c7496ebaebdf26d522786, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 89395cb54d71444839d655f8e1bf49a2, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 9a3ad3506adae5d4287bd554caed938f, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 484f5ad146a11486fb8ed4cca3ed0975, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 7b1b5e3527904194db608230b709dc30, type: 2}

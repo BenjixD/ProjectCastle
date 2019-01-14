@@ -33,7 +33,7 @@ public class Cursor : MonoBehaviour
 
     void OnEnable() {
         UpdateCursorLocation();
-		UpdateTileInfo();
+		UpdateUnitInfo();
     }
 
     void Update()
@@ -133,7 +133,7 @@ public class Cursor : MonoBehaviour
     {
         UpdateCursorLocation();
         UpdatePieceLocation();
-		UpdateTileInfo();
+		UpdateUnitInfo();
     }
 
     public void EnableUserInput() {
@@ -195,7 +195,7 @@ public class Cursor : MonoBehaviour
         }
     }
 
-	void UpdateTileInfo()
+	void UpdateUnitInfo()
 	{
 		selectedUnit = board.GetTile(currCoords).unit;
 		// Update timeline

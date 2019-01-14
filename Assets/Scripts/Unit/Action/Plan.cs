@@ -10,7 +10,6 @@ public class Plan {
 	private int nextAction;
 
 	private bool isInterrupted;
-	private Action defaultAction;
 
 	public Plan() {
 		commandOrder = new List<Command>();
@@ -75,22 +74,20 @@ public class Plan {
 		return next;
 	}
 
-	public void InterruptNext(Action defaultAction) {
-		this.defaultAction = defaultAction;
+	public void InterruptNext() {
 		this.isInterrupted = true;
 	}
 
 	public void ResetInterrupt() {
-		this.defaultAction = null;
 		this.isInterrupted = false;	
 	}
 
 	public Command GetInterruptedCommand(Command command) {
 		Command interruptedCommand = new Command();
 
-		interruptedCommand.frame = defaultAction.frames[0];
-		interruptedCommand.dir = command.dir;
-		interruptedCommand.type = defaultAction.descriptor.actionType; 
+		interruptedCommand.frame = actionOrder[nextAction].defaultFrame;
+		interruptedCommand.dir = command.GetRelativeDir();
+		interruptedCommand.type = command.type; 
 		return interruptedCommand;
 	}
 

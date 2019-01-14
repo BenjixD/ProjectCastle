@@ -34,12 +34,8 @@ public class Timeline : Phase {
 		List<KeyValuePair<Unit, Command>> statusCommands = FinalizeStatusEffect(players);
 		ExecuteSingleFrameOrder(statusCommands, players, board);
 
-		//kill all units who satisfy death condition
-		foreach(Player player in players) {
-			foreach(Unit unit in player.units) {
-				KillUnitWhenDead(unit, board);
-			}
-		}
+		//Kill Any Units who Satisfy Death Conditions
+		RemoveAllDeadUnits(players, board);
 	}
 
 	private Dictionary<ActionType, List<KeyValuePair<Unit, Command>>> InitializeActionOrder(List<Player> players) {
@@ -59,8 +55,8 @@ public class Timeline : Phase {
 					ActionType actionType = peek.type;
 
 					//Interrupt Next Skill
-					if(peek.frame.IsInterrupted(unit.statusController)) {
-						unit.plan.InterruptNext(new Wait(null));
+					if(peek.frame.effect.IsInterrupted(unit.statusController)) {
+						unit.plan.InterruptNext();
 					}
 
 					Command command = unit.plan.ExecuteNext().Value;
@@ -80,12 +76,14 @@ public class Timeline : Phase {
 		foreach(KeyValuePair<Unit, Command> pair in commands) {
 			Unit unit = pair.Key;
 			Command command = pair.Value;
+			Direction absDir = command.GetAbsoluteDir();
 			SimulatedDisplacement sim = result[unit];
-			if(command.frame.CanExecute(sim, command.dir, board)) {
-				sim.displacement.unit.FaceDirection(command.dir);
-				command.frame.ExecuteEffect(sim, command.dir, board);
+			if(command.frame.effect.CanExecute(sim, absDir, board)) {
+				sim.displacement.unit.FaceDirection(absDir);
+				sim.displacement.unit.FaceDirectionAnim(absDir);
+				command.frame.effect.ExecuteEffect(sim, absDir, board);
 				Board.MoveUnit(sim, board);
-				command.frame.ExecuteAnimation(sim, command.dir, board);
+				command.frame.anim.ExecuteAnimation(sim, absDir, board);
 			}
 		}
 	}
@@ -113,7 +111,8 @@ public class Timeline : Phase {
 		foreach(KeyValuePair<Unit, Command> pair in commands) {
 			Unit unit = pair.Key;
 			Command command = pair.Value;
-			UnitDisplacement displacement = command.frame.GetDisplacement(unit, command.dir, board);
+			Direction absDir = command.GetAbsoluteDir();
+			UnitDisplacement displacement = command.frame.effect.GetDisplacement(unit, absDir, board);
 			results.Add(unit, displacement);
 		}
 
@@ -129,9 +128,34 @@ public class Timeline : Phase {
 		return results;
 	}
 
-	private void KillUnitWhenDead(Unit unit, Board board) {
-		if(unit.IsDead()) {
-			//TODO: Death Anim then death
+	private void RemoveAllDeadUnits(List<Player> players, Board board) {
+		//kill all units who satisfy death condition
+		List<Unit> toKill = new List<Unit>();
+		foreach(Player player in players) {
+			foreach(Unit unit in player.units) {
+				if(unit.IsDead()) {
+					toKill.Add(unit);
+				}
+			}
+		}
+
+		foreach(Unit unit in toKill) {
+			KillUnit(unit, board);
+		}
+	}
+
+	private void KillUnit(Unit unit, Board board) {
+		//TODO: Definitely NOT the way to kill a unit
+		if(!unit.gameObject.GetComponent<Rigidbody2D>()) {
+			Rigidbody2D rb = unit.gameObject.AddComponent<Rigidbody2D>();
+			rb.mass = 1; 
+			rb.angularDrag = 1; 
+			rb.AddTorque(40.5f); 	
+			unit.tile.RemoveUnit();
+			unit.plan.InterruptNext();
+		} else {
+			unit.RemoveFromOwner();
+			Destroy (unit.gameObject, 5);
 		}
 	}
 }

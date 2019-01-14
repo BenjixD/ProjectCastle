@@ -2,42 +2,12 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public enum FrameType {
-	Skill,
-	Movement
-}
+public class Frame {
+	public FrameEffect effect;
+	public FrameAnim anim;
 
-public abstract class Frame {
-	public Action actionInstance;
-	public Direction relativeDir;
-	public HashSet<FrameType> frameTypes;
-	
-	public Frame(Action instance) {
-		this.actionInstance = instance;
-	}
-
-	public GameObject icon { get; set; } //TODO: Move this to descriptor
-
-	public abstract bool ExecuteEffect(SimulatedDisplacement sim, Direction dir, Board board);
-	public abstract bool ExecuteAnimation(SimulatedDisplacement sim, Direction dir, Board board);
-	public abstract bool CanExecute(SimulatedDisplacement sim, Direction dir, Board board);
-
-	public virtual bool IsInterrupted(StatusController statusController) {
-		foreach (KeyValuePair<string, StatusEffect> pair in statusController) {
-			StatusEffect status = pair.Value;
-
-			//TODO: FIX THIS
-			if(status.GetType().Name == "Stun") {
-				if(frameTypes.Contains(FrameType.Skill) || frameTypes.Contains(FrameType.Movement)) {
-					return true;
-				}
-			}
-		}
-
-		return false;
-	}
-
-	public virtual UnitDisplacement GetDisplacement(Unit unit, Direction dir, Board board) {
-		return new AbsoluteDisplacement(unit, unit.tile.coordinate);
+	public Frame(FrameEffect effect, FrameAnim anim) {
+		this.effect = effect;
+		this.anim = anim;
 	}
 }

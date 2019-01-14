@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class LancePokeDescriptor : ActionDescriptor {
 	
+    public GameObject lancePrefab;
+
     public override Action GetNewActionInstance() {
         return new LancePoke(this);
     }

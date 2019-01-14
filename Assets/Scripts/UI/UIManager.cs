@@ -58,20 +58,21 @@ public class UIManager : MonoBehaviour {
             int frames = plan.GetTotalFramesCount();
             for(int i = 0; i < frames; i++) {
                 Command command = plan.GetCommand(i);
-                if (command.frame.icon)
+                if (command.frame.effect.icon)
                 {
-                    GameObject icon = Instantiate(command.frame.icon, timelineDisplay.transform);
+                    GameObject icon = Instantiate(command.frame.effect.icon, timelineDisplay.transform);
+                    Direction dir = command.GetAbsoluteDir();
 
                     RectTransform rectTransform = icon.GetComponent<RectTransform>();
-                    if (command.dir == Direction.LEFT)
+                    if (dir == Direction.LEFT)
                     {
                         rectTransform.Rotate(0, 0, 90);
                     }
-                    else if (command.dir == Direction.DOWN)
+                    else if (dir == Direction.DOWN)
                     {
                         rectTransform.Rotate(0, 0, 180);
                     }
-                    else if (command.dir == Direction.RIGHT)
+                    else if (dir == Direction.RIGHT)
                     {
                         rectTransform.Rotate(0, 0, -90);
                     }

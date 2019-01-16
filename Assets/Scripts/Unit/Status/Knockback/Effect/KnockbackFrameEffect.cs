@@ -16,13 +16,12 @@ public class KnockbackFrameEffect : FrameEffect {
 
 	public override bool ExecuteEffect(SimulatedDisplacement sim, Direction dir, Board board)
 	{
-		Unit victim = sim.displacement.unit;
-		victim.FaceDirection(Action.GetOppositeDirection(dir));
 		return true;
 	}
 
 	public override UnitDisplacement GetDisplacement(Unit unit, Direction dir, Board board) {
-		Vector2 movement = Action.GetDirectionVector(dir);
+		Knockback kb = (Knockback)action;
+		Vector2 movement = kb.vector;
 		return new RelativeDisplacement(unit, movement);
 	}
 }

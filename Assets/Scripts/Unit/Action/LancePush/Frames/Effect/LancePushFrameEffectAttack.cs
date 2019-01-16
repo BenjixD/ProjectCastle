@@ -36,7 +36,7 @@ public class LancePushFrameEffectAttack : FrameEffect {
 			{
 				// Deal damage (30) and apply knockback status effect
 				t.unit.TakeDamage(DMG);
-				t.unit.statusController.QueueAddStatus(new KnockbackEffect(dir));
+				t.unit.statusController.QueueAddStatus(new KnockbackEffect(frontVect));
 				AddUnitHit(t.unit);
 				Debug.Log("Ouch! " + t.unit.unitName + " just got knocked back and took " + DMG + " damage!");
 			}

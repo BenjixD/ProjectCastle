@@ -3,11 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class KnockbackEffect : StatusEffect {
-	public KnockbackEffect(Direction dir) {
+	public KnockbackEffect(Vector2 vector) {
 		duration = 1;
 		effectType = StatusEffectType.CONDITION;
-		action = new Knockback(null);
-		this.dir = dir;
+		action = new Knockback(vector, null);
+		this.dir = Direction.NONE;
+	}
+
+	//Accumulate Knockback Vector
+	public override StatusEffect GetOverwrite(StatusEffect other) {
+		KnockbackEffect kbOther = ((KnockbackEffect)other);
+		((Knockback)this.action).vector += ((Knockback)kbOther.action).vector;
+		return this;
 	}
 
 	//No need to override GetCommand

@@ -13,6 +13,6 @@ public class SignalEffectEnd : FrameEffect {
 
 	public override bool ExecuteEffect(SimulatedDisplacement sim, Direction dir, Board board) {
         // no effect
-		return true;
+        return true;
 	}
 }

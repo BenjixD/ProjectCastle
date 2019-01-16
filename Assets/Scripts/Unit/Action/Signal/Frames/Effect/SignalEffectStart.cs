@@ -13,6 +13,6 @@ public class SignalEffectStart : FrameEffect {
 
 	public override bool ExecuteEffect(SimulatedDisplacement sim, Direction dir, Board board) {
         // cancel move if disabled?
-		return true;
+        return true;
 	}
 }

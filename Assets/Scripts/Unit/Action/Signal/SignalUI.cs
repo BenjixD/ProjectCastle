@@ -5,12 +5,12 @@ using UnityEngine;
 public class SignalUI : ActionUI
 {
     Tile target;
-    Signal s;
+    Signal signal;
 
     void Start()
     {
         
-        s = (Signal)action;
+        signal = (Signal)action;
         target = null;
         /* TODO refactor so other skills can use it, also need Direction to Vector2 translation method
         if (Signal.RANGEMIN == 0)
@@ -95,7 +95,7 @@ public class SignalUI : ActionUI
 
     public override bool CanAddAction(Action action)
     {
-        return unit.CanConsumeAp(2) && unit.CanUseFrame(action.frames.Count, timeline);
+        return unit.CanConsumeAp(GetApCost()) && unit.CanUseFrame(GetFrameCost(), timeline);
     }
 
     public override void CancelInput()
@@ -107,7 +107,7 @@ public class SignalUI : ActionUI
     {
         if (IsInRange(target.coordinate))
         {
-            s.Target = target;
+            signal.Target = target;
             Direction approxDir = Direction.NONE;
             if (Mathf.Abs(unit.tile.coordinate.x - target.coordinate.x) - Mathf.Abs(unit.tile.coordinate.y - target.coordinate.y) >= 0)
             {
@@ -124,7 +124,7 @@ public class SignalUI : ActionUI
                     approxDir = Direction.LEFT;
             }
             Debug.Log("Sending signal flare, facing " + approxDir.ToString());
-            unit.QueueAction(s, approxDir, timeline);
+            unit.QueueAction(signal, approxDir, timeline);
             state = ActionSubmissionState.SUBMITTED;
         }
     }

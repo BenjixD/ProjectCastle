@@ -33,7 +33,7 @@ public class Cursor : MonoBehaviour
 
     void OnEnable() {
         UpdateCursorLocation();
-        UpdateTimeline();
+		UpdateUnitInfo();
     }
 
     void Update()
@@ -133,7 +133,7 @@ public class Cursor : MonoBehaviour
     {
         UpdateCursorLocation();
         UpdatePieceLocation();
-        UpdateTimeline();
+		UpdateUnitInfo();
     }
 
     public void EnableUserInput() {
@@ -159,7 +159,7 @@ public class Cursor : MonoBehaviour
 
     void CycleUnits(int skipNum)
     {
-        Unit selectedUnit = board.GetTile(currCoords).unit;
+        selectedUnit = board.GetTile(currCoords).unit;
         if (selectedUnit != null && selectedUnit.owner == player)
         {
             float index = player.units.FindIndex(unit => unit == selectedUnit);
@@ -178,6 +178,7 @@ public class Cursor : MonoBehaviour
                 UpdateCursorLocation();
             }
         }
+		OnCursorAction();
     }
 
     void UpdateCursorLocation()
@@ -194,16 +195,18 @@ public class Cursor : MonoBehaviour
         }
     }
 
-    void UpdateTimeline() 
-    {
-        selectedUnit = board.GetTile(currCoords).unit;
-        if (selectedUnit != null && player.IsOwner(selectedUnit))
-        {
-            uiManager.DisplayTimelineIcons(selectedUnit.plan);
-        }
-        else
-        {
-            uiManager.DisplayTimelineIcons(null);
-        }
-    }
+	void UpdateUnitInfo()
+	{
+		selectedUnit = board.GetTile(currCoords).unit;
+		// Update timeline
+		if (selectedUnit != null && player.IsOwner(selectedUnit))
+		{
+			uiManager.DisplayTimelineIcons(selectedUnit.plan);
+		}
+		else
+		{
+			uiManager.DisplayTimelineIcons(null);
+		}
+		uiManager.DisplayUnitInfo(player, selectedUnit);
+	}
 }

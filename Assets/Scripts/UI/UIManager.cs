@@ -9,8 +9,9 @@ public class UIManager : MonoBehaviour {
     public Image timelineDisplay;
     public Image pointer;
     public Text phaseDisplay;
+	public UnitInfoContainer unitInfoContainer;
 
-    private float timelineWidth;
+	private float timelineWidth;
     private float frameWidth;
     public float frameTickOffset;
     private float pointerY;
@@ -84,7 +85,12 @@ public class UIManager : MonoBehaviour {
         }
     }
 
-    void ClearTimelineIcons()
+	public void DisplayUnitInfo(Player viewer, Unit unit)
+	{
+		unitInfoContainer.UpdateUnitInfoDisplay(viewer, unit);
+	}
+
+	void ClearTimelineIcons()
     {
         foreach (GameObject icon in displayedIcons)
         {

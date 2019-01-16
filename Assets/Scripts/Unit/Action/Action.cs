@@ -32,16 +32,16 @@ public abstract class Action {
 
 	public static Vector2 GetDirectionVector(Direction dir) {
 		if(dir == Direction.UP) {
-			return new Vector2(-1, 0);
+			return Vector2.left;        // (-1, 0)
 		} else if (dir == Direction.RIGHT) {
-			return new Vector2(0, 1);
-		} else if (dir == Direction.DOWN) {
-			return new Vector2(1, 0);
-		} else if (dir == Direction.LEFT) {
-			return new Vector2(0, -1);
-		} else {
-			return new Vector2(0, 0);
-		}
+			return Vector2.up;          // (0, 1)
+        } else if (dir == Direction.DOWN) {
+			return Vector2.right;       // (1, 0)
+        } else if (dir == Direction.LEFT) {
+			return Vector2.down;        // (0, -1)
+        } else {
+			return Vector2.zero;        // (0, 0)
+        }
 	}
 
 	public static Direction GetOppositeDirection(Direction dir)

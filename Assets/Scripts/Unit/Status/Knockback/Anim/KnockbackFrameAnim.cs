@@ -13,7 +13,6 @@ public class KnockbackFrameAnim : FrameAnim {
 		if(!collision) {
 			//Unit's logical location is already on the target
 			unit.gameObject.transform.position = unit.tile.gameObject.transform.position;
-			unit.FaceDirectionAnim(Action.GetOppositeDirection(dir));
 			return true;
 		} else {
 			//Play some kind of collision

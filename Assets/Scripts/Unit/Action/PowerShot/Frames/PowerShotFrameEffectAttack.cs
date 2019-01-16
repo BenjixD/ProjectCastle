@@ -15,7 +15,10 @@ public class PowerShotFrameEffectAttack : FrameEffect {
 	public PowerShotFrameEffectAttack(Action instance) : base(instance) {}
 
 	public override bool CanExecute(SimulatedDisplacement sim, Direction dir, Board board) {
-		// TODO Fail upon stun or silence
+		// TODO Fail upon silence
+		if (sim.displacement.unit.statusController.HasStatus(new StunEffect())) {
+			return false;
+		}
 		return true;
 	}
 
@@ -31,16 +34,8 @@ public class PowerShotFrameEffectAttack : FrameEffect {
 				Unit victim = t.unit;
 				if (victim) {
 					victim.TakeDamage(damageValues[hitTypesOrder[i]]);
-					
-					//TODO
-
-					int STUN_DURATION = 3;
 					if (hitTypesOrder[i] == HitboxTypes.SWEET) {
-						if (sim.conflict) {
-							victim.statusController.QueueAddStatus(new StunEffect(STUN_DURATION));
-							Debug.Log(victim + " was stunned!");
-						}
-						//victim.statusController.QueueAddStatus(new PinEffect(frontVect));
+						victim.statusController.QueueAddStatus(new PinEffect(frontVect));
 						Debug.Log("Ouch! " + victim.unitName + " just got knocked back and took " + damageValues[hitTypesOrder[i]] + " damage!");
 					}
 					else {

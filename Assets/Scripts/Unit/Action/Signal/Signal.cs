@@ -22,10 +22,9 @@ public class Signal: Action {
 
     public Signal(ActionDescriptor descriptor) : base(descriptor) {
 		//Add frames in order
-		this.frames = new List<Frame>();
-        this.frames.Add(new SignalStart(this));
-        this.frames.Add(new SignalEffect(this));
-        this.frames.Add(new SignalEnd(this));
+        this.AddFrame(new SignalEffectStart(this), new SignalAttackAnim(this));
+        this.AddFrame(new SignalEffectAttack(this), new SignalAttackAnim(this));
+        this.AddFrame(new SignalEffectEnd(this), new SignalAttackAnim(this));
 
         //Initialize "one time hit"
         victims = new HashSet<Unit>();

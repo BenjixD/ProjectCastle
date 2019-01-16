@@ -32,15 +32,15 @@ public abstract class Action {
 
 	public static Vector2 GetDirectionVector(Direction dir) {
 		if(dir == Direction.UP) {
-			return new Vector2(-1, 0);
+			return Vector2.left;
 		} else if (dir == Direction.RIGHT) {
-			return new Vector2(0, 1);
+			return Vector2.up;
 		} else if (dir == Direction.DOWN) {
-			return new Vector2(1, 0);
+			return Vector2.right;
 		} else if (dir == Direction.LEFT) {
-			return new Vector2(0, -1);
+			return Vector2.down;
 		} else {
-			return new Vector2(0, 0);
+			return Vector2.zero;
 		}
 	}
 

@@ -2,9 +2,9 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class SignalEnd : Frame {
+public class SignalEffectEnd : FrameEffect {
 	
-	public SignalEnd(Action instance) : base(instance) {}
+	public SignalEffectEnd(Action instance) : base(instance) {}
 
     public override bool CanExecute(SimulatedDisplacement sim, Direction dir, Board board) {
         // ending lag doesn't need to fail
@@ -14,10 +14,5 @@ public class SignalEnd : Frame {
 	public override bool ExecuteEffect(SimulatedDisplacement sim, Direction dir, Board board) {
         // no effect
 		return true;
-	}
-
-	public override bool ExecuteAnimation(SimulatedDisplacement sim, Direction dir, Board board) {
-        // TODO ending lag anim
-        return true;
 	}
 }

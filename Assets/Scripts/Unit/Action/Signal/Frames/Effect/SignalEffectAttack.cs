@@ -2,9 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class SignalEffect : Frame
+public class SignalEffectAttack : FrameEffect
 { 
-    public SignalEffect(Action instance) : base(instance) { }
+    public SignalEffectAttack(Action instance) : base(instance) { }
 
     public override bool CanExecute(SimulatedDisplacement sim, Direction dir, Board board)
     {
@@ -15,7 +15,7 @@ public class SignalEffect : Frame
     public override bool ExecuteEffect(SimulatedDisplacement sim, Direction dir, Board board)
     {
         // TODO get targetted area
-        Tile target = ((Signal)actionInstance).Target;
+        Tile target = ((Signal)action).Target;
         List<Tile> aoe = new List<Tile>();
         if (board.CheckCoord(target.coordinate + Vector2.up))
         {
@@ -52,21 +52,15 @@ public class SignalEffect : Frame
         return true;
     }
 
-    public override bool ExecuteAnimation(SimulatedDisplacement sim, Direction dir, Board board)
-    {
-        // TODO attack anims
-        return true;
-    }
-
     private bool IsAlreadyHit(Unit unit)
     {
-        LancePoke parentAction = (LancePoke)actionInstance;
+        Signal parentAction = (Signal)action;
         return parentAction.victims.Contains(unit);
     }
 
     private void AddUnitHit(Unit unit)
     {
-        LancePoke parentAction = (LancePoke)actionInstance;
+        Signal parentAction = (Signal)action;
         parentAction.victims.Add(unit);
     }
 }

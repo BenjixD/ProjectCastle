@@ -11,12 +11,18 @@ public class PinFrameEffect : KnockbackFrameEffect {
 	public override bool ExecuteEffect(SimulatedDisplacement sim, Direction dir, Board board)
 	{
 		Unit victim = sim.displacement.unit;
-		victim.FaceDirection(Action.GetOppositeDirection(dir));
 		// TODO: also check if the victim was pushed against a wall tile/structure
 		if (sim.conflict) {
 			victim.statusController.QueueAddStatus(new StunEffect(STUN_DURATION));
 			Debug.Log(victim + " was stunned!");
 		}
 		return true;
+	}
+
+	public override UnitDisplacement GetDisplacement(Unit unit, Direction dir, Board board)
+	{
+		Pin kb = (Pin)action;
+		Vector2 movement = kb.vector;
+		return new RelativeDisplacement(unit, movement);
 	}
 }

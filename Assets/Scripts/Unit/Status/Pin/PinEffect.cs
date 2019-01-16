@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PinEffect : KnockbackEffect {
-	public PinEffect(Direction dir) : base(dir) {
+	public PinEffect(Vector2 vector) : base(vector) {
 		duration = 1;
 		effectType = StatusEffectType.CONDITION;
-		action = new Pin(null);
-		this.dir = dir;
+		action = new Pin(vector, null);
+		this.dir = Direction.NONE;
 	}
 }

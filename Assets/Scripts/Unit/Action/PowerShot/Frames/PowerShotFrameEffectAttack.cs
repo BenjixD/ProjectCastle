@@ -32,7 +32,7 @@ public class PowerShotFrameEffectAttack : FrameEffect {
 				if (t.unit) {
 					t.unit.TakeDamage(damageValues[hitTypesOrder[i]]);
 					if (hitTypesOrder[i] == HitboxTypes.SWEET) {
-						t.unit.statusController.QueueAddStatus(new PinEffect(dir));
+						t.unit.statusController.QueueAddStatus(new PinEffect(frontVect));
 						Debug.Log("Ouch! " + t.unit.unitName + " just got knocked back and took " + damageValues[hitTypesOrder[i]] + " damage!");
 					}
 					else {

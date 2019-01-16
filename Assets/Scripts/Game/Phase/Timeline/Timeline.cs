@@ -113,7 +113,11 @@ public class Timeline : Phase {
 			Command command = pair.Value;
 			Direction absDir = command.GetAbsoluteDir();
 			UnitDisplacement displacement = command.frame.effect.GetDisplacement(unit, absDir, board);
-			results.Add(unit, displacement);
+			if(results.ContainsKey(unit)) {
+				results[unit] += displacement;
+			} else {
+				results.Add(unit, displacement);	
+			}
 		}
 
 		//Add all units who wait

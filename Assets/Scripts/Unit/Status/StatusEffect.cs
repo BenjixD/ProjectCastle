@@ -26,7 +26,7 @@ public abstract class StatusEffect {
 		Command command = new Command();
 		command.dir = dir;
 		command.frame = action.frames[0];
-		command.type = action.descriptor.actionType;
+		//command.type = action.descriptor.actionType; //TODO: Give status an action type
 
 		return command;
 	}
@@ -35,7 +35,7 @@ public abstract class StatusEffect {
 		Command command = new Command();
 		command.dir = this.dir;
 		command.frame = action.frames[0];
-		command.type = action.descriptor.actionType;
+		//command.type = action.descriptor.actionType; //TODO: Give status an action type
 
 		return command;
 	}

@@ -15,7 +15,7 @@ public class Board : MonoBehaviour {
     public static void MoveUnit(Unit unit, Tile targetTile) {
         Tile start = unit.tile;
         if(start.unit == unit){
-            start.RemoveUnit(unit);
+            start.RemoveUnit();
         }
         targetTile.PlaceUnit(unit);
     }

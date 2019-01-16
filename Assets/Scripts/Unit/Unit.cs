@@ -23,12 +23,14 @@ public abstract class Unit : MonoBehaviour {
 	public StatusController statusController { get; private set; }
 
 	public UnitAnimator animator { get; set; }
+	public UnitAudio audioManager { get; set; }
 
 	void Awake() {
 		plan = new Plan();
 		statusController = new StatusController();
 		dir = Direction.DOWN;
 		animator = GetComponentInChildren<UnitAnimator>();
+		audioManager = GetComponentInChildren<UnitAudio>();
 		curHp = maxHp;
 	}
 
@@ -57,9 +59,15 @@ public abstract class Unit : MonoBehaviour {
 		return curHp <= 0;
 	}
 
+	//Allowing Desyncing Animations from Direction Facing
 	public virtual void FaceDirection(Direction dir) {
 		if(dir != Direction.NONE) {
 			this.dir = dir;
+		}
+	}
+
+	public virtual void FaceDirectionAnim(Direction dir) {
+		if(dir != Direction.NONE) {
 			animator.SetDirection(this.dir);
 		}
 	}
@@ -77,5 +85,9 @@ public abstract class Unit : MonoBehaviour {
 
 	public void FlushPlan() {
 		plan.Flush();
-	}		
+	}
+
+	public void RemoveFromOwner() {
+		owner.RemoveUnit(this);
+	}	
 }

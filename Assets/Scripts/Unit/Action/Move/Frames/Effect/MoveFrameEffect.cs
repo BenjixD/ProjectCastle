@@ -7,7 +7,11 @@ public class MoveFrameEffect : FrameEffect {
 	public MoveFrameEffect(Action instance) : base(instance) {}
 
 	public override bool CanExecute(SimulatedDisplacement sim, Direction dir, Board board) {
-		if(board.CheckCoord(sim.GetCurrentVector())) {
+		// TODO Fail upon silence
+		if (sim.displacement.unit.statusController.HasStatus(new StunEffect())) {
+			return false;
+		}
+		if (board.CheckCoord(sim.GetCurrentVector())) {
 			Tile tile = board.GetTile(sim.GetCurrentVector());
 			return tile.tileType == TileType.PLAINS;
 		}

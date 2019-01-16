@@ -55,10 +55,14 @@ public class StatusController {
 		return statusList.GetEnumerator();
 	}
 
+	public bool HasStatus(StatusEffect status) {
+		return statusList.ContainsKey(GetStatusEffectKey(status));
+	}
+
 	private void AddStatus(StatusEffect status) {
 		string key = GetStatusEffectKey(status);
 
-		if(statusList.ContainsKey(key)) {
+		if(HasStatus(status)) {
 			StatusEffect overwrite = statusList[key].GetOverwrite(status);
 			statusList[key] = overwrite;
 		}

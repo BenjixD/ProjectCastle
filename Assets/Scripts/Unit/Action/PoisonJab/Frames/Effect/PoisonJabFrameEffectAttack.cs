@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PoisonJabFrameEffectAttack : FrameEffect {
 
-    public const int DMG = 40;
+	public const int DMG = 40;
 	public const int POISON_DURATION = 3;
 
 	public PoisonJabFrameEffectAttack(Action instance) : base(instance) {}

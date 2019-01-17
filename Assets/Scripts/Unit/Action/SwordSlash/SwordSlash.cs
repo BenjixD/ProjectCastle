@@ -13,6 +13,8 @@ public class SwordSlash : Action {
 		this.AddFrame(new SwordSlashFrameEffectAttack(this), new SwordSlashFrameAnimAttack(this));
 		this.AddFrame(new SwordSlashFrameEffectEnd(this), new SwordSlashFrameAnimEnd(this));
 		this.AddFrame(new SwordSlashFrameEffectEnd(this), new SwordSlashFrameAnimEnd(this));
+		//Default Frame
+		this.SetDefaultFrame(new SwordSlashFrameEffectEnd(this), new SwordSlashFrameAnimEnd(this));
 
 		//Initialize "one time hit"
 		victims = new HashSet<Unit>();

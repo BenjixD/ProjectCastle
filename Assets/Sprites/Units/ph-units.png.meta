@@ -6,6 +6,10 @@ TextureImporter:
     21300002: archer-ph_1
     21300004: archer-ph_2
     21300006: archer-ph_3
+    21300008: ph-units_0
+    21300010: ph-units_1
+    21300012: ph-units_2
+    21300014: ph-units_3
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -163,6 +167,86 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 292371c239b9bec45a09e9e9230b5a85
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ph-units_0
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 547
+        width: 119
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed160c6d31adaac4b8abfee7edfd110e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ph-units_1
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 547
+        width: 124
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8201a6fd4d6a09341a10a9aef98bb646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ph-units_2
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 547
+        width: 119
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62eaa6aa4105cf544b8bcb81b516e5b7
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ph-units_3
+      rect:
+        serializedVersion: 2
+        x: 769
+        y: 547
+        width: 124
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d64110d8f4a4ff45a5dde43b3faaa0e
       vertices: []
       indices: 
       edges: []

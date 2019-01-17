@@ -7,7 +7,7 @@ public enum FrameEffectType {
 	Movement
 }
 
-public enum HitboxTypes {
+public enum HitboxType {
 	SWEET,
 	OK,
 	SOUR

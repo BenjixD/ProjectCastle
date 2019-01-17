@@ -7,7 +7,7 @@ public class KnockbackEffect : StatusEffect {
 		duration = 1;
 		effectType = StatusEffectType.CONDITION;
 		action = new Knockback(vector, null);
-		this.dir = Direction.NONE;
+		dir = Direction.NONE;
 	}
 
 	//Accumulate Knockback Vector

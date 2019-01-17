@@ -11,7 +11,10 @@ public class LancePokeFrameEffectAttack : FrameEffect {
     public LancePokeFrameEffectAttack(Action instance) : base(instance) {}
 
     public override bool CanExecute(SimulatedDisplacement sim, Direction dir, Board board) {
-		// TODO Fail upon stun or silence
+		// TODO Fail upon silence
+		if (sim.displacement.unit.statusController.HasStatus(new StunEffect(0))) {
+			return false;
+		}
 		return true;
 	}
 

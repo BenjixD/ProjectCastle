@@ -300,6 +300,8 @@ MonoBehaviour:
   - {fileID: 114901598660030098}
   - {fileID: 114961818912534782}
   - {fileID: 114980598838584888}
+  unitInfoUI: {fileID: 114975912507572914, guid: acf7b037ed421c2429c3a170cc7ba7d4,
+    type: 2}
 --- !u!114 &114843259048657780
 MonoBehaviour:
   m_ObjectHideFlags: 1

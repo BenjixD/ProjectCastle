@@ -7,6 +7,12 @@ public enum FrameEffectType {
 	Movement
 }
 
+public enum HitboxType {
+	SWEET,
+	OK,
+	SOUR
+}
+
 public abstract class FrameEffect {
 	public Action action;
 	public HashSet<FrameEffectType> frameEffectTypes;

@@ -7,7 +7,7 @@ public class MoveFrameEffect : FrameEffect {
 	public MoveFrameEffect(Action instance) : base(instance) {}
 
 	public override bool CanExecute(SimulatedDisplacement sim, Direction dir, Board board) {
-		// TODO Fail upon silence
+		// TODO Fail upon snare
 		if (sim.displacement.unit.statusController.HasStatus(new StunEffect(0))) {
 			return false;
 		}

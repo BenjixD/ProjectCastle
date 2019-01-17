@@ -59,7 +59,7 @@ public class StatusController {
 		return statusList.ContainsKey(GetStatusEffectKey(status));
 	}
 
-	private void AddStatus(StatusEffect status) {
+	public void AddStatus(StatusEffect status) {
 		string key = GetStatusEffectKey(status);
 
 		if(HasStatus(status)) {

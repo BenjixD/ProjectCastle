@@ -12,7 +12,7 @@ public class LancePokeFrameEffectAttack : FrameEffect {
 
     public override bool CanExecute(SimulatedDisplacement sim, Direction dir, Board board) {
 		// TODO Fail upon silence
-		if (sim.displacement.unit.statusController.HasStatus(new StunEffect())) {
+		if (sim.displacement.unit.statusController.HasStatus(new StunEffect(0))) {
 			return false;
 		}
 		return true;

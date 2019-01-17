@@ -13,7 +13,7 @@ public class PinFrameEffect : KnockbackFrameEffect {
 		Unit victim = sim.displacement.unit;
 		// TODO: also check if the victim was pushed against a wall tile/structure
 		if (sim.conflict) {
-			victim.statusController.QueueAddStatus(new StunEffect(STUN_DURATION));
+			victim.statusController.AddStatus(new StunEffect(STUN_DURATION));
 			Debug.Log(victim + " was stunned!");
 		}
 		return true;

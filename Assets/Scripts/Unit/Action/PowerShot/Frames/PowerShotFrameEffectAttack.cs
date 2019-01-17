@@ -16,7 +16,7 @@ public class PowerShotFrameEffectAttack : FrameEffect {
 
 	public override bool CanExecute(SimulatedDisplacement sim, Direction dir, Board board) {
 		// TODO Fail upon silence
-		if (sim.displacement.unit.statusController.HasStatus(new StunEffect())) {
+		if (sim.displacement.unit.statusController.HasStatus(new StunEffect(0))) {
 			return false;
 		}
 		return true;
@@ -30,16 +30,16 @@ public class PowerShotFrameEffectAttack : FrameEffect {
 		}
 		for (int i = 0; i <= hitTypesOrder.Length; i++) {
 			if (board.CheckCoord(sim.result + frontVect * (i + 1))) {
-				Tile t = board.GetTile(sim.result + frontVect * (i + 1));
-				Unit victim = t.unit;
-				if (victim) {
-					victim.TakeDamage(damageValues[hitTypesOrder[i]]);
+				Tile targetTile = board.GetTile(sim.result + frontVect * (i + 1));
+				Unit target = targetTile.unit;
+				if (target) {
+					target.TakeDamage(damageValues[hitTypesOrder[i]]);
 					if (hitTypesOrder[i] == HitboxTypes.SWEET) {
-						victim.statusController.QueueAddStatus(new PinEffect(frontVect));
-						Debug.Log("Ouch! " + victim.unitName + " just got knocked back and took " + damageValues[hitTypesOrder[i]] + " damage!");
+						target.statusController.QueueAddStatus(new PinEffect(frontVect));
+						Debug.Log("Ouch! " + target.unitName + " just got knocked back and took " + damageValues[hitTypesOrder[i]] + " damage!");
 					}
 					else {
-						Debug.Log("Ouch! " + victim.unitName + " just took " + damageValues[hitTypesOrder[i]] + " damage!");
+						Debug.Log("Ouch! " + target.unitName + " just took " + damageValues[hitTypesOrder[i]] + " damage!");
 					}
 					// Hit one target only
 					break;

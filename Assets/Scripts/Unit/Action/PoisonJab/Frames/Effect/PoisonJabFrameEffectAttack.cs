@@ -47,7 +47,6 @@ public class PoisonJabFrameEffectAttack : FrameEffect {
 			if (t.unit && !IsAlreadyHit(t.unit)) {
 				// Deal damage (40)
 				t.unit.TakeDamage(DMG);
-				t.unit.statusController.QueueAddStatus(new KnockbackEffect(frontVect));
 				AddUnitHit(t.unit);
 				Debug.Log("Ouch! " + t.unit.unitName + " just took " + DMG + " damage!");
 			}

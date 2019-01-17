@@ -70,7 +70,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4537876165397658}
-  - component: {fileID: 114969563211623828}
+  - component: {fileID: 114520286295680256}
   - component: {fileID: 114132696662948956}
   - component: {fileID: 114738089000385332}
   - component: {fileID: 114203380044880456}
@@ -293,8 +293,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionName: Blink
-  cost: 0
-  actionType: 0
+  cost: 3
+  actionType: 1
   actionUI: {fileID: 114201947593612934, guid: 09eb5c7d4ec2e43509e5360f14e029aa, type: 2}
   icons: []
   distance: 2
@@ -310,6 +310,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 0}
+--- !u!114 &114520286295680256
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1962253382472560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c340f00127e2e746bdb79a8f92a9cff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitName: Assassin
+  maxHp: 100
+  curHp: 100
+  maxAp: 9
+  dir: 0
+  controllable: 1
+  frameUsage: 0
+  skills:
+  - {fileID: 114132696662948956}
+  - {fileID: 114738089000385332}
+  - {fileID: 114203380044880456}
+  - {fileID: 114878255717124852}
+  unitInfoUI: {fileID: 114975912507572914, guid: acf7b037ed421c2429c3a170cc7ba7d4,
+    type: 2}
 --- !u!114 &114727870429263922
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -354,31 +379,6 @@ MonoBehaviour:
   actionType: 3
   actionUI: {fileID: 114201947593612934, guid: 09eb5c7d4ec2e43509e5360f14e029aa, type: 2}
   icons: []
---- !u!114 &114969563211623828
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1962253382472560}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd1a55a3153e7fb4d957a0780ac406d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unitName: Knight
-  maxHp: 175
-  curHp: 175
-  maxAp: 6
-  dir: 0
-  controllable: 1
-  frameUsage: 0
-  skills:
-  - {fileID: 114132696662948956}
-  - {fileID: 114738089000385332}
-  - {fileID: 114203380044880456}
-  - {fileID: 114878255717124852}
-  unitInfoUI: {fileID: 114975912507572914, guid: acf7b037ed421c2429c3a170cc7ba7d4,
-    type: 2}
 --- !u!212 &212272277425636042
 SpriteRenderer:
   m_ObjectHideFlags: 1

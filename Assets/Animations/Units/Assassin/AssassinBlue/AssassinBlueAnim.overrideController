@@ -5,10 +5,10 @@ AnimatorOverrideController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: ArcherRedAnim
+  m_Name: AssassinBlueAnim
   m_Controller: {fileID: 9100000, guid: 26fc2e83a69c7496ebaebdf26d522786, type: 2}
   m_Clips:
   - m_OriginalClip: {fileID: 7400000, guid: 89395cb54d71444839d655f8e1bf49a2, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: b2ebf9732d82c2941b8e665f50b0fcc8, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 64a0cce20c6da2a4c891bd861a3736a0, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: 484f5ad146a11486fb8ed4cca3ed0975, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 98d62395758ed4e45858930dd6955570, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 32afa278f7b91c840840a7e4e1a7362c, type: 2}

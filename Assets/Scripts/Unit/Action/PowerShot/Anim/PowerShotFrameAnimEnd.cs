@@ -7,7 +7,7 @@ public class PowerShotFrameAnimEnd : FrameAnim {
 	public PowerShotFrameAnimEnd(Action instance) : base(instance) {}
 	
 	public override bool ExecuteAnimation(SimulatedDisplacement sim, Direction dir, Board board) {
-        // TODO ending lag anim
-        return true;
+		// TODO ending lag anim
+		return true;
 	}
 }

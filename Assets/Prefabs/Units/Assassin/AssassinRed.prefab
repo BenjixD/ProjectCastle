@@ -9,72 +9,35 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1234694667220030}
+  m_RootGameObject: {fileID: 1962253382472560}
   m_IsPrefabAsset: 1
---- !u!1 &1234694667220030
+--- !u!1 &1510326666240200
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4764972078359554}
-  - component: {fileID: 114602573623831726}
-  - component: {fileID: 114851874054820258}
-  - component: {fileID: 114901598660030098}
-  - component: {fileID: 114961818912534782}
-  - component: {fileID: 114755842772489156}
+  - component: {fileID: 4020810558174334}
+  - component: {fileID: 212272277425636042}
+  - component: {fileID: 95349057360340114}
+  - component: {fileID: 114727870429263922}
   m_Layer: 0
-  m_Name: TacticianRed
+  m_Name: AssassinSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1335375907303462
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4706586521983068}
-  - component: {fileID: 212256897214979982}
-  - component: {fileID: 95541121878625916}
-  - component: {fileID: 114843259048657780}
-  m_Layer: 0
-  m_Name: TacticianSprite
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1766552564578536
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4401061268035186}
-  - component: {fileID: 114083647643976516}
-  - component: {fileID: 82242760256095068}
-  m_Layer: 0
-  m_Name: TacticianAudio
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1845237993923128
+--- !u!1 &1799892856432980
 GameObject:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4319814771483992}
-  - component: {fileID: 114282120102052086}
+  - component: {fileID: 4781033378361570}
+  - component: {fileID: 114051059424493528}
   m_Layer: 0
   m_Name: Attack
   m_TagString: Untagged
@@ -82,67 +45,104 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4319814771483992
+--- !u!1 &1904792444608162
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4046905359836824}
+  - component: {fileID: 114448329058292646}
+  - component: {fileID: 82948766147044330}
+  m_Layer: 0
+  m_Name: AssassinAudio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1962253382472560
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4537876165397658}
+  - component: {fileID: 114520286295680256}
+  - component: {fileID: 114132696662948956}
+  - component: {fileID: 114738089000385332}
+  - component: {fileID: 114203380044880456}
+  - component: {fileID: 114878255717124852}
+  m_Layer: 0
+  m_Name: AssassinRed
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4020810558174334
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1845237993923128}
+  m_GameObject: {fileID: 1510326666240200}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4401061268035186}
+  m_Father: {fileID: 4537876165397658}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4401061268035186
+--- !u!4 &4046905359836824
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1766552564578536}
+  m_GameObject: {fileID: 1904792444608162}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4319814771483992}
-  m_Father: {fileID: 4764972078359554}
+  - {fileID: 4781033378361570}
+  m_Father: {fileID: 4537876165397658}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4706586521983068
+--- !u!4 &4537876165397658
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1335375907303462}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4764972078359554}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4764972078359554
-Transform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1234694667220030}
+  m_GameObject: {fileID: 1962253382472560}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4706586521983068}
-  - {fileID: 4401061268035186}
+  - {fileID: 4020810558174334}
+  - {fileID: 4046905359836824}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &82242760256095068
+--- !u!4 &4781033378361570
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1799892856432980}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4046905359836824}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &82948766147044330
 AudioSource:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1766552564578536}
+  m_GameObject: {fileID: 1904792444608162}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
@@ -232,16 +232,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!95 &95541121878625916
+--- !u!95 &95349057360340114
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1335375907303462}
+  m_GameObject: {fileID: 1510326666240200}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: 980f0c565e7a6374dba0901fb843ee25, type: 2}
+  m_Controller: {fileID: 22100000, guid: 6db332c664c19ca4abd7ea84329362c1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -250,24 +250,12 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114083647643976516
+--- !u!114 &114051059424493528
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1766552564578536}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8177c0213584841f8acd3d4add0f0e6f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  source: {fileID: 0}
---- !u!114 &114282120102052086
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1845237993923128}
+  m_GameObject: {fileID: 1799892856432980}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1ba46c9e75204fa2b906386a8d520a4, type: 3}
@@ -277,65 +265,12 @@ MonoBehaviour:
   audioClips:
   - {fileID: 8300000, guid: c69e12a1e5e6f419d8bc397858fd2665, type: 3}
   - {fileID: 8300000, guid: 9d280a37d51a74b789ca22561b1e1c12, type: 3}
---- !u!114 &114602573623831726
+--- !u!114 &114132696662948956
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1234694667220030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fd41105e23644f9ea20b100805091d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unitName: Tactician
-  maxHp: 200
-  curHp: 200
-  maxAp: 5
-  dir: 0
-  controllable: 1
-  frameUsage: 0
-  skills:
-  - {fileID: 114851874054820258}
-  - {fileID: 114901598660030098}
-  - {fileID: 114961818912534782}
-  - {fileID: 114755842772489156}
-  unitInfoUI: {fileID: 114975912507572914, guid: acf7b037ed421c2429c3a170cc7ba7d4,
-    type: 2}
---- !u!114 &114755842772489156
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1234694667220030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3386667f7c8ccf541a60ece10f75039b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actionName: Lance Push
-  cost: 3
-  actionType: 3
-  actionUI: {fileID: 114201947593612934, guid: 09eb5c7d4ec2e43509e5360f14e029aa, type: 2}
-  icons: []
---- !u!114 &114843259048657780
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1335375907303462}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e6259f8428894071834514831ed9947, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 0}
---- !u!114 &114851874054820258
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1234694667220030}
+  m_GameObject: {fileID: 1962253382472560}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f5d33603594fc4b0fbb35fdd4bd089bf, type: 3}
@@ -346,46 +281,110 @@ MonoBehaviour:
   actionType: 0
   actionUI: {fileID: 114201947593612934, guid: 09eb5c7d4ec2e43509e5360f14e029aa, type: 2}
   icons: []
---- !u!114 &114901598660030098
+--- !u!114 &114203380044880456
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1234694667220030}
+  m_GameObject: {fileID: 1962253382472560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9972a5e4f07a98f489067aa9473ff90a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionName: Blink
+  cost: 3
+  actionType: 1
+  actionUI: {fileID: 114201947593612934, guid: 09eb5c7d4ec2e43509e5360f14e029aa, type: 2}
+  icons: []
+  distance: 2
+--- !u!114 &114448329058292646
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1904792444608162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8177c0213584841f8acd3d4add0f0e6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  source: {fileID: 0}
+--- !u!114 &114520286295680256
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1962253382472560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c340f00127e2e746bdb79a8f92a9cff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitName: Assassin
+  maxHp: 100
+  curHp: 100
+  maxAp: 9
+  dir: 0
+  controllable: 1
+  frameUsage: 0
+  skills:
+  - {fileID: 114132696662948956}
+  - {fileID: 114738089000385332}
+  - {fileID: 114203380044880456}
+  - {fileID: 114878255717124852}
+  unitInfoUI: {fileID: 114975912507572914, guid: acf7b037ed421c2429c3a170cc7ba7d4,
+    type: 2}
+--- !u!114 &114727870429263922
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1510326666240200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e6259f8428894071834514831ed9947, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+--- !u!114 &114738089000385332
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1962253382472560}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eab1b86148f1e47baa4312b0b60f67ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   actionName: Move
-  cost: 2
+  cost: 1
   actionType: 1
   actionUI: {fileID: 114570406660022952, guid: bc287e541d26d4ed1b00a50c7b40c918, type: 2}
   icons: []
---- !u!114 &114961818912534782
+--- !u!114 &114878255717124852
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1234694667220030}
+  m_GameObject: {fileID: 1962253382472560}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6b1c8708263348e9a3f2d5ee1305ae4, type: 3}
+  m_Script: {fileID: 11500000, guid: 7c62e6240561b5c4993c114749355e08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionName: Lance Poke
-  cost: 3
+  actionName: Poison Jab
+  cost: 2
   actionType: 3
   actionUI: {fileID: 114201947593612934, guid: 09eb5c7d4ec2e43509e5360f14e029aa, type: 2}
   icons: []
-  lancePrefab: {fileID: 1433373628903500, guid: 6b798f57b0cce43fc902521fc916a3a8,
-    type: 2}
---- !u!212 &212256897214979982
+--- !u!212 &212272277425636042
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1335375907303462}
+  m_GameObject: {fileID: 1510326666240200}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -415,7 +414,7 @@ SpriteRenderer:
   m_SortingLayerID: -1541830459
   m_SortingLayer: 4
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300010, guid: 754e3e9a07358462b9a7aced5e3e6390, type: 3}
+  m_Sprite: {fileID: 21300008, guid: 1fbfc4fad0c41bf4b815578a0c319e1d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

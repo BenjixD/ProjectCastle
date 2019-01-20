@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwordSlashDescriptor : ActionDescriptor {
+public class PoisonJabDescriptor : ActionDescriptor {
 
 	public override Action GetNewActionInstance() {
-		return new SwordSlash(this);
+		return new PoisonJab(this);
 	}
 
 	public override IEnumerator Select(Unit unit, Board board, Timeline timeline, IEnumerator next) {

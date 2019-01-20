@@ -342,7 +342,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionName: Move
-  cost: 1
+  cost: 2
   actionType: 1
   actionUI: {fileID: 114570406660022952, guid: bc287e541d26d4ed1b00a50c7b40c918, type: 2}
   icons: []

@@ -8,5 +8,7 @@ public class PowerShot : Action {
 		//Add frames in order
 		this.AddFrame(new PowerShotFrameEffectAttack(this), new PowerShotFrameAnimAttack(this));
 		this.AddFrame(new PowerShotFrameEffectEnd(this), new PowerShotFrameAnimEnd(this));
+		//Default Frame
+		this.SetDefaultFrame(new PowerShotFrameEffectEnd(this), new PowerShotFrameAnimEnd(this));
 	}
 }

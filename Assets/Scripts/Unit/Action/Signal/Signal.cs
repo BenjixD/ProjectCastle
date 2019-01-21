@@ -25,8 +25,5 @@ public class Signal : TargetAreaAction {
 		//Set TargetArea values
 		rangeMin = 2;
 		rangeMax = 6;
-		damage = new Dictionary<HitboxType, int>();
-		damage.Add(HitboxType.SWEET, 20);
-		damage.Add(HitboxType.OK, 10);
 	}
 }

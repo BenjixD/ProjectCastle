@@ -3,8 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class SignalEffectAttack : FrameEffect
-{ 
-    public SignalEffectAttack(Action instance) : base(instance) { }
+{
+	Dictionary<HitboxType, int> damage = new Dictionary<HitboxType, int>()
+	{
+		{ HitboxType.SWEET, 20 },
+		{ HitboxType.OK, 10 }
+	};
+
+	public SignalEffectAttack(Action instance) : base(instance) { }
 
     public override bool CanExecute(SimulatedDisplacement sim, Direction dir, Board board)
     {
@@ -36,17 +42,17 @@ public class SignalEffectAttack : FrameEffect
         
         if (target.unit && !IsAlreadyHit(target.unit))
         {
-            target.unit.TakeDamage(((TargetAreaAction)action).damage[HitboxType.SWEET]);
+            target.unit.TakeDamage(damage[HitboxType.SWEET]);
             AddUnitHit(target.unit);
-            Debug.Log("Ouch! " + target.unit.unitName + " just took " + ((TargetAreaAction)action).damage[HitboxType.SWEET] + " damage!");
+            Debug.Log("Ouch! " + target.unit.unitName + " just took " + damage[HitboxType.SWEET] + " damage!");
         }
         foreach(Tile t in aoe)
         {
             if (t.unit && !IsAlreadyHit(t.unit))
             {
-                t.unit.TakeDamage(((TargetAreaAction)action).damage[HitboxType.OK]);
+                t.unit.TakeDamage(damage[HitboxType.OK]);
                 AddUnitHit(t.unit);
-                Debug.Log("Ouch! " + t.unit.unitName + " just took " + ((TargetAreaAction)action).damage[HitboxType.OK] + " damage!");
+                Debug.Log("Ouch! " + t.unit.unitName + " just took " + damage[HitboxType.OK] + " damage!");
             }
         }
         return true;

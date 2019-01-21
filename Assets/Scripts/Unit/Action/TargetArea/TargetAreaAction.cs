@@ -6,7 +6,6 @@ public abstract class TargetAreaAction : Action {
 
 	public int rangeMin;
 	public int rangeMax;
-	public Dictionary<HitboxType, int> damage;
 
 	public Tile target { get; set; }
 

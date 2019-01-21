@@ -5,6 +5,11 @@ using UnityEngine;
 public class IncinerateFrameEffectAttack : FrameEffect
 {
 	private Dictionary<Vector2, HitboxType> targetTiles;
+	Dictionary<HitboxType, int> damage = new Dictionary<HitboxType, int>()
+	{
+		{ HitboxType.OK, 70 },
+		{ HitboxType.SOUR, 50 }
+	};
 
 	public IncinerateFrameEffectAttack(Action instance) : base(instance) { }
 
@@ -39,9 +44,9 @@ public class IncinerateFrameEffectAttack : FrameEffect
 			if (board.CheckCoord(targetCoord + pair.Key)) {
 				Tile t = board.GetTile(targetCoord + pair.Key);
 				if (t.unit && !IsAlreadyHit(t.unit)) {
-					t.unit.TakeDamage(((TargetAreaAction)action).damage[pair.Value]);
+					t.unit.TakeDamage(damage[pair.Value]);
 					AddUnitHit(t.unit);
-					Debug.Log("Ouch! " + t.unit.unitName + " just took " + ((TargetAreaAction)action).damage[pair.Value] + " damage!");
+					Debug.Log("Ouch! " + t.unit.unitName + " just took " + damage[pair.Value] + " damage!");
 				}
 			}
 		}

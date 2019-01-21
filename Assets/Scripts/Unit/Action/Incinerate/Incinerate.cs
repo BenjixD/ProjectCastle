@@ -21,8 +21,5 @@ public class Incinerate : TargetAreaAction {
 		//Set TargetArea values
 		rangeMin = 2;
 		rangeMax = 4;
-		damage = new Dictionary<HitboxType, int>();
-		damage.Add(HitboxType.OK, 70);
-		damage.Add(HitboxType.SOUR, 50);
 	}
 }

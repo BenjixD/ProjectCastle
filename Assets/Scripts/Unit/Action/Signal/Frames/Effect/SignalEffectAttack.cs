@@ -15,7 +15,7 @@ public class SignalEffectAttack : FrameEffect
     public override bool ExecuteEffect(SimulatedDisplacement sim, Direction dir, Board board)
     {
         // TODO get targetted area
-        Tile target = ((Signal)action).Target;
+        Tile target = ((Signal)action).target;
         List<Tile> aoe = new List<Tile>();
         if (board.CheckCoord(target.coordinate + Vector2.up))
         {
@@ -36,17 +36,17 @@ public class SignalEffectAttack : FrameEffect
         
         if (target.unit && !IsAlreadyHit(target.unit))
         {
-            target.unit.TakeDamage(Signal.CENTERDMG);
+            target.unit.TakeDamage(((TargetAreaAction)action).damage[HitboxType.SWEET]);
             AddUnitHit(target.unit);
-            Debug.Log("Ouch! " + target.unit.unitName + " just took " + Signal.CENTERDMG + " damage!");
+            Debug.Log("Ouch! " + target.unit.unitName + " just took " + ((TargetAreaAction)action).damage[HitboxType.SWEET] + " damage!");
         }
         foreach(Tile t in aoe)
         {
             if (t.unit && !IsAlreadyHit(t.unit))
             {
-                t.unit.TakeDamage(Signal.AOEDMG);
+                t.unit.TakeDamage(((TargetAreaAction)action).damage[HitboxType.OK]);
                 AddUnitHit(t.unit);
-                Debug.Log("Ouch! " + t.unit.unitName + " just took " + Signal.AOEDMG + " damage!");
+                Debug.Log("Ouch! " + t.unit.unitName + " just took " + ((TargetAreaAction)action).damage[HitboxType.OK] + " damage!");
             }
         }
         return true;

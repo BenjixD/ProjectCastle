@@ -20,7 +20,7 @@ public class SignalUI : ActionUI
         */
         
         // Set initial tile to a valid one by lollipopping clockwise
-        for (int i = Signal.RANGEMIN; i <= Signal.RANGEMAX; i++)
+        for (int i = signal.rangeMin; i <= signal.rangeMax; i++)
         {
             if (board.CheckCoord(unit.tile.coordinate + (i * Action.GetDirectionVector(Direction.UP))))
             {
@@ -107,7 +107,7 @@ public class SignalUI : ActionUI
     {
         if (IsInRange(target.coordinate))
         {
-            signal.Target = target;
+            signal.target = target;
             Direction approxDir = Direction.NONE;
             if (Mathf.Abs(unit.tile.coordinate.x - target.coordinate.x) - Mathf.Abs(unit.tile.coordinate.y - target.coordinate.y) >= 0)
             {
@@ -133,7 +133,7 @@ public class SignalUI : ActionUI
     {
         float taxiDistance = Mathf.Abs(unit.tile.coordinate.x - coord.x) + Mathf.Abs(unit.tile.coordinate.y - coord.y);
         Debug.Log(" taxidistance = " + taxiDistance);
-        if (taxiDistance > Signal.RANGEMAX|| taxiDistance < Signal.RANGEMIN)
+        if (taxiDistance > signal.rangeMax|| taxiDistance < signal.rangeMin)
         {
             Debug.Log("Going out of range!");
             return false;

@@ -12,11 +12,11 @@ public class TargetAreaUI : ActionUI {
 		targetArea = (TargetAreaAction)action;
 		target = null;
 		/* TODO refactor so other skills can use it, also need Direction to Vector2 translation method
-        if (Signal.RANGEMIN == 0)
-        {
-            target = unit.tile;
-        }
-        */
+		if (Signal.RANGEMIN == 0)
+		{
+			target = unit.tile;
+		}
+		*/
 
 		// Set initial tile to a valid one by lollipopping clockwise
 		for (int i = targetArea.rangeMin; i <= targetArea.rangeMax; i++)

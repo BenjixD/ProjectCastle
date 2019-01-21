@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4594984936452280}
   - component: {fileID: 114326669951307188}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: SignalUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

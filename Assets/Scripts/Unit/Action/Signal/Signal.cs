@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class Signal: Action {
+public class Signal : TargetAreaAction {
     /* Test attack for targetted area moves
      * AP: 2
      * Frames: 1 frame startup, 1 frame attack, 1 frame cooldown
@@ -11,14 +11,7 @@ public class Signal: Action {
      * Damage: 20 damage at the centre, 10 damage on other tiles
      */
 
-    public const int RANGEMIN = 2;
-    public const int RANGEMAX = 6;
-    public const int CENTERDMG = 20;
-    public const int AOEDMG = 10;
-
     public HashSet<Unit> victims;
-
-    public Tile Target { get; set; }
 
     public Signal(ActionDescriptor descriptor) : base(descriptor) {
 		//Add frames in order
@@ -28,5 +21,9 @@ public class Signal: Action {
 
         //Initialize "one time hit"
         victims = new HashSet<Unit>();
+
+		//Set TargetArea values
+		rangeMin = 2;
+		rangeMax = 6;
 	}
 }

@@ -20,13 +20,6 @@ public class Tile : MonoBehaviour {
     {
         this.unit = unit;
         unit.tile = this;
-        foreach(SpriteRenderer sprite in unit.gameObject.GetComponentsInChildren<SpriteRenderer>()) {
-            sprite.sortingOrder = GetSortingOrder();
-        }
-    }
-
-    public int GetSortingOrder() {
-        return (int)(coordinate.x * 1000 + coordinate.y * 10); //TODO: there has to be a better formula
     }
 
     public void RemoveUnit()

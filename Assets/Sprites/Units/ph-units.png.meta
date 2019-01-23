@@ -14,6 +14,10 @@ TextureImporter:
     21300018: ph-units_5
     21300020: ph-units_6
     21300022: ph-units_7
+    21300024: ph-units_8
+    21300026: ph-units_9
+    21300028: ph-units_10
+    21300030: ph-units_11
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -96,101 +100,21 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: archer-ph_0
-      rect:
-        serializedVersion: 2
-        x: 24
-        y: 1027
-        width: 178
-        height: 320
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 129e2a00456b66445bb17d0e5a9e5fea
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: archer-ph_1
-      rect:
-        serializedVersion: 2
-        x: 294
-        y: 1027
-        width: 180
-        height: 320
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 89371a74e255b7f4f9c5f04ba26deebc
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: archer-ph_2
-      rect:
-        serializedVersion: 2
-        x: 519
-        y: 1027
-        width: 180
-        height: 320
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c3a6189685698234396885edf3f2b5fc
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: archer-ph_3
-      rect:
-        serializedVersion: 2
-        x: 789
-        y: 1027
-        width: 180
-        height: 320
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 292371c239b9bec45a09e9e9230b5a85
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: ph-units_0
       rect:
         serializedVersion: 2
-        x: 58
-        y: 547
-        width: 119
-        height: 320
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 24
+        y: 1158
+        width: 144
+        height: 182
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ed160c6d31adaac4b8abfee7edfd110e
+      spriteID: eea5a03c46c0e1c4a8eeb9e42e113784
       vertices: []
       indices: 
       edges: []
@@ -199,18 +123,18 @@ TextureImporter:
       name: ph-units_1
       rect:
         serializedVersion: 2
-        x: 283
-        y: 547
-        width: 124
-        height: 320
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 294
+        y: 1148
+        width: 144
+        height: 182
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8201a6fd4d6a09341a10a9aef98bb646
+      spriteID: 9810d2c8a4dddb543ae95ce124a48fe9
       vertices: []
       indices: 
       edges: []
@@ -219,18 +143,18 @@ TextureImporter:
       name: ph-units_2
       rect:
         serializedVersion: 2
-        x: 544
-        y: 547
-        width: 119
-        height: 320
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 519
+        y: 1150
+        width: 144
+        height: 182
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 62eaa6aa4105cf544b8bcb81b516e5b7
+      spriteID: eb4ffd9881c02b449bd66f68761cea27
       vertices: []
       indices: 
       edges: []
@@ -239,18 +163,18 @@ TextureImporter:
       name: ph-units_3
       rect:
         serializedVersion: 2
-        x: 769
-        y: 547
-        width: 124
-        height: 320
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 789
+        y: 1140
+        width: 144
+        height: 182
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6d64110d8f4a4ff45a5dde43b3faaa0e
+      spriteID: d1c9af7700a964848b9df70322cde026
       vertices: []
       indices: 
       edges: []
@@ -259,18 +183,18 @@ TextureImporter:
       name: ph-units_4
       rect:
         serializedVersion: 2
-        x: 51
-        y: 127
-        width: 141
-        height: 290
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 58
+        y: 671
+        width: 119
+        height: 192
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 946cc9e0d191aa3499e5e13d597352c8
+      spriteID: f2ca7a132f2da3f4bbf415ddffcbf6a3
       vertices: []
       indices: 
       edges: []
@@ -279,18 +203,18 @@ TextureImporter:
       name: ph-units_5
       rect:
         serializedVersion: 2
-        x: 241
-        y: 127
-        width: 164
-        height: 290
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 283
+        y: 679
+        width: 124
+        height: 182
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2c8c286e7d69bf74f8dad919729ba078
+      spriteID: 781ffd1fadd0d2b4e91cdfc16e87962c
       vertices: []
       indices: 
       edges: []
@@ -299,18 +223,18 @@ TextureImporter:
       name: ph-units_6
       rect:
         serializedVersion: 2
-        x: 547
-        y: 9
-        width: 123
-        height: 461
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 544
+        y: 672
+        width: 119
+        height: 192
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bd14179e58a55594895e3da7e90656d1
+      spriteID: 4ddfe87954f7ebb459562a38a030cde9
       vertices: []
       indices: 
       edges: []
@@ -319,18 +243,98 @@ TextureImporter:
       name: ph-units_7
       rect:
         serializedVersion: 2
-        x: 783
-        y: 9
-        width: 123
-        height: 461
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 769
+        y: 680
+        width: 124
+        height: 182
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aead4389fa403294293f134446282d07
+      spriteID: acb226e5e391bf045abce997842fa9f1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ph-units_8
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 229
+        width: 115
+        height: 188
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 370be314afbdb9142aac0d393562e8b7
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ph-units_9
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 228
+        width: 120
+        height: 181
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08f20b9923c7e624bb08a4d73a7599af
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ph-units_10
+      rect:
+        serializedVersion: 2
+        x: 547
+        y: 212
+        width: 123
+        height: 252
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aee3e72d9f3196946b7eca2772a5b13f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ph-units_11
+      rect:
+        serializedVersion: 2
+        x: 783
+        y: 211
+        width: 123
+        height: 252
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68abc60244de4b146950f0e39434fdd4
       vertices: []
       indices: 
       edges: []

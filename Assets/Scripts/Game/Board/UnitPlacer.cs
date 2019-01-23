@@ -37,7 +37,7 @@ public class UnitPlacer : MonoBehaviour {
 	void PlaceUnit(Unit unit, Vector2 coord, Player player)
 	{
 		if(board.CheckCoord(coord) && board.GetTile((int)coord.x, (int)coord.y).tileType != TileType.EMPTY && board.GetTile((int)coord.x, (int)coord.y).unit == null) {
-			Unit newUnit = Instantiate(unit, board.CoordToPosition((int)coord.x, (int)coord.y), Quaternion.identity, redPlayer.transform).GetComponent<Unit>();
+			Unit newUnit = Instantiate(unit, board.CoordToPosition((int)coord.x, (int)coord.y), Quaternion.identity, player.transform).GetComponent<Unit>();
 			board.GetTile((int)coord.x, (int)coord.y).PlaceUnit(newUnit);
 			newUnit.owner = player;
 			player.units.Add(newUnit);

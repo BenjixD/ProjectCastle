@@ -21,9 +21,6 @@ public class LancePokeFrameAnimAttack : FrameAnim {
         	Tile tile = board.GetTile(sim.result + attackDir);
 
             lance.transform.position = tile.transform.position - new Vector3(0, 0.3f, 0);   //TODO: fix hardcoded sprite offset
-        	foreach(SpriteRenderer sprite in lance.GetComponentsInChildren<SpriteRenderer>()) {
-        		sprite.sortingOrder = tile.GetSortingOrder();
-        	}
         	
             ((LancePoke)action).spawnedLanceAnims.Add(tile, lance);
         }
@@ -33,9 +30,6 @@ public class LancePokeFrameAnimAttack : FrameAnim {
             Tile tile = board.GetTile(sim.result + attackDir * 2);
 
             lance.transform.position = tile.transform.position - new Vector3(0, 0.3f, 0);   //TODO: fix hardcoded sprite offset
-        	foreach(SpriteRenderer sprite in lance.GetComponentsInChildren<SpriteRenderer>()) {
-        		sprite.sortingOrder = tile.GetSortingOrder();
-        	}
         	
             ((LancePoke)action).spawnedLanceAnims.Add(tile, lance);
         }
@@ -45,9 +39,6 @@ public class LancePokeFrameAnimAttack : FrameAnim {
             Tile tile = board.GetTile(sim.result + attackDir * 3);
 
             lance.transform.position = tile.transform.position - new Vector3(0, 0.3f, 0);   //TODO: fix hardcoded sprite offset
-        	foreach(SpriteRenderer sprite in lance.GetComponentsInChildren<SpriteRenderer>()) {
-        		sprite.sortingOrder = tile.GetSortingOrder();
-        	}
         	
             ((LancePoke)action).spawnedLanceAnims.Add(tile, lance);
         }
